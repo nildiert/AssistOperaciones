@@ -25,5 +25,8 @@ Route::resources([
     'servicios' => 'serviciosController',
     'linea' => 'lineaController',
     'cliente' => 'clienteController',
-    'gerente' => 'gerenteController'
+    'gerente' => 'gerenteController',
+    'recursosfisicos' => 'recursosFisicosController',
+    'oficina' => 'oficinaController'
+
 ]);

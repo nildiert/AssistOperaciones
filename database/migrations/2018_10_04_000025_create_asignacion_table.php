@@ -24,8 +24,8 @@ class CreateAsignacionTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('asigID');
-            $table->unsignedInteger('personas_PersonasID');
-            $table->unsignedInteger('proyecto_ProyID');
+            $table->unsignedInteger('personas_PersonasID')->unsigned();
+            $table->unsignedInteger('proyecto_ProyID')->unsigned();
             $table->date('asigFechaIni')->nullable()->default(null);
             $table->integer('asigPorcentaje')->nullable()->default('1');
             $table->string('asigFechaFin', 45)->nullable()->default(null);

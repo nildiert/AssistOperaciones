@@ -24,8 +24,8 @@ class CreateProylinnegTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('proyLinNegID');
-            $table->unsignedInteger('lineanegocio_linNegID');
-            $table->unsignedInteger('proyecto_ProyID');
+            $table->unsignedInteger('lineanegocio_linNegID')->unsigned();
+            $table->unsignedInteger('proyecto_ProyID')->unsigned();
             $table->string('proyLinNegTipo', 45)->nullable()->default(null);
             $table->timestamp('proyLinNeg_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('proyLinNeg_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

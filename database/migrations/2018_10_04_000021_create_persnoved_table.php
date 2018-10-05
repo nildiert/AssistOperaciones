@@ -24,8 +24,8 @@ class CreatePersnovedTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('PersNovedID');
-            $table->unsignedInteger('Novedades_NovId');
-            $table->unsignedInteger('personas_PersonasID');
+            $table->unsignedInteger('Novedades_NovId')->unsigned();
+            $table->unsignedInteger('personas_PersonasID')->unsigned();
             $table->date('PersNovedFechaInicio')->nullable()->default(null);
             $table->date('PersNovedFechaFin')->nullable()->default(null);
             $table->dateTime('PersNoved_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));

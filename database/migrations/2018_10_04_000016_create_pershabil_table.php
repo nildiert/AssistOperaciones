@@ -24,8 +24,8 @@ class CreatePershabilTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('PersHabilID');
-            $table->unsignedInteger('Habilidadess_HabilidadesID');
-            $table->unsignedInteger('personas_PersonasID');
+            $table->unsignedInteger('Habilidadess_HabilidadesID')->unsigned();
+            $table->unsignedInteger('personas_PersonasID')->unsigned();
             $table->string('PersHabilCertificacion', 45)->nullable()->default('NO');
             $table->string('PersHabilNivExp', 45)->nullable()->default('BAJO');
             $table->dateTime('PersHabil_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));

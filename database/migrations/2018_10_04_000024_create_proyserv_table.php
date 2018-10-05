@@ -24,8 +24,8 @@ class CreateProyservTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('ProyServId');
-            $table->integer('servicios_ServId');
-            $table->unsignedInteger('proyecto_ProyID');
+            $table->integer('servicios_ServId')->unsigned();
+            $table->unsignedInteger('proyecto_ProyID')->unsigned();
             $table->timestamp('ProyServ_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('ProyServ_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('ProyServUsuario', 45)->nullable();

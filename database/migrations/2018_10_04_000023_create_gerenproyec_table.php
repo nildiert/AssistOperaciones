@@ -24,8 +24,8 @@ class CreateGerenproyecTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('GerenProyecID');
-            $table->unsignedInteger('Gerente_GerenteID');
-            $table->unsignedInteger('Proyecto_ProyID');
+            $table->unsignedInteger('Gerente_GerenteID')->unsigned();
+            $table->unsignedInteger('Proyecto_ProyID')->unsigned();
             $table->date('GerenProyecFechaInic')->nullable()->default(null);
             $table->date('GerenProyecFechaFin')->nullable()->default(null);
             $table->timestamp('GerenProyec_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));

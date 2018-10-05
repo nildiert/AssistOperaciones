@@ -7,7 +7,12 @@
         <title>Laravel</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        {!!Html::style('css/bootstrap.min.css')!!}
+        {!!Html::script('js/jquery.min.js')!!}
+        {!!Html::script('js/bootstrap.min.js')!!}
+        {!!Html::script('js/popper.min.js')!!}
+        {!!Html::script('js/bootstrap.min.js')!!}
+
 
         <!-- Styles -->
         <style>
@@ -83,70 +88,122 @@
                 <div class="title m-b-md">
                     Assist Operaciones
                 </div>
+                <div class="row"><!--Inicio de la clase Row-->
 
-                <div class="links">
-                    <select name="" id="">
-                        <option value="Personas">Personas</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Cargos">Cargos</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Habilidades">Habilidades</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Novedades">Novedades</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Contratos">Contratos</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Empresa">Empresa</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Servicios">Servicios</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Linea">Linea</option><a href="#"> de negocio</a>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Cliente">Cliente</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                    <select name="" id="">
-                        <option value="Gerente">Gerente</option>
-                        <option value="Editar">Editar</option>
-                        <option value="Agregar">Agregar</option>
-                        <option value="Eliminar">Eliminar</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+                        <div class="dropdown"><!--Inicio Div personas-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Personas
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('personas.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('personas.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin del div personas-->
+                        <div class="dropdown"><!--Inicio Div cargos-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cargos
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('cargos.index')}}">Mostrar</a>
+                            <a class="dropdown-item" href="{{route('cargos.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin div Cargos-->
+                        <div class="dropdown"><!--Inicio Div habilidades-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Habilidades
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('habilidades.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('habilidades.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin del div habilidades-->
+                        <div class="dropdown"><!--Inicio Div novedades-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Novedades
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('novedades.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('novedades.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div novedades-->
+                        <div class="dropdown"><!--Inicio  Div contratos-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Contratos
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('contratos.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('contratos.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div contratos-->
+                        <div class="dropdown"><!--Inicio  Div Empresa-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Empresa
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('empresas.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('empresas.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div empresa-->
+                        <div class="dropdown"><!--Inicio  Div Servicios-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Servicios
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('servicios.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('servicios.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div Servicios-->
+                        <div class="dropdown"><!--Inicio  Div Lineas de negocio-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Linea de Negocio
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('linea.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('linea.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div lineas de negocio-->
+                        <div class="dropdown"><!--Inicio  Div Clientes-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cliente
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('cliente.index')}}">Mostrar</a>
+                            <a class="dropdown-item" href="{{route('cliente.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div Clientes-->
+                        <div class="dropdown"><!--Inicio  Div Gerente-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gerente
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('gerente.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('gerente.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div novedades-->
+                        <div class="dropdown"><!--Inicio  Div Recursos Fisicos-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Recursos fisicos
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('recursosfisicos.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('recursosfisicos.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div Recursos Fisicos-->
+                        <div class="dropdown"><!--Inicio  Div Oficina-->
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Oficina
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{route('oficina.index')}}">Mostrar</a>
+                                <a class="dropdown-item" href="{{route('oficina.create')}}">Agregar</a>
+                            </div>
+                        </div><!--Fin  Div Recursos Fisicos-->
+
+                </div><!--Fin de clase Row-->
+            </div><!--Fin de la clase content-->
+        </div><!--Fin de la clase flex-center-->
+        <script>
+            $('.dropdown-toggle').dropdown()
+        </script>
     </body>
 </html>

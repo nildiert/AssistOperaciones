@@ -24,7 +24,7 @@ class CreateFactproyecTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('FactProyecID');
-            $table->unsignedInteger('Proyecto_ProyID');
+            $table->unsignedInteger('Proyecto_ProyID')->unsigned();
             $table->string('FactProyecTipo', 45)->nullable()->default(null)->comment('El tipo de facturacion puede ser una orden de compra o un contrato\\\\r\\\\n');
             $table->date('FactProyecFechaIni')->nullable()->default(null);
             $table->date('FactProyecFechaFin')->nullable()->default(null);

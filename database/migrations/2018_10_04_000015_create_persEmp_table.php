@@ -24,8 +24,8 @@ class CreatePersempTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('PersEmpId');
-            $table->unsignedInteger('personas_PersonasID');
-            $table->integer('empresa_EmpId');
+            $table->unsignedInteger('personas_PersonasID')->unsigned();
+            $table->integer('empresa_EmpId')->unsigned();
             $table->date('PersEmpFechaIni')->nullable();
             $table->date('PersEmpFechaFin')->nullable();
             $table->timestamp('PersEmp_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
