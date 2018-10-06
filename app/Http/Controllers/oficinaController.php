@@ -15,8 +15,8 @@ class oficinaController extends Controller
     public function index()
     {
         //
-        $oficinas = Oficina::orderBy('idOfic','DESC')->paginate(3);
-        return $oficinas;
+        $oficinas = Oficina::orderBy('idOfic','DESC')->paginate(10);
+        return view('oficinas.index',compact('oficinas'));
     }
 
     /**

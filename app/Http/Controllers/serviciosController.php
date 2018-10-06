@@ -15,8 +15,8 @@ class serviciosController extends Controller
     public function index()
     {
         //
-        $servicios = Servicios::orderBy('ServId','DESC')->paginate(3);
-        return $servicios;
+        $servicios = Servicios::orderBy('ServId','DESC')->paginate(10);
+        return view('servicios.index',compact('servicios'));
     }
 
     /**

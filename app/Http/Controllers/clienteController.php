@@ -15,8 +15,8 @@ class clienteController extends Controller
     public function index()
     {
         //
-        $clientes=Clientes::orderBy('cliID','DESC')->paginate(3);
-        return $clientes;
+        $clientes=Clientes::orderBy('cliID','DESC')->paginate(10);
+        return view('clientes.index',compact('clientes'));
     }
 
     /**

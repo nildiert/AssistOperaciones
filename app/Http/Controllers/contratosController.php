@@ -15,8 +15,8 @@ class contratosController extends Controller
     public function index()
     {
         //
-        $contratos=Contratos::orderBy('ContId','DESC')->paginate(3);
-        return $contratos;
+        $contratos=Contratos::orderBy('ContId','DESC')->paginate(10);
+        return view('contratos.index',compact('contratos'));
     }
 
     /**

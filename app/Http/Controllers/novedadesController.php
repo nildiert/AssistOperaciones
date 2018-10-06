@@ -15,8 +15,8 @@ class novedadesController extends Controller
     public function index()
     {
         //
-        $novedades = Novedades::orderBy('NovId','DESC')->paginate(3);
-        return $novedades;
+        $novedades = Novedades::orderBy('NovId','DESC')->paginate(15);
+        return view('novedades.index',compact('novedades'));
     }
 
     /**

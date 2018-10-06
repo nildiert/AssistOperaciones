@@ -15,8 +15,8 @@ class habilidadesController extends Controller
     public function index()
     {
         //
-        $habilidades = Habilidades::orderBy('HabilidadesID','DESC')->paginate(3);
-        return $habilidades;
+        $habilidades = Habilidades::orderBy('HabilidadesID','DESC')->paginate(20);
+        return view('habilidades.index',compact('habilidades'));
     }
 
     /**

@@ -15,8 +15,8 @@ class lineaController extends Controller
     public function index()
     {
         //
-        $lineas = Linea::orderBy('linNegID','DESC')->paginate(3);
-        return $lineas;
+        $lineas = Linea::orderBy('linNegID','DESC')->paginate(10);
+        return view('lineas.index',compact('lineas'));
     }
 
     /**

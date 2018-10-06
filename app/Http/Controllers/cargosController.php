@@ -15,8 +15,9 @@ class cargosController extends Controller
     public function index()
     {
         //
-        $cargos=Cargos::orderBy('CargosID','DESC')->paginate(3);
-        return $cargos;
+        $cargos=Cargos::orderBy('CargosID','DESC')->paginate(10);
+        // return view('cargos.index',compact('cargos'));
+        return view('cargos.index',compact('cargos'));
     }
 
     /**

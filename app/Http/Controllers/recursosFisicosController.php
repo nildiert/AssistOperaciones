@@ -15,8 +15,8 @@ class recursosFisicosController extends Controller
     public function index()
     {
         //
-        $recursosFisicos= RecursosFisicos::orderBy('RecFisID','DESC')->paginate(3);
-        return $recursosFisicos;
+        $recursosFisicos= RecursosFisicos::orderBy('RecFisID','DESC')->paginate(10);
+        return view('recursosFisicos.index',compact('recursosFisicos'));
     }
 
     /**

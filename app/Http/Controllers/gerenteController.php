@@ -15,8 +15,9 @@ class gerenteController extends Controller
     public function index()
     {
         //
-        $gerentes = Gerentes::orderBy('GerenteID','DESC')->paginate(3);
-        return $gerentes;
+        $gerentes = Gerentes::orderBy('GerenteID','DESC')->paginate(10);
+        return view('gerentes.index',compact('gerentes'));
+        // return compact('gerentes')[];
     }
 
     /**

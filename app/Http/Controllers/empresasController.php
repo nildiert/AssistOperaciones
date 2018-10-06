@@ -16,7 +16,7 @@ class empresasController extends Controller
     {
         //
         $empresas = Empresas::orderBy('EmpId','DESC')->paginate(3);
-        return $empresas;
+        return view('empresas.index',compact('empresas'));
     }
 
     /**
