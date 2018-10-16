@@ -5,6 +5,7 @@
 
 
     <div class="table-container">
+            {{$personas->links()}}
         <table class="table table-hover">
             <thead>
                 <th>PersonasNombreCompleto</th>
@@ -35,6 +36,6 @@
 
         </table>
     </div>
-
+{{$personas->links()}}
 </div>
 @endsection

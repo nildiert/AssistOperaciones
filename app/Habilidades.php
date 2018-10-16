@@ -8,4 +8,13 @@ class Habilidades extends Model
 {
     //
     protected $table ="habilidades";
+    protected $fillable =[
+        'HabilidadesID',
+        'HabilidadesNombre',
+        'HabilidadesTipo',
+        'created_at',
+        'updated_at',
+        'HabilidadesUsuario',
+        'HabilidadesEstado',
+    ];
 }

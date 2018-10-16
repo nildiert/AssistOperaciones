@@ -1,0 +1,10 @@
+@extends('layouts.layout')
+@section('content')
+    {!!Form::open(['action'=>'cargosController@store'])!!}
+        {!!Form::label('CargosNombre')!!}
+            {!!Form::text('CargosNombre',null,['placeholder'=>'CargosNombre'])!!}
+        {!!Form::label('CargosDescripcion')!!}
+            {!!Form::text('CargosDescripcion',null,['placeholder'=>'CargosDescripcion'])!!}
+            {!!Form::submit('Enviar')!!}
+    {!!Form::close()!!}
+@endsection

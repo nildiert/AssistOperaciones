@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="table-container">
+            {{$lineas->links()}}
             <table class="table table-hover">
                 <thead>
                     <th>linNegID</th>
@@ -30,5 +31,6 @@
                 </tbody>
             </table>
         </div>
+        {{$lineas->links()}}
     </div>
 @endsection

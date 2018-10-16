@@ -15,7 +15,7 @@ class empresasController extends Controller
     public function index()
     {
         //
-        $empresas = Empresas::orderBy('EmpId','DESC')->paginate(3);
+        $empresas = Empresas::orderBy('EmpId','DESC')->paginate(50);
         return view('empresas.index',compact('empresas'));
     }
 
@@ -27,6 +27,7 @@ class empresasController extends Controller
     public function create()
     {
         //
+        return view('empresas.create');
     }
 
     /**
@@ -38,6 +39,17 @@ class empresasController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'EmpNombre',
+        ]);
+
+        $request->merge([
+            'EmpNombre'=>strtoupper($request->EmpNombre)
+        ]);
+
+        Empresas::create($request->all());
+
+        return redirect()->route('empresas.index')->with('success','El registro se agrego exitosamente');
     }
 
     /**

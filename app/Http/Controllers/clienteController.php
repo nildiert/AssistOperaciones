@@ -15,7 +15,7 @@ class clienteController extends Controller
     public function index()
     {
         //
-        $clientes=Clientes::orderBy('cliID','DESC')->paginate(10);
+        $clientes=Clientes::orderBy('cliID','DESC')->paginate(50);
         return view('clientes.index',compact('clientes'));
     }
 
@@ -27,6 +27,7 @@ class clienteController extends Controller
     public function create()
     {
         //
+        return view('clientes.create');
     }
 
     /**
@@ -38,6 +39,18 @@ class clienteController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'cliNombre',
+            'cliCod'
+        ]);
+        $request->merge([
+            'cliNombre'=>strtoupper($request->cliNombre),
+            'cliCod'=>strtoupper($request->cliCod)
+        ]);
+
+        Clientes::create($request->all());
+
+        return redirect()->route('cliente.index')->with('success','Registro agregado exitosamente');
     }
 
     /**

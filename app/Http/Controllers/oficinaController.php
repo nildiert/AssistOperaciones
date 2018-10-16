@@ -15,7 +15,7 @@ class oficinaController extends Controller
     public function index()
     {
         //
-        $oficinas = Oficina::orderBy('idOfic','DESC')->paginate(10);
+        $oficinas = Oficina::orderBy('idOfic','DESC')->paginate(50);
         return view('oficinas.index',compact('oficinas'));
     }
 
@@ -27,6 +27,7 @@ class oficinaController extends Controller
     public function create()
     {
         //
+        return view('oficinas.create');
     }
 
     /**
@@ -38,6 +39,14 @@ class oficinaController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'OficNumero'
+
+        ]);
+
+        Oficina::create($request->all());
+
+        return redirect()->route('oficina.index')->with('success','Registro agregado exitosamente');
     }
 
     /**

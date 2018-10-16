@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="table-container">
+            {{$contratos->links()}}
             <table class="table table-hover">
                 <thead>
                     <th>ContId</th>
@@ -31,5 +32,6 @@
                 </tbody>
             </table>
         </div>
+        {{$contratos->links()}}
     </div>
 @endsection

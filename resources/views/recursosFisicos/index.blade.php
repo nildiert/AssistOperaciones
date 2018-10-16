@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="table-container">
+            {{$recursosFisicos->links()}}
             <table class="table table-hover">
                 <thead>
                     <th>RecFisID</th>
@@ -32,5 +33,6 @@
                 </tbody>
             </table>
         </div>
+        {{$recursosFisicos->links()}}
     </div>
 @endsection

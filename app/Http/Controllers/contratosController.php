@@ -15,7 +15,7 @@ class contratosController extends Controller
     public function index()
     {
         //
-        $contratos=Contratos::orderBy('ContId','DESC')->paginate(10);
+        $contratos=Contratos::orderBy('ContId','DESC')->paginate(50);
         return view('contratos.index',compact('contratos'));
     }
 
@@ -27,6 +27,7 @@ class contratosController extends Controller
     public function create()
     {
         //
+        return view('contratos.create');
     }
 
     /**
@@ -38,6 +39,19 @@ class contratosController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'ContTipo'=>'required',
+            'ContDescripcion'=>'required',
+        ]);
+
+        $request->merge([
+            'ContTipo'=>strtoupper($request->ContTipo),
+            'ContDescripcion'=>strtoupper($request->ContDescripcion),
+        ]);
+
+        Contratos::create($request->all());
+
+        return redirect()->route('contratos.index')->with('success','Se ha realizado el registro exitosamente');
     }
 
     /**

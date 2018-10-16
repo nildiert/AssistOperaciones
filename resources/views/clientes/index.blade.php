@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="table-container">
+            {{$clientes->links()}}
             <table class="table table-hover">
                 <thead>
                     <th>cliID</th>
@@ -31,5 +32,6 @@
                 </tbody>
             </table>
         </div>
+        {{$clientes->links()}}
     </div>
 @endsection

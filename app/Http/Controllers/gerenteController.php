@@ -15,7 +15,7 @@ class gerenteController extends Controller
     public function index()
     {
         //
-        $gerentes = Gerentes::orderBy('GerenteID','DESC')->paginate(10);
+        $gerentes = Gerentes::orderBy('GerenteID','DESC')->paginate(50);
         return view('gerentes.index',compact('gerentes'));
         // return compact('gerentes')[];
     }
@@ -28,6 +28,7 @@ class gerenteController extends Controller
     public function create()
     {
         //
+        return view('gerentes.create');
     }
 
     /**
@@ -39,6 +40,15 @@ class gerenteController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'GerenteNombre'=>'required',
+        ]);
+        $request->merge([
+            'GerenteNombre'=>strtoupper($request->GerenteNombre),
+        ]);
+
+        Gerentes::create($request->all());
+        return redirect()->route('gerente.index')->with('success','Registro agregado exitosamente');
     }
 
     /**

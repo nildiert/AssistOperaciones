@@ -15,7 +15,7 @@ class habilidadesController extends Controller
     public function index()
     {
         //
-        $habilidades = Habilidades::orderBy('HabilidadesID','DESC')->paginate(20);
+        $habilidades = Habilidades::orderBy('HabilidadesID','DESC')->paginate(50);
         return view('habilidades.index',compact('habilidades'));
     }
 
@@ -27,6 +27,7 @@ class habilidadesController extends Controller
     public function create()
     {
         //
+        return view('habilidades.create');
     }
 
     /**
@@ -38,6 +39,20 @@ class habilidadesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'HabilidadesNombre'=>'required',
+            'HabilidadesTipo'=>'required'
+        ]);
+        //Pasamos los datos a mayusculas
+        $request->merge([
+            'HabilidadesNombre'=>strtoupper($request->HabilidadesNombre),
+            'HabilidadesTipo'=>strtoupper($request->HabilidadesTipo),
+        ]);
+
+        //Insertamos los datos en la base de dtos
+        Habilidades::create($request->all());
+
+        return redirect()->route('habilidades.index')->with('succes','Registro agregado exitosamente');
     }
 
     /**

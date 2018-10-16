@@ -15,9 +15,10 @@ class cargosController extends Controller
     public function index()
     {
         //
-        $cargos=Cargos::orderBy('CargosID','DESC')->paginate(10);
-        // return view('cargos.index',compact('cargos'));
+        $cargos=Cargos::orderBy('CargosID','DESC')->paginate(50);
+        // return compact('cargos');
         return view('cargos.index',compact('cargos'));
+        // return $cargos ;
     }
 
     /**
@@ -28,6 +29,7 @@ class cargosController extends Controller
     public function create()
     {
         //
+        return view('cargos.create');
     }
 
     /**
@@ -39,6 +41,24 @@ class cargosController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'CargosID',
+            'CargosNombre'=>'required',
+            'CargosDescripcion'=>'required',
+            'created_at',
+            'updated_at',
+            'CargosUsuario',
+            'CargosEstado'
+        ]);
+
+        $request->merge([
+            'CargosNombre'=>strtoupper($request->CargosNombre),
+            'CargosDescripcion'=>strtoupper($request->CargosDescripcion),
+        ]);
+
+        Cargos::create($request->all());
+
+        return redirect()->route('cargos.index')->with('success','Registro agregado exitosamente');
     }
 
     /**

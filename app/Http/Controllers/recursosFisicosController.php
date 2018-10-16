@@ -15,7 +15,7 @@ class recursosFisicosController extends Controller
     public function index()
     {
         //
-        $recursosFisicos= RecursosFisicos::orderBy('RecFisID','DESC')->paginate(10);
+        $recursosFisicos= RecursosFisicos::orderBy('RecFisID','DESC')->paginate(50);
         return view('recursosFisicos.index',compact('recursosFisicos'));
     }
 
@@ -27,6 +27,7 @@ class recursosFisicosController extends Controller
     public function create()
     {
         //
+        return view('recursosFisicos.create');
     }
 
     /**
@@ -38,6 +39,19 @@ class recursosFisicosController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'RecFisCod',
+            'RecFisTipo'
+        ]
+        );
+
+        $request->merge([
+            'RecFisTipo'=>strtoupper($request->RecFisTipo)
+        ]);
+
+        RecursosFisicos::create($request->all());
+
+        return redirect()->route('recursosfisicos.index')->with('succes','Registro agregado exitosamente');
     }
 
     /**

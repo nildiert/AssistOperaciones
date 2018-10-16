@@ -15,7 +15,7 @@ class serviciosController extends Controller
     public function index()
     {
         //
-        $servicios = Servicios::orderBy('ServId','DESC')->paginate(10);
+        $servicios = Servicios::orderBy('ServId','DESC')->paginate(50);
         return view('servicios.index',compact('servicios'));
     }
 
@@ -27,6 +27,7 @@ class serviciosController extends Controller
     public function create()
     {
         //
+        return view('servicios.create');
     }
 
     /**
@@ -38,6 +39,15 @@ class serviciosController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'ServNombre'=>'required',
+        ]);
+        $request->merge([
+            'ServNombre'=>strtoupper($request->ServNombre)
+        ]);
+
+        Servicios::create($request->all());
+        return redirect()->route('servicios.index')->with(['succes'=>'Se ingresado el registro exitosamente']);
     }
 
     /**

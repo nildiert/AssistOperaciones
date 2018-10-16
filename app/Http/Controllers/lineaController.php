@@ -15,7 +15,7 @@ class lineaController extends Controller
     public function index()
     {
         //
-        $lineas = Linea::orderBy('linNegID','DESC')->paginate(10);
+        $lineas = Linea::orderBy('linNegID','DESC')->paginate(50);
         return view('lineas.index',compact('lineas'));
     }
 
@@ -27,6 +27,7 @@ class lineaController extends Controller
     public function create()
     {
         //
+        return view('lineas.create');
     }
 
     /**
@@ -38,6 +39,17 @@ class lineaController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'linNegNombre'=>'required'
+        ]);
+
+        $request->merge([
+            'linNegNombre'=>strtoupper($request->linNegNombre)
+        ]);
+
+        Linea::create($request->all());
+
+        return redirect()->route('linea.index')->with('success','Registro agregado exitosamente');
     }
 
     /**

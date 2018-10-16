@@ -1,6 +1,7 @@
 @extends('layouts.layout')
 @section('content')
     <div class="container">
+        {{$gerentes->links()}}
         <div class="table-container">
             <table>
                 <thead>
@@ -34,5 +35,6 @@
                 </tbody>
             </table>
         </div>
+        {{$gerentes->links()}}
     </div>
 @endsection

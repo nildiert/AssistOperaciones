@@ -15,7 +15,7 @@ class novedadesController extends Controller
     public function index()
     {
         //
-        $novedades = Novedades::orderBy('NovId','DESC')->paginate(15);
+        $novedades = Novedades::orderBy('NovId','DESC')->paginate(50);
         return view('novedades.index',compact('novedades'));
     }
 
@@ -27,6 +27,7 @@ class novedadesController extends Controller
     public function create()
     {
         //
+        return view('novedades.create');
     }
 
     /**
@@ -38,6 +39,16 @@ class novedadesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'NovTipo'=>'required',
+        ]);
+        $request->merge([
+            'NovTipo'=>strtoupper($request->NovTipo)
+        ]);
+
+        Novedades::create($request->all());
+
+        return redirect()->route('novedades.index')->with('success','Registro agregado exitosamente');
     }
 
     /**

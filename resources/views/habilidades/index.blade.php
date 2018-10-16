@@ -2,6 +2,7 @@
 @section('content')
     <div class="container">
         <div class="table-container">
+            {{$habilidades->links()}}
             <table class="table table-hover">
                 <thead>
                     <th>HabilidadesID</th>
@@ -20,8 +21,8 @@
                         <td>{{$habilidad->HabilidadesID}}</td>
                         <td>{{$habilidad->HabilidadesNombre}}</td>
                         <td>{{$habilidad->HabilidadesTipo}}</td>
-                        <td>{{$habilidad->Habilidades_created_at}}</td>
-                        <td>{{$habilidad->Habilidades_updated_at}}</td>
+                        <td>{{$habilidad->created_at}}</td>
+                        <td>{{$habilidad->updated_at}}</td>
                         <td>{{$habilidad->HabilidadesUsuario}}</td>
                         <td>{{$habilidad->HabilidadesEstado}}</td>
                         <td><button class="btn btn-outline-info">Actualizar</button> </td>
@@ -31,5 +32,6 @@
                 </tbody>
             </table>
         </div>
+        {{$habilidades->links()}}
     </div>
 @endsection
