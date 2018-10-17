@@ -28,4 +28,5 @@ class Personas extends Model
         'PersonasUsuario',
         'PersonasEstado'
     ];
+    protected $primaryKey = 'PersonasID';
 }

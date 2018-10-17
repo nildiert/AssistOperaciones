@@ -93,10 +93,11 @@ class personasController extends Controller
      * @param  \App\Personas  $personas
      * @return \Illuminate\Http\Response
      */
-    public function show(Personas $personas)
+    public function show($id)
     {
         //
-        return 'Estas en show';
+        $personas=Personas::find($id);
+        return view('personas.show',compact('personas'));
     }
 
     /**
