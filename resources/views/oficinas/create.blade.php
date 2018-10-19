@@ -8,4 +8,5 @@
 
         {!!Form::submit('Enviar')!!}
     {!!Form::close()!!}
+    @include('sweet::alert')
 @endsection

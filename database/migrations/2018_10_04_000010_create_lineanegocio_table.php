@@ -25,8 +25,8 @@ class CreateLineanegocioTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('linNegID');
             $table->string('linNegNombre', 45)->nullable()->default(null);
-            $table->timestamp('linNeg_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('linNeg_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('linNegUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('linNegEstado')->nullable()->default('1');
         });

@@ -26,8 +26,8 @@ class CreateCargosTable extends Migration
             $table->increments('CargosID');
             $table->string('CargosNombre', 45)->nullable()->default(null);
             $table->text('CargosDescripcion')->nullable()->default(null);
-            $table->dateTime('Cargos_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('Cargos_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('CargosUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('CargosEstado')->nullable()->default('1');
         });

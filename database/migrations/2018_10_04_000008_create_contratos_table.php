@@ -26,8 +26,8 @@ class CreateContratosTable extends Migration
             $table->increments('ContId');
             $table->string('ContTipo', 45)->nullable()->default(null);
             $table->text('ContDescripcion')->nullable()->default(null);
-            $table->dateTime('Cont_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('Cont_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('ContUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('ContEstado')->nullable()->default('1');
         });

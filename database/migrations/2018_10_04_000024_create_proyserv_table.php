@@ -26,8 +26,8 @@ class CreateProyservTable extends Migration
             $table->increments('ProyServId');
             $table->integer('servicios_ServId')->unsigned();
             $table->unsignedInteger('proyecto_ProyID')->unsigned();
-            $table->timestamp('ProyServ_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('ProyServ_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('ProyServUsuario', 45)->nullable();
             $table->tinyInteger('ProyecServEstado')->nullable()->default('1');
 

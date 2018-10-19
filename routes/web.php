@@ -30,3 +30,8 @@ Route::resources([
     'oficina' => 'oficinaController'
 
 ]);
+
+Route::get('redirect', function(){
+    Alert::error('Registro agregado exitosamente!');
+    return redirect('/');
+});

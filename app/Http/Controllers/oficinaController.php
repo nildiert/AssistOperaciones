@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Oficina;
 use Illuminate\Http\Request;
+use Alert;
 
 class oficinaController extends Controller
 {
@@ -27,7 +28,9 @@ class oficinaController extends Controller
     public function create()
     {
         //
-        return view('oficinas.create');
+        Alert::message('Estas en la funcion create');
+
+         return view('oficinas.create');
     }
 
     /**
@@ -45,6 +48,9 @@ class oficinaController extends Controller
         ]);
 
         Oficina::create($request->all());
+
+
+
 
         return redirect()->route('oficina.index')->with('success','Registro agregado exitosamente');
     }

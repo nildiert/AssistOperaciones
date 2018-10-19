@@ -28,8 +28,8 @@ class CreatePersnovedTable extends Migration
             $table->unsignedInteger('personas_PersonasID')->unsigned();
             $table->date('PersNovedFechaInicio')->nullable()->default(null);
             $table->date('PersNovedFechaFin')->nullable()->default(null);
-            $table->dateTime('PersNoved_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('PersNoved_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->tinyInteger('PersNovedEstado')->nullable()->default('1');
             $table->string('PersNovedUsuario', 45)->nullable()->default(null);
 

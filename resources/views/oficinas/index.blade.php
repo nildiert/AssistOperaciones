@@ -33,4 +33,5 @@
         </div>
         {{$oficinas->links()}}
     </div>
+
 @endsection

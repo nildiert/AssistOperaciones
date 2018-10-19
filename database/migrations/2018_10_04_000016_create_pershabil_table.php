@@ -28,8 +28,8 @@ class CreatePershabilTable extends Migration
             $table->unsignedInteger('personas_PersonasID')->unsigned();
             $table->string('PersHabilCertificacion', 45)->nullable()->default('NO');
             $table->string('PersHabilNivExp', 45)->nullable()->default('BAJO');
-            $table->dateTime('PersHabil_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('PersHabil_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('PersHabilUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('PersHabilEstado')->nullable()->default('1');
 

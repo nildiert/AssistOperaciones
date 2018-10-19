@@ -26,8 +26,8 @@ class CreateRecursosfisicosTable extends Migration
             $table->increments('RecFisID');
             $table->integer('RecFisCod')->nullable()->default(null);
             $table->string('RecFisTipo', 45)->nullable()->default(null);
-            $table->timestamp('RecFis_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('RecFis_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('RecFis_usuario', 45)->nullable()->default(null);
             $table->tinyInteger('RecFis_Estado')->nullable()->default('1');
         });

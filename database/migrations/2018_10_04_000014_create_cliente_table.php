@@ -26,8 +26,8 @@ class CreateClienteTable extends Migration
             $table->increments('cliID');
             $table->string('cliNombre', 45)->nullable()->default(null);
             $table->string('cliCod', 45)->nullable()->default(null);
-            $table->timestamp('clie_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('clie_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('cli_Usuario', 45)->nullable()->default(null);
             $table->tinyInteger('cli_Estado')->nullable()->default('1');
         });

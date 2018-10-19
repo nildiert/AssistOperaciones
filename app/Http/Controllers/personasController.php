@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Personas;
+use Alert;
 use Illuminate\Http\Request;
 
 class personasController extends Controller
@@ -15,7 +16,7 @@ class personasController extends Controller
     public function index()
     {
         //
-        $personas = Personas::orderBy('PersonasID','DESC')->paginate(100);
+        $personas = Personas::orderBy('PersonasID','DESC')->where('PersonasEstado','1')->paginate(50);
         return view('personas.index',compact('personas'));
     }
 
@@ -27,7 +28,7 @@ class personasController extends Controller
     public function create()
     {
         //
-        return view('personas.create');
+                return view('personas.create');
     }
 
     /**
@@ -83,6 +84,7 @@ class personasController extends Controller
 
 
             Personas::create($request->all());
+            Alert::success('Registro agregado exitosamente!');
         return redirect()->route('personas.index')->with('success','Registro agregado satisfactoriamente');
 
     }
@@ -106,9 +108,10 @@ class personasController extends Controller
      * @param  \App\Personas  $personas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Personas $personas)
+    public function edit($id)
     {
-        return 'Estas en edit';
+        $personas= Personas::find($id);
+        return view('personas.edit',compact('personas'));
         //
     }
 
@@ -119,10 +122,46 @@ class personasController extends Controller
      * @param  \App\Personas  $personas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Personas $personas)
+    public function update(Request $request,$id)
     {
-        //
-        return 'Estas en update';
+   //
+         $this->validate($request,[
+        'PersonasPriApellido'=>'required',
+        'PersonasSegApellido',
+        'PersonasPrimNombre'=>'required',
+        'PersonasSegNombre',
+        'PersonasDocumento'=>'required',
+        'PersonasTipoDoc'=>'required',
+        'PersonasTel'=>'required',
+        'PersonasEspecialidad'=>'required',
+        'PersonasTitulo'=>'required',
+        'PersonasFechaIngreso'=>'required'
+        ]);
+        if(empty($request->PersonasSegNombre)){
+            $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre;
+        }else{
+            $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre.' '.$request->PersonasSegNombre;
+        }
+                //Conversión a mayusculas antes de insertar en la base de datos
+        //Agregamos el campo de nombre completo a la variable $request
+        $request->merge([
+            'PersonasNombreCompleto' => strtoupper($PersonasNombreCompleto),
+        ]);
+        $request->merge([
+            'PersonasPriApellido' => strtoupper($PersonasNombreCompleto),
+            'PersonasPriApellido' => strtoupper($request->PersonasPriApellido),
+            'PersonasSegApellido' => strtoupper($request->PersonasSegApellido),
+            'PersonasPrimNombre' => strtoupper($request->PersonasPrimNombre),
+            'PersonasSegNombre' => strtoupper($request->PersonasSegNombre),
+            'PersonasNombreCompleto' => strtoupper($request->PersonasNombreCompleto),
+            'PersonasTipoDoc' => strtoupper($request->PersonasTipoDoc),
+            'PersonasEspecialidad' => strtoupper($request->PersonasEspecialidad),
+            'PersonasTitulo' => strtoupper($request->PersonasTitulo),
+        ]);
+        Alert::success('Registro actualizado correctamente');
+
+        Personas::find($id)->update($request->all());
+        return redirect()->route('personas.index');
     }
 
     /**
@@ -131,9 +170,28 @@ class personasController extends Controller
      * @param  \App\Personas  $personas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Personas $personas)
+    public function destroy($id)
     {
         //
-        return 'Estas en destroy';
+        $personas =Personas::find($id);
+
+        Alert::success('Registro eliminado exitosamente');
+
+        if($personas    != null){
+
+            $personas->PersonasEstado = 0;
+            $personas->PersonasActivo='INACTIVO';
+            $personas->save();
+
+            return redirect()->route('personas.index');
+
+        }
+
+        return redirect()->route('personas.index');
+
+    }
+
+    public function eliminar(Personas $personas){
+
     }
 }

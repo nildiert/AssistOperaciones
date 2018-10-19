@@ -25,8 +25,8 @@ class CreateServiciosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('ServId');
             $table->string('ServNombre', 45)->nullable();
-            $table->timestamp('Serv_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('Serv_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('ServUsuario', 45)->nullable();
             $table->tinyInteger('ServEstado')->nullable()->default('1');
         });

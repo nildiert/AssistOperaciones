@@ -27,8 +27,8 @@ class CreateProylinnegTable extends Migration
             $table->unsignedInteger('lineanegocio_linNegID')->unsigned();
             $table->unsignedInteger('proyecto_ProyID')->unsigned();
             $table->string('proyLinNegTipo', 45)->nullable()->default(null);
-            $table->timestamp('proyLinNeg_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('proyLinNeg_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('proyLinNeg_Usuario', 45)->nullable()->default(null);
             $table->tinyInteger('proyLinNegEstado')->nullable()->default('1');
 

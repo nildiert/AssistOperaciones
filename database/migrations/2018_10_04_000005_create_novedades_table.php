@@ -25,8 +25,8 @@ class CreateNovedadesTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('NovId');
             $table->string('NovTipo', 45)->nullable()->default(null);
-            $table->dateTime('Nov_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('Nov_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('NovUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('NovEstado')->nullable()->default(null);
         });

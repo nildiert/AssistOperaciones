@@ -25,8 +25,8 @@ class CreateEmpresaTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('EmpId');
             $table->string('EmpNombre', 45)->nullable();
-            $table->timestamp('Emp_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('Emp_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('EmpUsuario', 45)->nullable();
             $table->tinyInteger('EmpEstado')->nullable()->default('1');
         });

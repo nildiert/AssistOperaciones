@@ -28,8 +28,8 @@ class CreatePersempTable extends Migration
             $table->integer('empresa_EmpId')->unsigned();
             $table->date('PersEmpFechaIni')->nullable();
             $table->date('PersEmpFechaFin')->nullable();
-            $table->timestamp('PersEmp_created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('PersEmp_updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('PersEmpUsuario', 45)->nullable();
             $table->tinyInteger('PersEmpEstado')->nullable()->default('1');
 
