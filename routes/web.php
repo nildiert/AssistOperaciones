@@ -27,7 +27,8 @@ Route::resources([
     'cliente' => 'clienteController',
     'gerente' => 'gerenteController',
     'recursosfisicos' => 'recursosFisicosController',
-    'oficina' => 'oficinaController'
+    'oficina' => 'oficinaController',
+    'pershabil'=>'persHabilController'
 
 ]);
 
@@ -35,3 +36,6 @@ Route::get('redirect', function(){
     Alert::error('Registro agregado exitosamente!');
     return redirect('/');
 });
+Route::post('personas/search','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
+Route::post('pershabil/search','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
+

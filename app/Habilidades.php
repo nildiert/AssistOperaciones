@@ -17,4 +17,7 @@ class Habilidades extends Model
         'HabilidadesUsuario',
         'HabilidadesEstado',
     ];
+    public function habilidades(){
+        return $this->hasMany(Habilidades::class);
+    }
 }

@@ -194,4 +194,11 @@ class personasController extends Controller
     public function eliminar(Personas $personas){
 
     }
+    public function search(Request $recurso){
+
+        $personas =Personas::where('PersonasNombreCompleto','like','%'.$recurso->recurso.'%')->paginate(10);
+        return view('personas.index',compact('personas'));
+    }
+
+
 }

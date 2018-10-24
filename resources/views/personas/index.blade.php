@@ -3,18 +3,43 @@
 
 <div class="container">
     @include('sweet::alert')
+{{--sdfsdf--}}
+        <div class="d-flex justify-content-between mt-3 row">
 
-        <div class="d-flex justify-content-between mt-3">
 
-            {{$personas->links()}}
-            <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#deleteModal">Agregar recurso</a>
             <!--href="{{route('personas.create')}}-->
+                <div class="col-12 d-flex justify-content-end">
+                        <div class="">
+
+                                <a class="btn btn-info  mb-3 text-white"  href="{{route('personas.index')}}">Volver</a>
+                                <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#deleteModal">Agregar recurso</a>
+                            </div>
+                </div>
+                <div class="input-group mb-3 col-6">
+                    <div class="input-group-prepend">
+                        {!!Form::open(['action'=>'personasController@search'])!!}
+                        {!!Form::submit('Buscar recurso',['class'=>'btn btn-outline-info'])!!}
+                    </div>
+                    <input type="text" name="recurso" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    {!!Form::close()!!}
+                </div>
+                <div class="input-group mb-3 col-6">
+                    <div class="input-group-prepend">
+                        {!!Form::open(['action'=>'persHabilController@search'])!!}
+                        {!!Form::submit('Buscar habilidad',['class'=>'btn btn-outline-info'])!!}
+                    </div>
+                    <input type="text" name="skill" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    {!!Form::close()!!}
+                </div>
+
+
 
         </div>
 
 
 
         <div class="table-container">
+
             <table class="table table-hover">
                 <thead>
                     <th>NOMBRE COMPLETO</th>
@@ -56,7 +81,7 @@
 
             </table>
         </div>
-    {{$personas->links()}}
+        {{$personas->links()}}
 
     </div>
 
@@ -77,30 +102,33 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body ">
                     {!!Form::open(['action'=>'personasController@store'])!!}
-                    {!!Form::label('PersonasPriApellido')!!}
-                        {!!Form::text('PersonasPriApellido',null,['placeholder'=>'PersonasPriApellido', 'class'=>'toUpper'])!!} <br>
-                    {!!Form::label('PersonasSegApellido')!!}
-                        {!!Form::text('PersonasSegApellido',null,['placeholder'=>'PersonasSegApellido', 'class'=>'toUpper'])!!} <br>
-                    {!!Form::label('PersonasPrimNombre')!!}
-                        {!!Form::text('PersonasPrimNombre',null,['placeholder'=>'PersonasPrimNombre', 'class'=>'toUpper'])!!} <br>
-                    {!!Form::label('PersonasSegNombre')!!}
-                        {!!Form::text('PersonasSegNombre',null,['placeholder'=>'PersonasSegNombre', 'class'=>'toUpper'])!!} <br>
-                    {!!Form::label('PersonasDocumento')!!}
-                        {!!Form::number('PersonasDocumento',null,['placeholder'=>'PersonasDocumento'])!!} <br>
-                    {!!Form::label('PersonasTipoDoc')!!}
-                        {!!Form::select('PersonasTipoDoc',array('CC'=>'Cedula de Ciudadania','TI'=>'Tarjeta de identidad','PA'=>'Pasaporte','CE'=>'Cedula de extranjeria'))!!}<br>
-                    {!!Form::label('PersonasTel')!!}
-                        {!!Form::number('PersonasTel',null,['placeholder'=>'PersonasTel'])!!} <br>
-                    {!!Form::label('PersonasEspecialidad')!!}
-                        {!!Form::text('PersonasEspecialidad',null,['placeholder'=>'PersonasEspecialidad', 'class'=>'toUpper'])!!} <br>
-                    {!!Form::label('PersonasTitulo')!!}
-                        {!!Form::text('PersonasTitulo',null,['placeholder'=>'PersonasTitulo', 'class'=>'toUpper'])!!} <br>
-                    {!!Form::label('PersonasFechaIngreso')!!}
-                        {!!Form::date('PersonasFechaIngreso')!!}<br>
+                    <div class="col-12">
+                    {!!Form::label('Apellidos')!!}
+
+                        {!!Form::text('PersonasPriApellido',null,['placeholder'=>'Primer apellido', 'class'=>'toUpper form-control'])!!}
+                        {!!Form::label('')!!}
+                        {!!Form::text('PersonasSegApellido',null,['placeholder'=>'Segundo apellido', 'class'=>'toUpper form-control'])!!} <hr>
+                         {!!Form::label('Nombres')!!}
+                        {!!Form::text('PersonasPrimNombre',null,['placeholder'=>'Primer nombre', 'class'=>'toUpper form-control'])!!}
+                        {!!Form::label('')!!}
+                        {!!Form::text('PersonasSegNombre',null,['placeholder'=>'Segundo nombre', 'class'=>'toUpper form-control'])!!} <hr>
+                        {!!Form::label('Documentación')!!}
+                        {!!Form::select('PersonasTipoDoc',array('CC'=>'Cedula de Ciudadania','TI'=>'Tarjeta de identidad','PA'=>'Pasaporte','CE'=>'Cedula de extranjeria'),null,['class'=>'form-control','placeholder'=>'Tipo de documento'])!!}
+                        {!!Form::label('')!!}
+                        {!!Form::number('PersonasDocumento',null,['placeholder'=>'Número de documento','class'=>'form-control'])!!}<hr>
+                        {!!Form::label('Información personal')!!}
+                        {!!Form::number('PersonasTel',null,['placeholder'=>'Telefono','class'=>'form-control'])!!}
+                        {!!Form::label('')!!}
+                        {!!Form::text('PersonasEspecialidad',null,['placeholder'=>'Especialidad', 'class'=>'toUpper form-control'])!!}
+                        {!!Form::label('')!!}
+                        {!!Form::text('PersonasTitulo',null,['placeholder'=>'Titulo', 'class'=>'toUpper form-control'])!!}<hr>
+                        {!!Form::label('Fecha de ingreso')!!}
+                        {!!Form::date('PersonasFechaIngreso',null,['class'=>'form-control'])!!}<br>
                         {!!Form::text('PersonasNombreCompleto',null,['hidden'=>'hidden'])!!}
 
+                    </div>
 
             @include('sweet::alert')
             </div>
@@ -111,5 +139,6 @@
             </div>
           </div>
         </div>
+
       </div>
 

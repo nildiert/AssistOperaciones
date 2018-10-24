@@ -29,4 +29,8 @@ class Personas extends Model
         'PersonasEstado'
     ];
     protected $primaryKey = 'PersonasID';
+
+    public function pershabil(){
+        return $this->hasMany(Personas::class);
+    }
 }
