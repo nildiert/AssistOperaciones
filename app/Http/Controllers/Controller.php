@@ -21,6 +21,7 @@ class Controller extends BaseController
                 $route='personas.search';
                 break;
             case 'habil':
+
                 $route='pershabil.search';
                 break;
             case 'cargo':
@@ -29,5 +30,7 @@ class Controller extends BaseController
         }
 
         return redirect()->route($route,$busqueda);
+        // return $route;
+
     }
 }

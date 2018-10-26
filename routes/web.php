@@ -38,8 +38,8 @@ Route::get('redirect', function(){
 });
 
 //Validar porque seguramente toque borrar estas rutas
-Route::GET('personas/search/{$busqueda}','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
-Route::get('pershabil/search','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
+Route::GET('personas/search/{busqueda}','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
+Route::GET('pershabil/search/{busqueda}','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
 Route::get('habilidades/search','habilidadesController@search')->name('habilidades.search');//Busca habilidades por persona
 //Hasta aquí
 

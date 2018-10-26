@@ -200,10 +200,10 @@ class personasController extends Controller
 
     }
     public function search(Request $recurso){
-    return $recurso;
-        // $personas =Personas::where('PersonasNombreCompleto','like','%'.$recurso->recurso.'%')->paginate(10);
-        // $activos = Personas::where('PersonasEstado','1')->count();
-        // return view('personas.index',compact('personas','activos'));
+
+        $personas =Personas::where('PersonasNombreCompleto','like','%'.$recurso->busqueda.'%')->paginate(10);
+        $activos = Personas::where('PersonasEstado','1')->count();
+        return view('personas.index',compact('personas','activos'));
     }
 
     public function prueba(){

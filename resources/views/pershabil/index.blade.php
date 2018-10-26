@@ -3,33 +3,33 @@
 <div class="container">
         <div class="d-flex justify-content-between mt-3 row">
 
+
                 <!--href="{{route('personas.create')}}-->
-                    <div class="col-12 d-flex justify-content-end">
-                            <div class="">
+                <div class="col-12 d-flex justify-content-end">
+                        <div class="">
+                                <a class="btn btn-info  mb-3 text-white"  href="{{route('personas.index')}}">Volver</a>
+                                <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#deleteModal">Agregar recurso</a>
+                            </div>
+                </div>
 
-                                    <a class="btn btn-info  mb-3 text-white"  href="{{route('personas.index')}}">Volver</a>
-                                </div>
-                    </div>
-                    <div class="input-group mb-3 col-6">
-                        <div class="input-group-prepend">
-                            {!!Form::open(['action'=>'personasController@search'])!!}
-                            {!!Form::submit('Buscar recurso',['class'=>'btn btn-outline-info'])!!}
+
+                <!--Busqueda de personas-->
+                <div class="col-6 mb-2">
+                    {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
+                    <div class="input-group">
+                        {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
+
+                        {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar'])}}
+                        <div class="input-group-append">
+                            {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
                         </div>
-                        <input type="text" name="recurso" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                         {!!Form::close()!!}
                     </div>
-                    <div class="input-group mb-3 col-6">
-                        <div class="input-group-prepend">
-                            {!!Form::open(['action'=>'persHabilController@search'])!!}
-                            {!!Form::submit('Buscar habilidad',['class'=>'btn btn-outline-info'])!!}
-                        </div>
-                        <input type="text" name="skill" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        {!!Form::close()!!}
-                    </div>
-
-
+                </div>
 
             </div>
+
+
 
 <div class="table-container">
         <table class="table table-hover">

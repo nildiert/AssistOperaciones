@@ -19,12 +19,6 @@
 
             <!--Busqueda de personas-->
             <div class="col-6 mb-2">
-
-
-
-                            <!--href="{{route('personas.create')}}-->
-
-
                 {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
                 <div class="input-group">
                     {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
