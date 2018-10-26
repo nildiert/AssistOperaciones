@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Personas;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,18 +14,20 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function search(Request $request){
-        dd($request->input());
-    //  return $request->tipoBusqueda;
-        $action ="";
-        switch ($request->tipoBusqueda){
-            case "pers":
+        $tipo = $request->tipoBusqueda;
+        $busqueda = $request->busqueda;
+        switch($tipo){
+            case 'pers':
+                $route='personas.search';
                 break;
-            case "habil":
-            break;
-            case "cargo":
-            break;
+            case 'habil':
+                $route='pershabil.search';
+                break;
+            case 'cargo':
+                //$route='habilidadesController@search';
+                break;
         }
-        // return redirect()->action($action,['recurso'=>$request->tipoBusqueda]);
-        return $request;
+
+        return redirect()->route($route,$busqueda);
     }
 }

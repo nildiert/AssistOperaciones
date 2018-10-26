@@ -99,4 +99,10 @@ class habilidadesController extends Controller
     {
         //
     }
+    public function search(Request $recurso){
+        dd($_GET);
+     return $recurso;
+    }
+
+
 }

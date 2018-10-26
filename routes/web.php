@@ -38,14 +38,14 @@ Route::get('redirect', function(){
 });
 
 //Validar porque seguramente toque borrar estas rutas
-Route::post('personas/search','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
-Route::post('pershabil/search','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
+Route::GET('personas/search/{$busqueda}','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
+Route::get('pershabil/search','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
+Route::get('habilidades/search','habilidadesController@search')->name('habilidades.search');//Busca habilidades por persona
 //Hasta aquí
 
 //
 //Envía al controlador principal para que realice la verificación y posteriormente redireccione a los controladores para realizar la busqueda
-Route::post('/search','personasController@search')->name('search');
 
 //Borrar esta ruta
-Route::post('/pruebas','personasController@prueba');
+Route::get('search','Controller@search');
 
