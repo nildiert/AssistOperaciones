@@ -47,7 +47,13 @@
                     @foreach($pershabil as $ph)
                     <tr>
 
-                        <td style="font-size: 14px">{{$ph->PersonasNombreCompleto}}</td>
+                        <td style="font-size: 14px"><a href=""
+                            class="
+                            @if($ph->PersonasEstado == 0)
+                                {{'text-danger'}}
+                            @endif
+                            "
+                            > {{$ph->PersonasNombreCompleto}}</a></td>
                         <td style="font-size: 14px">{{$ph->HabilidadesNombre}}</td>
                         <td style="font-size: 14px">{{$ph->PersHabilCertificacion}}</td>
                         <td style="font-size: 14px">{{$ph->PersHabilNivExp}}</td>

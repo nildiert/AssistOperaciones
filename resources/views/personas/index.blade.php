@@ -4,41 +4,39 @@
 <div class="container">
     @include('sweet::alert')
 {{--sdfsdf--}}
+<span class="btn">Activos:  {{$activos}}</span>
         <div class="d-flex justify-content-between mt-3 row">
 
 
             <!--href="{{route('personas.create')}}-->
-                <div class="col-12 d-flex justify-content-end">
-                        <div class="">
+            <div class="col-12 d-flex justify-content-end">
+                    <div class="">
+                            <a class="btn btn-info  mb-3 text-white"  href="{{route('personas.index')}}">Volver</a>
+                            <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#deleteModal">Agregar recurso</a>
+                        </div>
+            </div>
 
-                                <a class="btn btn-info  mb-3 text-white"  href="{{route('personas.index')}}">Volver</a>
-                                <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#deleteModal">Agregar recurso</a>
-                            </div>
-                </div>
-                <div class="input-group mb-3 col-6">
-                    <div class="input-group-prepend">
-                        {!!Form::open(['action'=>'personasController@search'])!!}
-                        {!!Form::submit('Buscar recurso',['class'=>'btn btn-outline-info'])!!}
+
+            <!--Busqueda de personas-->
+            <div class="col-6 mb-2">
+                {{ Form:: open(['method' => 'POST','route' => 'search']) }}
+                <div class="input-group">
+                    {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
+
+                    {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar'])}}
+                    <div class="input-group-append">
+                        {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
                     </div>
-                    <input type="text" name="recurso" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                     {!!Form::close()!!}
                 </div>
-                <div class="input-group mb-3 col-6">
-                    <div class="input-group-prepend">
-                        {!!Form::open(['action'=>'persHabilController@search'])!!}
-                        {!!Form::submit('Buscar habilidad',['class'=>'btn btn-outline-info'])!!}
-                    </div>
-                    <input type="text" name="skill" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    {!!Form::close()!!}
-                </div>
-
-
+            </div>
 
         </div>
 
+            <div class="table-container">
 
 
-        <div class="table-container">
+
 
             <table class="table table-hover">
                 <thead>
@@ -55,7 +53,12 @@
                 <tbody>
                     @foreach($personas as $persona)
                     <tr>
-                    <td  style="font-size: 14px"><a href="{{route('personas.show',$persona->PersonasID)}}"> {{$persona->PersonasNombreCompleto}}</a></td>
+                    <td  style="font-size: 14px" ><a href="{{route('personas.show',$persona->PersonasID)}}"
+                            class="
+                            @if($persona->PersonasEstado == 0)
+                                {{'text-danger'}}
+                            @endif
+                        "> {{$persona->PersonasNombreCompleto}}</a></td>
                     <td  style="font-size: 14px">{{$persona->PersonasDocumento}}</td>
                     <td  style="font-size: 14px">{{$persona->PersonasTel}}</td>
                     <td  style="font-size: 14px ">{{$persona->PersonasTitulo}}</td>
@@ -63,6 +66,7 @@
 
                         <td><a  class="btn btn-outline-info" href="{{route('personas.edit',$persona->PersonasID)}}">Actualizar</a>  </td>                        <td>
                                 {{ Form:: open(['method' => 'DELETE','route' => ['personas.destroy', $persona->PersonasID], 'id' => 'confirm_delete']) }}
+
 
                                 {!! Form::submit('Eliminar', ['class' => 'btn btn-outline-danger']) !!}
 

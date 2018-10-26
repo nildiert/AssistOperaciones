@@ -91,6 +91,7 @@ class persHabilController extends Controller
 
         $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
         ->where('HabilidadesNombre','like','%'.$skill->skill.'%')->where('PersonasEstado','1')->get();
-        return view('pershabil.index',compact('pershabil'));
+        $count = $pershabil->count();
+        return view('pershabil.index',compact('pershabil','count'));
     }
 }

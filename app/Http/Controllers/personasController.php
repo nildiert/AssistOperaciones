@@ -16,9 +16,13 @@ class personasController extends Controller
     public function index()
     {
         //
+
         $personas = Personas::orderBy('PersonasID','DESC')->where('PersonasEstado','1')->paginate(50);
-        return view('personas.index',compact('personas'));
+        $activos = Personas::where('PersonasEstado','1')->count();
+        return view('personas.index',compact('personas','activos'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -57,35 +61,36 @@ class personasController extends Controller
 
             //Concatenamos nombres y apellidos para insertar el campo de nombre completo
 
-        if(empty($request->PersonasSegNombre)){
-            $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre;
-        }else{
-            $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre.' '.$request->PersonasSegNombre;
-        }
+            if(empty($request->PersonasSegNombre)){
+                $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre;
+            }else{
+                $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre.' '.$request->PersonasSegNombre;
+            }
 
-        //Conversión a mayusculas antes de insertar en la base de datos
-        //Agregamos el campo de nombre completo a la variable $request
-        $request->merge([
-            'PersonasNombreCompleto' => strtoupper($PersonasNombreCompleto),
-        ]);
+            //Conversión a mayusculas antes de insertar en la base de datos
+            //Agregamos el campo de nombre completo a la variable $request
+            $request->merge([
+                'PersonasNombreCompleto' => strtoupper($PersonasNombreCompleto),
+                ]);
 
-        $request->merge([
-            'PersonasPriApellido' => strtoupper($PersonasNombreCompleto),
-            'PersonasPriApellido' => strtoupper($request->PersonasPriApellido),
-            'PersonasSegApellido' => strtoupper($request->PersonasSegApellido),
-            'PersonasPrimNombre' => strtoupper($request->PersonasPrimNombre),
-            'PersonasSegNombre' => strtoupper($request->PersonasSegNombre),
-            'PersonasNombreCompleto' => strtoupper($request->PersonasNombreCompleto),
-            'PersonasTipoDoc' => strtoupper($request->PersonasTipoDoc),
-            'PersonasEspecialidad' => strtoupper($request->PersonasEspecialidad),
-            'PersonasTitulo' => strtoupper($request->PersonasTitulo),
-        ]);
+                $request->merge([
+                    'PersonasPriApellido' => strtoupper($PersonasNombreCompleto),
+                    'PersonasPriApellido' => strtoupper($request->PersonasPriApellido),
+                    'PersonasSegApellido' => strtoupper($request->PersonasSegApellido),
+                    'PersonasPrimNombre' => strtoupper($request->PersonasPrimNombre),
+                    'PersonasSegNombre' => strtoupper($request->PersonasSegNombre),
+                    'PersonasNombreCompleto' => strtoupper($request->PersonasNombreCompleto),
+                    'PersonasTipoDoc' => strtoupper($request->PersonasTipoDoc),
+                    'PersonasEspecialidad' => strtoupper($request->PersonasEspecialidad),
+                    'PersonasTitulo' => strtoupper($request->PersonasTitulo),
+                    ]);
 
 
 
-            Personas::create($request->all());
-            Alert::success('Registro agregado exitosamente!');
-        return redirect()->route('personas.index')->with('success','Registro agregado satisfactoriamente');
+                    Personas::create($request->all());
+        Alert::success('Registro agregado exitosamente!');
+    return redirect()->route('personas.index')->with('success','Registro agregado satisfactoriamente');
+        return $request;
 
     }
 
@@ -196,9 +201,16 @@ class personasController extends Controller
     }
     public function search(Request $recurso){
 
+        dd(Personas::where('PersonasNombreCompleto','like','%'.$recurso->recurso.'%')->get());
+
         $personas =Personas::where('PersonasNombreCompleto','like','%'.$recurso->recurso.'%')->paginate(10);
-        return view('personas.index',compact('personas'));
+        $activos = Personas::where('PersonasEstado','1')->count();
+        return view('personas.index',compact('personas','activos'));
     }
 
+    public function prueba(){
+        return '$mensaje';
+
+    }
 
 }
