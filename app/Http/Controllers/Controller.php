@@ -8,13 +8,16 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
-use App\Http\Request\PrincipalSearchValidationRequest;
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function search(Request $request){
+        $validateData = $request->validate([
+            'busqueda'  => 'required',
+        ]);
+
         $tipo = $request->tipoBusqueda;
         $busqueda = $request->busqueda;
         switch($tipo){
@@ -34,7 +37,5 @@ class Controller extends BaseController
         // return $route;
 
     }
-    public function store(PrincipalSearchValidationRequest $request){
-        return '';
-    }
+
 }
