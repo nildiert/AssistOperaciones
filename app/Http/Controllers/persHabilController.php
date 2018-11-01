@@ -17,8 +17,11 @@ class persHabilController extends Controller
     public function index()
     {
         //
-        $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')->get();
-        return view('pershabil.index',compact('pershabil'));
+        $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
+            ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
+            ->get();
+
+            return view('pershabil.index',compact('pershabil'));
 
     }
 

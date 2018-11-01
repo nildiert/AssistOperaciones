@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+    return view('home');
+});
+Route::get('/home', function () {
     return view('welcome');
 });
 
@@ -28,7 +31,8 @@ Route::resources([
     'gerente' => 'gerenteController',
     'recursosfisicos' => 'recursosFisicosController',
     'oficina' => 'oficinaController',
-    'pershabil'=>'persHabilController'
+    'pershabil'=>'persHabilController',
+    'cargpers'=>'CargPersController'
 
 ]);
 
@@ -40,7 +44,7 @@ Route::get('redirect', function(){
 //Validar porque seguramente toque borrar estas rutas
 Route::GET('personas/search/{busqueda}','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
 Route::GET('pershabil/search/{busqueda}','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
-Route::get('habilidades/search','habilidadesController@search')->name('habilidades.search');//Busca habilidades por persona
+Route::GET('cargpers/search/{busqueda}','CargPersController@search')->name('cargpers.search');//Busca habilidades por persona
 //Hasta aquí
 
 //
@@ -49,3 +53,9 @@ Route::get('habilidades/search','habilidadesController@search')->name('habilidad
 //Borrar esta ruta
 Route::get('search','Controller@search');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('log','LogController');

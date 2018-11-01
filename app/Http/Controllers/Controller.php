@@ -25,7 +25,7 @@ class Controller extends BaseController
                 $route='pershabil.search';
                 break;
             case 'cargo':
-                //$route='habilidadesController@search';
+                $route='cargpers.search';
                 break;
         }
 

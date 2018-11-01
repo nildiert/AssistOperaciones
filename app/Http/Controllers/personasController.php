@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class personasController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -103,8 +106,19 @@ class personasController extends Controller
     public function show($id)
     {
         //
-        $personas=Personas::find($id);
-        return view('personas.show',compact('personas'));
+        $pershabil =  Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
+        ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
+        ->where('PersonasID','=',$id)
+        ->get();
+
+        $personas =Personas::leftJoin('cargpers','personas.PersonasID','personas_PersonasID')
+        ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
+        ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
+        ->leftJoin('contratos','contratos.ContId','perscontr.PersContrID')
+        ->where('PersonasID','=',$id)
+        ->get();
+        return view('personas.show',compact('personas','pershabil'));
+        // return [$personas];
     }
 
     /**

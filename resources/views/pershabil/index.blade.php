@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 @section('content')
 <div class="container">
         <div class="d-flex justify-content-between mt-3 row">
@@ -17,7 +17,7 @@
                 <div class="col-6 mb-2">
                     {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
                     <div class="input-group">
-                        {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
+                        {!!Form::select('tipoBusqueda',['habil'=>'Habilidad','pers'=>'Persona','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
 
                         {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar'])}}
                         <div class="input-group-append">
@@ -47,13 +47,12 @@
                     @foreach($pershabil as $ph)
                     <tr>
 
-                        <td style="font-size: 14px"><a href=""
+                    <td  style="font-size: 14px" ><a href="{{Route('personas.show',$ph->PersonasID)}}"
                             class="
                             @if($ph->PersonasEstado == 0)
                                 {{'text-danger'}}
                             @endif
-                            "
-                            > {{$ph->PersonasNombreCompleto}}</a></td>
+                        "> {{$ph->PersonasNombreCompleto}}</a></td>
                         <td style="font-size: 14px">{{$ph->HabilidadesNombre}}</td>
                         <td style="font-size: 14px">{{$ph->PersHabilCertificacion}}</td>
                         <td style="font-size: 14px">{{$ph->PersHabilNivExp}}</td>
