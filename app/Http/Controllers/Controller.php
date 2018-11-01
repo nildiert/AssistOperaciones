@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use App\Http\Request\PrincipalSearchValidationRequest;
 
 class Controller extends BaseController
 {
@@ -32,5 +33,8 @@ class Controller extends BaseController
         return redirect()->route($route,$busqueda);
         // return $route;
 
+    }
+    public function store(PrincipalSearchValidationRequest $request){
+        return '';
     }
 }
