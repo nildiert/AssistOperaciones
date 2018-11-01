@@ -26,8 +26,8 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name', 191);
             $table->string('email', 191);
-            $table->bigInteger('phone');
-            $table->bigInteger('indenty');
+            $table->bigInteger('phone')->default('0');
+            $table->bigInteger('indenty')->default('0');
             $table->string('password', 191);
             $table->tinyInteger('usuRol')->default('1');
             $table->tinyInteger('usuEstate')->default('0');

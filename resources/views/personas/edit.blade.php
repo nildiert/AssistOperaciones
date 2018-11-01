@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 @section('content')
                     <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#updateModal" >Actualizar</a>
                     <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
