@@ -24,7 +24,7 @@ class CreateMigrationsTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('migration', 191);
+            $table->string('migration');
             $table->integer('batch');
         });
     }

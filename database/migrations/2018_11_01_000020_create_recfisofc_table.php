@@ -30,8 +30,6 @@ class CreateRecfisofcTable extends Migration
             $table->date('RecFisFechaInicio')->nullable()->default(null);
             $table->date('RecFisFechaFin')->nullable()->default(null);
             $table->text('RecFisOfcObs')->nullable()->default(null);
-            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('RecFisOfcUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('RecFisOfc_estado')->nullable()->default('1');
 
@@ -40,6 +38,7 @@ class CreateRecfisofcTable extends Migration
             $table->index(["personas_PersonasID"], 'fk_recfisofc_personas1_idx');
 
             $table->index(["RecursosFisicos_RecFisID"], 'fk_RecFisOfc_RecursosFisicos1_idx');
+            $table->nullableTimestamps();
 
 
             $table->foreign('RecursosFisicos_RecFisID', 'fk_RecFisOfc_RecursosFisicos1_idx')

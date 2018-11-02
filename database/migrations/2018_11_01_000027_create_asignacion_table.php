@@ -26,19 +26,21 @@ class CreateAsignacionTable extends Migration
             $table->increments('asigID');
             $table->unsignedInteger('personas_PersonasID')->unsigned();
             $table->unsignedInteger('proyecto_ProyID')->unsigned();
+            $table->unsignedInteger('factproyec_FactProyecID')->unsigned();
             $table->date('asigFechaIni')->nullable()->default(null);
-            $table->integer('asigPorcentaje')->nullable()->default('1');
+            $table->float('asigPorcentaje')->nullable()->default('1');
             $table->string('asigFechaFin', 45)->nullable()->default(null);
             $table->string('asignacionUbicacion', 45)->nullable()->default(null);
-            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('asig_Usuario', 45)->nullable()->default(null);
             $table->tinyInteger('asig_estado')->nullable()->default('1');
-            $table->date('asigFecha')->nullable();
+            $table->date('asigFecha')->nullable()->default(null);
 
             $table->index(["proyecto_ProyID"], 'fk_asignacion_proyecto1_idx');
 
             $table->index(["personas_PersonasID"], 'fk_asignacion_personas1_idx');
+
+            $table->index(["factproyec_FactProyecID"], 'fk_asignacion_factproyec1_idx');
+            $table->nullableTimestamps();
 
 
             $table->foreign('personas_PersonasID', 'fk_asignacion_personas1_idx')
@@ -48,6 +50,11 @@ class CreateAsignacionTable extends Migration
 
             $table->foreign('proyecto_ProyID', 'fk_asignacion_proyecto1_idx')
                 ->references('ProyID')->on('proyecto')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('factproyec_FactProyecID', 'fk_asignacion_factproyec1_idx')
+                ->references('FactProyecID')->on('factproyec')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNovedadesTable extends Migration
+class CreateCargosTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'novedades';
+    public $set_schema_table = 'cargos';
 
     /**
      * Run the migrations.
-     * @table novedades
+     * @table cargos
      *
      * @return void
      */
@@ -23,12 +23,12 @@ class CreateNovedadesTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('NovId');
-            $table->string('NovTipo', 45)->nullable()->default(null);
-            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->string('NovUsuario', 45)->nullable()->default(null);
-            $table->tinyInteger('NovEstado')->nullable()->default(null);
+            $table->increments('CargosID');
+            $table->string('CargosNombre', 45)->nullable()->default(null);
+            $table->text('CargosDescripcion')->nullable()->default(null);
+            $table->string('CargosUsuario', 45)->nullable()->default(null);
+            $table->tinyInteger('CargosEstado')->nullable()->default('1');
+            $table->nullableTimestamps();
         });
     }
 

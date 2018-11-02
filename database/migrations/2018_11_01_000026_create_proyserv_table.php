@@ -24,25 +24,24 @@ class CreateProyservTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('ProyServId');
-            $table->integer('servicios_ServId')->unsigned();
+            $table->unsignedInteger('servicios_ServId')->unsigned();
             $table->unsignedInteger('proyecto_ProyID')->unsigned();
-            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->string('ProyServUsuario', 45)->nullable();
+            $table->string('ProyServUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('ProyecServEstado')->nullable()->default('1');
 
             $table->index(["proyecto_ProyID"], 'fk_proyserv_proyecto1_idx');
 
             $table->index(["servicios_ServId"], 'fk_proyserv_servicios1_idx');
+            $table->nullableTimestamps();
 
-
-            $table->foreign('servicios_ServId', 'fk_proyserv_servicios1_idx')
-                ->references('ServId')->on('servicios')
-                ->onDelete('no action')
-                ->onUpdate('no action');
 
             $table->foreign('proyecto_ProyID', 'fk_proyserv_proyecto1_idx')
                 ->references('ProyID')->on('proyecto')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('servicios_ServId', 'fk_proyserv_servicios1_idx')
+                ->references('ServId')->on('servicios')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

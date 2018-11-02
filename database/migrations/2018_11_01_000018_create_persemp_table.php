@@ -10,11 +10,11 @@ class CreatePersempTable extends Migration
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'persEmp';
+    public $set_schema_table = 'persemp';
 
     /**
      * Run the migrations.
-     * @table persEmp
+     * @table persemp
      *
      * @return void
      */
@@ -25,26 +25,25 @@ class CreatePersempTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('PersEmpId');
             $table->unsignedInteger('personas_PersonasID')->unsigned();
-            $table->integer('empresa_EmpId')->unsigned();
-            $table->date('PersEmpFechaIni')->nullable();
-            $table->date('PersEmpFechaFin')->nullable();
-            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->string('PersEmpUsuario', 45)->nullable();
+            $table->unsignedInteger('empresa_EmpId')->unsigned();
+            $table->date('PersEmpFechaIni')->nullable()->default(null);
+            $table->date('PersEmpFechaFin')->nullable()->default(null);
+            $table->string('PersEmpUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('PersEmpEstado')->nullable()->default('1');
 
             $table->index(["personas_PersonasID"], 'fk_persEmp_personas1_idx');
 
             $table->index(["empresa_EmpId"], 'fk_persEmp_empresa1_idx');
+            $table->nullableTimestamps();
 
-
-            $table->foreign('personas_PersonasID', 'fk_persEmp_personas1_idx')
-                ->references('PersonasID')->on('personas')
-                ->onDelete('no action')
-                ->onUpdate('no action');
 
             $table->foreign('empresa_EmpId', 'fk_persEmp_empresa1_idx')
                 ->references('EmpId')->on('empresa')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('personas_PersonasID', 'fk_persEmp_personas1_idx')
+                ->references('PersonasID')->on('personas')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

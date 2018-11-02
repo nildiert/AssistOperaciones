@@ -28,14 +28,13 @@ class CreatePerscontrTable extends Migration
             $table->unsignedInteger('Contratos_ContId')->unsigned();
             $table->date('PersContrFechaInicio')->nullable()->default(null);
             $table->date('PersContrFechaFin')->nullable()->default(null);
-            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->string('PersContrUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('PersContrEstado')->nullable()->default('1');
 
             $table->index(["Personas_PersonasID"], 'fk_Personas_has_Contratos_Personas1_idx');
 
             $table->index(["Contratos_ContId"], 'fk_Personas_has_Contratos_Contratos1_idx');
+            $table->nullableTimestamps();
 
 
             $table->foreign('Contratos_ContId', 'fk_Personas_has_Contratos_Contratos1_idx')

@@ -7,17 +7,26 @@ use Illuminate\Database\Migrations\Migration;
 class CreateRoleUserTable extends Migration
 {
     /**
+     * Schema table name to migrate
+     * @var string
+     */
+    public $set_schema_table = 'role_user';
+
+    /**
      * Run the migrations.
+     * @table role_user
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('role_user', function (Blueprint $table) {
+        if (Schema::hasTable($this->set_schema_table)) return;
+        Schema::create($this->set_schema_table, function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('role_id')->unsigned();
-            $table->timestamps();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('role_id');
+            $table->nullableTimestamps();
         });
     }
 
@@ -26,8 +35,8 @@ class CreateRoleUserTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('role_user');
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }

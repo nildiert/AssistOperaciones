@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServiciosTable extends Migration
+class CreateOficinaTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'servicios';
+    public $set_schema_table = 'oficina';
 
     /**
      * Run the migrations.
-     * @table servicios
+     * @table oficina
      *
      * @return void
      */
@@ -23,12 +23,11 @@ class CreateServiciosTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('ServId');
-            $table->string('ServNombre', 45)->nullable();
-            $table->timestamp('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->string('ServUsuario', 45)->nullable();
-            $table->tinyInteger('ServEstado')->nullable()->default('1');
+            $table->increments('idOfic');
+            $table->string('OficNumero', 45)->nullable()->default(null);
+            $table->string('Ofic_usuario', 45)->nullable()->default(null);
+            $table->tinyInteger('Ofic_estado')->nullable()->default('1');
+            $table->nullableTimestamps();
         });
     }
 

@@ -31,8 +31,6 @@ class CreateCargpersTable extends Migration
             $table->date('CargPersPruebaInicio')->nullable()->default(null);
             $table->date('CargPersPruebaFin')->nullable()->default(null);
             $table->string('CargPersUsuario', 45)->nullable()->default(null);
-            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->tinyInteger('CargPersEstado')->nullable()->default('1');
 
             $table->index(["CargPersID"], 'CargPersID');
@@ -40,6 +38,7 @@ class CreateCargpersTable extends Migration
             $table->index(["cargos_CargosID"], 'fk_cargpers_cargos1_idx');
 
             $table->index(["personas_PersonasID"], 'fk_cargpers_personas1_idx');
+            $table->nullableTimestamps();
 
 
             $table->foreign('cargos_CargosID', 'fk_cargpers_cargos1_idx')

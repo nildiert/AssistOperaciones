@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContratosTable extends Migration
+class CreateLineanegocioTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'contratos';
+    public $set_schema_table = 'lineanegocio';
 
     /**
      * Run the migrations.
-     * @table contratos
+     * @table lineanegocio
      *
      * @return void
      */
@@ -23,13 +23,11 @@ class CreateContratosTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('ContId');
-            $table->string('ContTipo', 45)->nullable()->default(null);
-            $table->text('ContDescripcion')->nullable()->default(null);
-            $table->dateTime('created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->string('ContUsuario', 45)->nullable()->default(null);
-            $table->tinyInteger('ContEstado')->nullable()->default('1');
+            $table->increments('linNegID');
+            $table->string('linNegNombre', 45)->nullable()->default(null);
+            $table->string('linNegUsuario', 45)->nullable()->default(null);
+            $table->tinyInteger('linNegEstado')->nullable()->default('1');
+            $table->nullableTimestamps();
         });
     }
 

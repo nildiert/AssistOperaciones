@@ -11,13 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('/home', function () {
-    return view('welcome');
-});
-
 Route::resources([
     'personas' => 'personasController',
     'cargos'=> 'cargosController',
@@ -32,9 +25,19 @@ Route::resources([
     'recursosfisicos' => 'recursosFisicosController',
     'oficina' => 'oficinaController',
     'pershabil'=>'persHabilController',
-    'cargpers'=>'CargPersController'
+    'cargpers'=>'CargPersController',
+    'proyecto'=>'proyectoController',
+    'factproyec'=>'factProyecController',
+    'asignacion'=>'asignacionController'
 
 ]);
+Route::get('/', function () {
+    return view('home');
+});
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 
 Route::get('redirect', function(){
     Alert::error('Registro agregado exitosamente!');
