@@ -1,7 +1,10 @@
-@extends('personas.index')
 
+
+@extends('layouts.app')
 @section('create')
-    <!-- Button trigger modal -->
+
+
+<!-- Button trigger modal -->
 
 
       <!-- Modal -->

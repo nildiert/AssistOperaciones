@@ -8,7 +8,7 @@
         <div class="col-12 d-flex justify-content-end mt-2">
             <!--href="{{route('personas.create')}}-->
             <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
-            <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#deleteModal">Agregar recurso</a>
+            <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a>
         </div>
         <div class="col-7">
             {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
@@ -68,11 +68,12 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-title pt-3 pl-3 pr-3">
-                    <h4 class="mt-2">PROYECTO</h4>
+                    <h4 class="mt-2">{{$persona->ProyectoNombre}} </h4>
                     <hr>
                 </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam similique minima et id consequatur facere doloremque, distinctio inventore quisquam veritatis officia blanditiis repellat ipsam voluptatum. Ipsum, odit. Minus, eius dolorem.Voluptatibus cupiditate eaque ab incidunt libero, fugit in voluptas modi recusandae esse laboriosam cumque aspernatur odit perspiciatis illum dolorum eum ipsam quod quisquam consequatur. Perferendis veniam ipsum sed omnis ad!
+                                <ul>Inicio: {{$persona->asigFechaIni}}</ul>
+                                <ul>Fin: {{$persona->asigFechaFin}}</ul>
                 </div>
             </div>
         </div>
@@ -85,4 +86,5 @@
 
 </div>{{--Fin del container--}}
 @endsection
+
 

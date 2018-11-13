@@ -23,9 +23,9 @@ class CreateCargpersTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('CargPersID')->unsigned();
-            $table->unsignedInteger('cargos_CargosID')->unsigned();
-            $table->unsignedInteger('personas_PersonasID')->unsigned();
+            $table->increments('CargPersID');
+            $table->unsignedInteger('cargos_CargosID');
+            $table->unsignedInteger('personas_PersonasID');
             $table->date('CargPersFechaInicio')->nullable()->default(null);
             $table->date('CargPersFechaFin')->nullable()->default(null);
             $table->date('CargPersPruebaInicio')->nullable()->default(null);

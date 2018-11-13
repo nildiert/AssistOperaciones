@@ -24,15 +24,15 @@ class CreateProylinnegTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('proyLinNegID');
-            $table->unsignedInteger('lineanegocio_linNegID')->unsigned();
-            $table->unsignedInteger('proyecto_ProyID')->unsigned();
+            $table->unsignedInteger('lineanegocio_linNegID');
+            $table->unsignedInteger('proyecto_ProyID');
             $table->string('proyLinNegTipo', 45)->nullable()->default(null);
             $table->string('proyLinNeg_Usuario', 45)->nullable()->default(null);
             $table->tinyInteger('proyLinNegEstado')->nullable()->default('1');
 
-            $table->index(["proyecto_ProyID"], 'fk_proyLinNeg_proyecto1_idx');
-
             $table->index(["lineanegocio_linNegID"], 'fk_proyLinNeg_lineanegocio1_idx');
+
+            $table->index(["proyecto_ProyID"], 'fk_proyLinNeg_proyecto1_idx');
             $table->nullableTimestamps();
 
 

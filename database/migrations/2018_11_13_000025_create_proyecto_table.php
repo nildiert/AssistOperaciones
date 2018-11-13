@@ -24,7 +24,7 @@ class CreateProyectoTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('ProyID');
-            $table->unsignedInteger('cliente_cliID')->unsigned();
+            $table->unsignedInteger('cliente_cliID');
             $table->string('ProyectoNombre', 45)->nullable()->default(null);
             $table->string('ProyCodigo', 10)->nullable()->default(null);
             $table->date('ProyFechaIni')->nullable()->default(null);

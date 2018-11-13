@@ -32,7 +32,7 @@ Route::resources([
 
 ]);
 Route::get('/', function () {
-    return view('home');
+    return view('auth.login');
 });
 Route::get('/home', function () {
     return view('welcome');

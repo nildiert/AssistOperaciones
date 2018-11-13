@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Proyecto;
+use App\Clientes;
+use App\Asignacion;
 use Illuminate\Http\Request;
 
 class proyectoController extends Controller
@@ -27,7 +29,10 @@ class proyectoController extends Controller
      */
     public function create()
     {
-        //
+        //Contar la cantidad de proyectos por cliente y luego ejecutar el conteo
+        $clientes = Clientes::orderBy('cliNombre','ASC')->pluck('cliNombre','cliID');
+        return view('proyecto.create',compact('clientes'));
+        // return $clientes;
     }
 
     /**
@@ -39,6 +44,8 @@ class proyectoController extends Controller
     public function store(Request $request)
     {
         //
+        Proyecto::create($request->all());
+        return redirect()->route('proyecto.index');
     }
 
     /**
@@ -47,9 +54,21 @@ class proyectoController extends Controller
      * @param  \App\Proyecto  $proyecto
      * @return \Illuminate\Http\Response
      */
-    public function show(Proyecto $proyecto)
+    public function show($id)
     {
-        //
+
+        // return $id;
+        // // //
+        $proyectos = Asignacion::leftJoin('proyecto','asignacion.factproyec_FactProyecID','ProyID')
+        ->leftJoin('factproyec','factproyec.FactProyecID','asignacion.factproyec_FactProyecID')
+        ->leftJoin('personas','personas.PersonasID','asignacion.personas_PersonasID')
+        ->leftJoin('proyecto','proyecto.ProyID','asignacion.proyecto_ProyID')
+        // ->where('ProyID','=',$id)
+        ->get()
+        ;
+
+        // return $proyectos;
+
     }
 
     /**

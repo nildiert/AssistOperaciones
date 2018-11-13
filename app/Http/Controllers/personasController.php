@@ -115,6 +115,8 @@ class personasController extends Controller
         ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
         ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
         ->leftJoin('contratos','contratos.ContId','perscontr.PersContrID')
+        ->leftJoin('asignacion','asignacion.personas_PersonasID','PersonasID')
+        ->leftJoin('proyecto','proyecto.ProyID','asignacion.proyecto_ProyID')
         ->where('PersonasID','=',$id)
         ->get();
         return view('personas.show',compact('personas','pershabil'));

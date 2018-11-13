@@ -24,9 +24,9 @@ class CreateRecfisofcTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('RecFisOfcID');
-            $table->unsignedInteger('RecursosFisicos_RecFisID')->unsigned();
-            $table->unsignedInteger('oficina_idOfic')->unsigned();
-            $table->unsignedInteger('personas_PersonasID')->unsigned();
+            $table->unsignedInteger('RecursosFisicos_RecFisID');
+            $table->unsignedInteger('oficina_idOfic');
+            $table->unsignedInteger('personas_PersonasID');
             $table->date('RecFisFechaInicio')->nullable()->default(null);
             $table->date('RecFisFechaFin')->nullable()->default(null);
             $table->text('RecFisOfcObs')->nullable()->default(null);

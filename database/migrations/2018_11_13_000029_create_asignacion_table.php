@@ -24,12 +24,14 @@ class CreateAsignacionTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('asigID');
-            $table->unsignedInteger('personas_PersonasID')->unsigned();
-            $table->unsignedInteger('proyecto_ProyID')->unsigned();
-            $table->unsignedInteger('factproyec_FactProyecID')->unsigned();
+            $table->unsignedInteger('personas_PersonasID');
+            $table->text('asigCodigo');
+            $table->unsignedInteger('proyecto_ProyID');
+            $table->unsignedInteger('factproyec_FactProyecID');
             $table->date('asigFechaIni')->nullable()->default(null);
             $table->float('asigPorcentaje')->nullable()->default('1');
             $table->string('asigFechaFin', 45)->nullable()->default(null);
+            $table->text('asigObservaciones')->nullable()->default(null);
             $table->string('asignacionUbicacion', 45)->nullable()->default(null);
             $table->string('asig_Usuario', 45)->nullable()->default(null);
             $table->tinyInteger('asig_estado')->nullable()->default('1');
@@ -43,6 +45,11 @@ class CreateAsignacionTable extends Migration
             $table->nullableTimestamps();
 
 
+            $table->foreign('factproyec_FactProyecID', 'fk_asignacion_factproyec1_idx')
+                ->references('FactProyecID')->on('factproyec')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
             $table->foreign('personas_PersonasID', 'fk_asignacion_personas1_idx')
                 ->references('PersonasID')->on('personas')
                 ->onDelete('no action')
@@ -50,11 +57,6 @@ class CreateAsignacionTable extends Migration
 
             $table->foreign('proyecto_ProyID', 'fk_asignacion_proyecto1_idx')
                 ->references('ProyID')->on('proyecto')
-                ->onDelete('no action')
-                ->onUpdate('no action');
-
-            $table->foreign('factproyec_FactProyecID', 'fk_asignacion_factproyec1_idx')
-                ->references('FactProyecID')->on('factproyec')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
