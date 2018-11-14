@@ -3,32 +3,37 @@
 <div class="container ">
     @include('sweet::alert')
 {{--sdfsdf--}}
-    <div class="row mb-2">
+<div class="d-flex mt-3 ">
+        <!--href="{{route('personas.create')}}-->
 
-        <div class="col-12 d-flex justify-content-end mt-2">
-            <!--href="{{route('personas.create')}}-->
-            <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
-            <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a>
-        </div>
-        <div class="col-7">
+        <!--Busqueda de personas-->
+        <div class="col-7 ">
+            @include('personas.error')
             {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
             <div class="input-group">
                 {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
-                {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar'])}}
+                {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar', 'required'])}}
                 <div class="input-group-append">
                     {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
+                    
                 </div>
                 {!!Form::close()!!}
+
             </div>
         </div>
-    </div>{{--Fin de Row--}}
+        <div class="col-5 d-flex justify-content-end clearfix">
+                <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
+                <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a>
+            </div>
+    </div>
 
     <div class="row ">
         <div class="col-6 ">
             <div class="card p-2 ">
+                
                 @foreach($personas as $persona)
                     <div class="card-title mt-3">
-                        <h4 class="mt-3 d-inline">{{$persona->PersonasNombreCompleto}}</h4>
+                        <h5 class="mt-3 d-inline">{{$persona->PersonasNombreCompleto}}</h5>
                         <span class="badge
                         @if($persona->PersonasEstado)
                             {{'badge-primary'}}

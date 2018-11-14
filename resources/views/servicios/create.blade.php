@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 @section('content')
     {!!Form::open(['action'=>'serviciosController@store'])!!}
         {!!Form::label('ServNombre')!!}

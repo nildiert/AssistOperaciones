@@ -54,7 +54,7 @@
                         <td  style="font-size: 14px">{{$persona->PersonasTel}}</td>
                         <td  style="font-size: 14px ">{{$persona->PersonasTitulo}}</td>
                         <td  style="font-size: 14px">{{$persona->PersonasFechaIngreso}}</td>
-                            <td><a  class="btn btn-outline-info text-info" data-toggle="modal" data-target="#editModal" >Actualizar</a>  </td>                        <td>
+                        <td><a  id="#updatePersonas" class="btn btn-outline-info text-info" data-toggle="modal" data-target="#editModal" data-PersonasID="{{$persona->PersonasID}}">Actualizar</a>  </td>                        <td>
                                     {{ Form:: open(['method' => 'DELETE','route' => ['personas.destroy', $persona->PersonasID], 'id' => 'confirm_delete']) }}
                                     {!! Form::submit('Eliminar', ['class' => 'btn btn-outline-danger']) !!}
                                     {!! Form::close() !!}
@@ -67,7 +67,7 @@
         </div>
         {{$personas->links()}}
     </div>
-@endsection
+
 <!-- Button trigger modal -->
       <!-- Modal Agregar-->
       <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
@@ -119,7 +119,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="editModalLabel">Agregar recurso</h5>
+                  <h5 class="modal-title" id="editModalLabel">Actualizar recurso</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -128,34 +128,52 @@
                         {!!Form::open(['action'=>'personasController@store'])!!}
                         <div class="col-12">
                         {!!Form::label('Apellidos')!!}
-                            {!!Form::text('PersonasPriApellido',null,['placeholder'=>'Primer apellido', 'class'=>'toUpper form-control'])!!}
+                            {!!Form::text('upPersonasPriApellido',null,['placeholder'=>'Primer apellido', 'class'=>'toUpper form-control','id'=>'upPersonasPriApellido'])!!}
                             {!!Form::label('')!!}
-                            {!!Form::text('PersonasSegApellido',null,['placeholder'=>'Segundo apellido', 'class'=>'toUpper form-control'])!!} <hr>
+                            {!!Form::text('upPersonasSegApellido',null,['placeholder'=>'Segundo apellido', 'class'=>'toUpper form-control'])!!} <hr>
                              {!!Form::label('Nombres')!!}
-                            {!!Form::text('PersonasPrimNombre',null,['placeholder'=>'Primer nombre', 'class'=>'toUpper form-control'])!!}
+                            {!!Form::text('upPersonasPrimNombre',null,['placeholder'=>'Primer nombre', 'class'=>'toUpper form-control'])!!}
                             {!!Form::label('')!!}
-                            {!!Form::text('PersonasSegNombre',null,['placeholder'=>'Segundo nombre', 'class'=>'toUpper form-control'])!!} <hr>
+                            {!!Form::text('upPersonasSegNombre',null,['placeholder'=>'Segundo nombre', 'class'=>'toUpper form-control'])!!} <hr>
                             {!!Form::label('Documentación')!!}
                             {!!Form::select('PersonasTipoDoc',array('CC'=>'Cedula de Ciudadania','TI'=>'Tarjeta de identidad','PA'=>'Pasaporte','CE'=>'Cedula de extranjeria'),null,['class'=>'form-control','placeholder'=>'Tipo de documento'])!!}
                             {!!Form::label('')!!}
-                            {!!Form::number('PersonasDocumento',null,['placeholder'=>'Número de documento','class'=>'form-control'])!!}<hr>
+                            {!!Form::number('upPersonasDocumento',null,['placeholder'=>'Número de documento','class'=>'form-control'])!!}<hr>
                             {!!Form::label('Información personal')!!}
-                            {!!Form::number('PersonasTel',null,['placeholder'=>'Telefono','class'=>'form-control'])!!}
+                            {!!Form::number('upPersonasTel',null,['placeholder'=>'Telefono','class'=>'form-control'])!!}
                             {!!Form::label('')!!}
-                            {!!Form::text('PersonasEspecialidad',null,['placeholder'=>'Especialidad', 'class'=>'toUpper form-control'])!!}
+                            {!!Form::text('upPersonasEspecialidad',null,['placeholder'=>'Especialidad', 'class'=>'toUpper form-control'])!!}
                             {!!Form::label('')!!}
-                            {!!Form::text('PersonasTitulo',null,['placeholder'=>'Titulo', 'class'=>'toUpper form-control'])!!}<hr>
+                            {!!Form::text('upPersonasTitulo',null,['placeholder'=>'Titulo', 'class'=>'toUpper form-control'])!!}<hr>
                             {!!Form::label('Fecha de ingreso')!!}
-                            {!!Form::date('PersonasFechaIngreso',null,['class'=>'form-control'])!!}<br>
-                            {!!Form::text('PersonasNombreCompleto',null,['hidden'=>'hidden'])!!}
+                            {!!Form::date('upPersonasFechaIngreso',null,['class'=>'form-control'])!!}<br>
+                            {!!Form::text('upPersonasNombreCompleto',null,['hidden'=>'hidden'])!!}
                         </div>
                 @include('sweet::alert')
                 </div>{{--Fin modal-body--}}
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                  {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!}
+                  <button type="button" class="btn btn-secondary" id="updatePersonas" data-dismiss="modal">Cancelar</button>
+                  {!!Form::submit('Actualizar',['class'=>'btn btn-primary'])!!}
                   {!!Form::close()!!}
                 </div>
               </div>
             </div>
+            
         </div>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+        <script>
+    
+
+                $(document).ready(function(){
+                    $('#updatePersonas').click(function(){
+                        console.log('Hola ke ase');
+                    })
+                })
+                
+                </script>
+
+
+        @endsection

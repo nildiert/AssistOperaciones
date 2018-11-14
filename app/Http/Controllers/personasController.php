@@ -146,6 +146,7 @@ class personasController extends Controller
     public function update(Request $request,$id)
     {
    //
+        dd($id);
          $this->validate($request,[
         'PersonasPriApellido'=>'required',
         'PersonasSegApellido',

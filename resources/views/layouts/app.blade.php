@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>{{config('app.name')}}</title>
 
 
 
@@ -47,7 +47,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>{{ config('app.name', 'Laravel') }}</h3>
+            <a href="{{Route('home')}}">   <h3>{{ config('app.name', 'Laravel') }}</h3></a>
             </div>
             
             <ul class="list-unstyled components">
@@ -91,6 +91,16 @@
                     <ul class="collapse list-unstyled" id="asignacionSubmenu">
                         <li>
                         <a href="{{Route('asignacion.index')}}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('asignacion.create')}}">Agregar</a>
+                        </li>
+
+                    </ul>
+                    <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Roles</a>
+                    <ul class="collapse list-unstyled" id="rolesSubmenu">
+                        <li>
+                        <a href="{{Route('roles.index')}}">Ver</a>
                         </li>
                         <li>
                             <a href="{{Route('asignacion.create')}}">Agregar</a>

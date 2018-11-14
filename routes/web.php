@@ -28,7 +28,8 @@ Route::resources([
     'cargpers'=>'CargPersController',
     'proyecto'=>'proyectoController',
     'factproyec'=>'factProyecController',
-    'asignacion'=>'asignacionController'
+    'asignacion'=>'asignacionController',
+    'roles'=>'RoleController',
 
 ]);
 Route::get('/', function () {
@@ -36,7 +37,7 @@ Route::get('/', function () {
 });
 Route::get('/home', function () {
     return view('welcome');
-});
+})->name('home');
 
 
 Route::get('redirect', function(){
