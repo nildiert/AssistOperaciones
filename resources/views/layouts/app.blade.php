@@ -97,6 +97,16 @@
                         </li>
 
                     </ul>
+                    <a href="#roleSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Roles</a>
+                    <ul class="collapse list-unstyled" id="roleSubmenu">
+                        <li>
+                        <a href="{{Route('roles.index')}}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('asignacion.create')}}">Agregar</a>
+                        </li>
+
+                    </ul>
                 </li>
 
             </ul>

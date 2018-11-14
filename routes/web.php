@@ -28,7 +28,8 @@ Route::resources([
     'cargpers'=>'CargPersController',
     'proyecto'=>'proyectoController',
     'factproyec'=>'factProyecController',
-    'asignacion'=>'asignacionController'
+    'asignacion'=>'asignacionController',
+    'roles'=>'RoleController',
 
 ]);
 Route::get('/', function () {
