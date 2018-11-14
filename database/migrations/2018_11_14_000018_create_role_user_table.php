@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAreapersonasTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'areaPersonas';
+    public $set_schema_table = 'role_user';
 
     /**
      * Run the migrations.
-     * @table areaPersonas
+     * @table role_user
      *
      * @return void
      */
@@ -23,25 +23,23 @@ class CreateAreapersonasTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('arPerId');
-            $table->unsignedInteger('area_AreID');
-            $table->unsignedInteger('personas_PersonasID');
-            $table->string('arPerUsuario', 45)->nullable();
-            $table->tinyInteger('arPersEstado')->nullable()->default('1');
+            $table->increments('id');
+            $table->unsignedInteger('roles_id');
+            $table->unsignedInteger('users_id');
 
-            $table->index(["personas_PersonasID"], 'fk_areaPersonas_personas1_idx');
+            $table->index(["roles_id"], 'fk_role_user_roles1_idx');
 
-            $table->index(["area_AreID"], 'fk_areaPersonas_area1_idx');
+            $table->index(["users_id"], 'fk_role_user_users1_idx');
             $table->nullableTimestamps();
 
 
-            $table->foreign('area_AreID', 'fk_areaPersonas_area1_idx')
-                ->references('AreID')->on('area')
+            $table->foreign('roles_id', 'fk_role_user_roles1_idx')
+                ->references('id')->on('roles')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('personas_PersonasID', 'fk_areaPersonas_personas1_idx')
-                ->references('PersonasID')->on('personas')
+            $table->foreign('users_id', 'fk_role_user_users1_idx')
+                ->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

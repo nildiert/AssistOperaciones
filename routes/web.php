@@ -30,10 +30,16 @@ Route::resources([
     'factproyec'=>'factProyecController',
     'asignacion'=>'asignacionController',
     'roles'=>'RoleController',
+    'usuarios' =>'UsersControllers',
+    'rolusuarios'=>'RoleUserController',
+
 
 ]);
 Route::get('/', function () {
     return view('auth.login');
+});
+Route::get('/register', function () {
+    return view('auth.register');
 });
 Route::get('/home', function () {
     return view('welcome');

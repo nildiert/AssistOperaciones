@@ -11,8 +11,8 @@
                     <tbody>
                         @foreach($roles as $rol)
                             <tr>
-                            <td>{{$rol->name}}</td>
-                            <td>{{$rol->description}}</td>
+                            <td>{{$rol->rolName}}</td>
+                            <td>{{$rol->rolDescription}}</td>
                             </tr>
                         @endforeach
                     </tbody>

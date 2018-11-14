@@ -47,7 +47,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>{{ config('app.name', 'Laravel') }}</h3>
+            <a href="{{Route('home')}}"> <h3>{{ config('app.name', 'Laravel') }}</h3></a>
             </div>
             
             <ul class="list-unstyled components">
@@ -107,7 +107,18 @@
                         </li>
 
                     </ul>
+                    <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
+                    <ul class="collapse list-unstyled" id="usersSubmenu">
+                        <li>
+                        <a href="{{Route('usuarios.index')}}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('asignacion.create')}}">Agregar</a>
+                        </li>
+
+                    </ul>
                 </li>
+
 
             </ul>
 

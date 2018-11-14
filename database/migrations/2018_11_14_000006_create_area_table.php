@@ -24,10 +24,10 @@ class CreateAreaTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('AreID');
-            $table->string('AreaNombre', 45)->nullable();
+            $table->string('AreaNombre', 45)->nullable()->default(null);
             $table->timestamp('Created_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-            $table->string('AreUsuario', 45)->nullable();
+            $table->string('AreUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('AreaEstado')->nullable()->default('1');
         });
     }

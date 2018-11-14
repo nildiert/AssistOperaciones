@@ -29,7 +29,7 @@ class CreateAsignacionTable extends Migration
             $table->unsignedInteger('proyecto_ProyID');
             $table->unsignedInteger('factproyec_FactProyecID');
             $table->date('asigFechaIni')->nullable()->default(null);
-            $table->float('asigPorcentaje')->nullable()->default('1');
+            $table->double('asigPorcentaje')->nullable()->default('1.00');
             $table->string('asigFechaFin', 45)->nullable()->default(null);
             $table->text('asigObservaciones')->nullable()->default(null);
             $table->string('asignacionUbicacion', 45)->nullable()->default(null);
