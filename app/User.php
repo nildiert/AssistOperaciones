@@ -11,7 +11,9 @@ class User extends Authenticatable
     use Notifiable;
 
     public function roles(){
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\Role')
+        ->withTimestamps();
+        
     }
 
     /**
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'indenty', 'password', 'usuRol', 'usuEstate', 'remember_token', 'created_at', 'updated_at'
+        'usname', 'email', 'password', 'usphone', 'usindenty', 'password', 'usuRol', 'usuEstate', 'remember_token', 'created_at', 'updated_at'
     ];
 
     /**
@@ -31,4 +33,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+
+
 }

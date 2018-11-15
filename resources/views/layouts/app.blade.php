@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>Operaciones Assist</title>
 
 
 
@@ -115,9 +115,19 @@
                         <li>
                             <a href="{{Route('asignacion.create')}}">Agregar</a>
                         </li>
+                    {{-- </ul>
+                    <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
+                    <ul class="collapse list-unstyled" id="usersSubmenu">
+                        <li>
+                        <a href="{{Route('usuarios.index')}}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('asignacion.create')}}">Agregar</a>
+                        </li> --}}
 
                     </ul>
                 </li>
+
 
 
             </ul>

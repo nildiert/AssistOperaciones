@@ -29,8 +29,8 @@ class CreateUsersTable extends Migration
             $table->bigInteger('phone')->default('0');
             $table->bigInteger('indenty')->default('0');
             $table->string('password', 191);
-            $table->tinyInteger('usuRol')->default('1');
-            $table->tinyInteger('usuEstate')->default('0');
+            $table->tinyInteger('rol')->default('1');
+            $table->tinyInteger('estate')->default('0');
             $table->rememberToken();
 
             $table->unique(["email"], 'users_email_unique');

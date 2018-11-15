@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
-
+    <title>Assist operaciones</title>
+    
 
 
     <!-- Bootstrap CSS CDN -->
@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="myFunction()" style="margin:0;" >
+<body onload="animacionCarga()" style="margin:0;" >
                     <div id="loader">
                         <div class="dot"></div>
                         <div class="dot"></div>
@@ -62,7 +62,7 @@
 
             
             
-            function myFunction() {
+            function animacionCarga() {
                 myVar = setTimeout(showPage, 100);
             }
             

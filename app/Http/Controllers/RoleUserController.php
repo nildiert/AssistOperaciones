@@ -16,8 +16,8 @@ class RoleUserController extends Controller
      */
     public function index()
     {
-        $usuarios = User::leftJoin('role_user','role_user.users_id','users.id')
-        ->leftJoin('roles','roles.id','role_user.roles_id');
+        $usuarios = User::leftJoin('role_user','role_user.user_id','users.id')
+        ->leftJoin('roles','roles.id','role_user.role_id');
 
         return $usuarios;
         
