@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -6,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Assist operaciones</title>
-    
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
 
 
     <!-- Bootstrap CSS CDN -->
@@ -23,7 +24,7 @@
 
 </head>
 
-<body onload="animacionCarga()" style="margin:0;" >
+<body onload="myFunction()" style="margin:0;" >
                     <div id="loader">
                         <div class="dot"></div>
                         <div class="dot"></div>
@@ -59,10 +60,9 @@
 
     <script>
             var myVar;
-
             
             
-            function animacionCarga() {
+            function myFunction() {
                 myVar = setTimeout(showPage, 100);
             }
             
@@ -77,7 +77,6 @@
             $("#sidebar").mCustomScrollbar({
                 theme: "minimal"
             });
-
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar, #content').toggleClass('active');
                 $('.collapse.in').toggleClass('in');
@@ -90,8 +89,3 @@
 </body>
 
 </html>
-
-
-
-            
-
