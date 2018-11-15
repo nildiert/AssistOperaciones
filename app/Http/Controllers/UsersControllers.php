@@ -14,8 +14,8 @@ class UsersControllers extends Controller
      */
     public function index()
     {
-        $usuarios = User::leftJoin('role_user','role_user.user_id','users.id')
-        ->leftJoin('roles','roles.rolId','role_user.role_id')->get();
+        $usuarios = User::leftJoin('role_user','role_user.users_id','users.id')
+        ->leftJoin('roles','roles.rolId','role_user.roles_id')->get();
 
         return view('usuarios.index',compact('usuarios'));
         // return $usuarios;
