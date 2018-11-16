@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
+use App\User;
 
-class UsersControllers extends Controller
+class jqueryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,22 +14,9 @@ class UsersControllers extends Controller
      */
     public function index()
     {
-        // $usuarios = User::leftJoin('role_user','role_user.users_id','users.id')
-        // ->leftJoin('roles','roles.rolId','role_user.roles_id')->get();
-        $usuarios =User::leftJoin('role_user','role_user.user_id','users.id')
-        ->leftJoin('roles','roles.id','role_user.role_id')
-        ->select(
-            'users.name AS name',
-            'users.email AS email',
-            'users.phone AS phone',
-            'users.indenty AS indenty',
-            'roles.name AS rol'
+        $usuarios = User::all();
 
-            )
-            ->get();
-
-        return view('usuarios.index',compact('usuarios'));
-        // return $usuarios;
+        return view('jquery.index', compact('usuarios'));
     }
 
     /**
@@ -56,10 +43,10 @@ class UsersControllers extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
         //
     }
@@ -67,10 +54,10 @@ class UsersControllers extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
     }
@@ -79,10 +66,10 @@ class UsersControllers extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,10 +77,10 @@ class UsersControllers extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }

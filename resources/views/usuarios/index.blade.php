@@ -17,7 +17,11 @@
                 <td>{{$usuario->email}}</td>
                 <td>{{$usuario->phone}}</td>
                 <td>{{$usuario->indenty}}</td>
-                <td>{{$usuario->rolName}}</td>
+                    @if($usuario->rol == NULL)
+                        <td class="text-danger"><a href="">Sin rol</a> </td>
+                    @else
+                        <td>{{$usuario->rol}}</td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

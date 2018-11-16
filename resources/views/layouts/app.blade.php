@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{config('app.name')}}</title>
+    <title>Assist Operaciones</title>
 
 
 
@@ -16,7 +16,7 @@
     {!!Html::style('css/style.css')!!}
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
-
+    {!!Html::script('js/jquery.min.js')!!}
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -101,6 +101,24 @@
                     <ul class="collapse list-unstyled" id="rolesSubmenu">
                         <li>
                         <a href="{{Route('roles.index')}}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('asignacion.create')}}">Agregar</a>
+                        </li>
+                    </ul>
+                    <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
+                    <ul class="collapse list-unstyled" id="usuariosSubmenu">
+                        <li>
+                        <a href="{{Route('usuarios.index')}}">Ver</a>
+                        </li>
+                        <li>
+                            <a href="{{Route('asignacion.create')}}">Agregar</a>
+                        </li>
+                    </ul>
+                    <a href="#jquerySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Curso jQuery</a>
+                    <ul class="collapse list-unstyled" id="jquerySubmenu">
+                        <li>
+                        <a href="{{Route('jquery.index')}}">Ver</a>
                         </li>
                         <li>
                             <a href="{{Route('asignacion.create')}}">Agregar</a>

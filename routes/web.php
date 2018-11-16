@@ -32,6 +32,7 @@ Route::resources([
     'roles'=>'RoleController',
     'usuarios' =>'UsersControllers',
     'rolusuarios'=>'RoleUserController',
+    'jquery'=>'jqueryController',
 
 
 ]);
