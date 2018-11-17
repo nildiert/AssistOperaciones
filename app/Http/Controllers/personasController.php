@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class personasController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware(['auth','role:admin']);
     }
     /**
      * Display a listing of the resource.
@@ -20,6 +20,7 @@ class personasController extends Controller
     {
         //
 
+        // $personas = Personas::orderBy('PersonasID','DESC')->where('PersonasEstado','1')->paginate(50);
         $personas = Personas::orderBy('PersonasID','DESC')->where('PersonasEstado','1')->paginate(50);
         $activos = Personas::where('PersonasEstado','1')->count();
         return view('personas.index',compact('personas','activos'));
@@ -198,7 +199,7 @@ class personasController extends Controller
 
         Alert::success('Registro eliminado exitosamente');
 
-        if($personas    != null){
+        if($personas    != null){ 
 
             $personas->PersonasEstado = 0;
             $personas->PersonasActivo='INACTIVO';
@@ -222,9 +223,5 @@ class personasController extends Controller
         return view('personas.index',compact('personas','activos'));
     }
 
-    public function prueba(){
-        return '$mensaje';
-
-    }
 
 }

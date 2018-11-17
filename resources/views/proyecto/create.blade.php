@@ -13,19 +13,20 @@
                 {!!Form::open(['action'=>'proyectoController@store'])!!}
                 {!!Form::label('Cliente')!!}
                 {!!Form::select('cliente_cliID',$clientes,'Selecciona cliente', ['class'=>'form-control mb-1','id'=>'cliente','placeholder'=>'Selecciona cliente'])!!}
+                {!!Form::label('Linea de negocio')!!}
+                {!!Form::select('linNegNombre',$lineas,'Selecciona linea de negocio',['class'=>'form-control mb-1','id'=>'linea','placeholder'=>'Selecciona linea de negocio'])!!}
                 {!!Form::label('ProyectoNombre','Nombre proyecto')!!}
                 {!!Form::text('ProyectoNombre',null,['class'=>'form-control','id'=>'proyNombre'])!!}
-                {!!Form::label('ProyCodigo')!!}
-                {!!Form::text('ProyCodigo',null,['class'=>'form-control','id'=>'proycodigo'])!!}
-                {!!Form::label('ProyFechaIni')!!}
+                {!!Form::label('Fecha inicio')!!}
                 {!!Form::date('ProyFechaIni',now(),['class'=>'form-control'])!!}
-                {!!Form::label('ProyectoFechaFin')!!}
+                {!!Form::label('Fecha fin')!!}
                 {!!Form::date('ProyectoFechaFin',now(),['class'=>'form-control'])!!}
-                {!!Form::label('ProyectoPresupuesto')!!}
-                {!!Form::number('ProyectoPresupuesto',null,['class'=>'form-control'])!!}
+                {!!Form::label('Presupuesto')!!}
+                {!!Form::text('Pre',null,['class'=>'form-control','id'=>'pre'])!!}
                 {!!Form::label('ProyectoDescripcion','Descripción')!!}
                 {!!Form::text('ProyectoDescripcion',null,['class'=>'form-control'])!!}
-                {!!Form::submit('Enviar',['class'=>'btn btn-info form-group'])!!}
+                {!!Form::text('ProyectoPresupuesto',null,['class'=>'form-control','id'=>'ProyectoPresupuesto','hidden'])!!}
+                {!!Form::submit('Enviar',['class'=>'mt-2 btn btn-info form-group','id'=>'enviarProyecto'])!!}
 
 
                 {!!Form::close()!!}
@@ -37,18 +38,36 @@
 <script>
     $(document).ready(function(){
 
-        $("#cliente").change(function(){
-            var codigo = "";
-            $("select option:selected").each(function(){
-                codigo += $(this).text() + "-";
+        var valor ="";
+
+        $("#linea").change(function(){
+            var linea = "";
+            var nombre = "";
+
+            $("#linea option:selected").each(function(){
+                linea += $(this).text() + "";
+                nombre += $("#cliente option:selected").text() + "";
             });
-            $("#proyNombre").val(codigo);
-            $("#proycodigo").val(codigo);
+            $("#proyNombre").val(nombre +"-"+linea);
+
         });
+
+
+        $("#pre").number(true);
+
+        $("#enviarProyecto").click(function(){
+            valor = $("#pre").val();
+            $("#ProyectoPresupuesto").val(valor);
+            // $("#pre").remove();
+        });
+
+
 
     });
 
-    
+
+
+
 
 </script>
 

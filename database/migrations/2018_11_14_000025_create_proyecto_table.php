@@ -26,10 +26,9 @@ class CreateProyectoTable extends Migration
             $table->increments('ProyID');
             $table->unsignedInteger('cliente_cliID');
             $table->string('ProyectoNombre', 45)->nullable()->default(null);
-            $table->string('ProyCodigo', 10)->nullable()->default(null);
             $table->date('ProyFechaIni')->nullable()->default(null);
             $table->date('ProyectoFechaFin')->nullable()->default(null);
-            $table->decimal('ProyectoPresupuesto', 8, 2)->nullable()->default(null);
+            $table->double('ProyectoPresupuesto')->nullable()->default(null);
             $table->string('Proyecto_Usuario', 45)->nullable()->default(null);
             $table->tinyInteger('ProyectoEstado')->nullable()->default(null);
             $table->longText('ProyectoDescripcion')->nullable()->default(null);

@@ -25,6 +25,7 @@ class CreateLineanegocioTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('linNegID');
             $table->string('linNegNombre', 45)->nullable()->default(null);
+            $table->string('linNegCod', 45)->nullable()->default(null);
             $table->string('linNegUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('linNegEstado')->nullable()->default('1');
             $table->nullableTimestamps();

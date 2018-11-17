@@ -35,6 +35,7 @@ Route::resources([
     'jquery'=>'jqueryController',
 
 
+
 ]);
 Route::get('/', function () {
     return view('auth.login');
