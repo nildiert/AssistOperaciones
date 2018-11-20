@@ -37,6 +37,7 @@ class personasController extends Controller
     {
         //
                 return view('personas.create');
+                // return Auth::user
     }
 
     /**
@@ -117,7 +118,7 @@ class personasController extends Controller
         ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
         ->leftJoin('contratos','contratos.ContId','perscontr.PersContrID')
         ->leftJoin('asignacion','asignacion.personas_PersonasID','PersonasID')
-        ->leftJoin('proyecto','proyecto.ProyID','asignacion.proyecto_ProyID')
+        ->leftJoin('proyecto','proyecto.id','asignacion.proyecto_ProyID')
         ->where('PersonasID','=',$id)
         ->get();
         return view('personas.show',compact('personas','pershabil'));

@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div>
-    <a href="{{Route('proyecto.create')}}" class=" text-white btn btn-info mb-2">Nuevo proyecto</a>
-    </div>
+    @if(Auth::user()->hasRole('admin'))
+        <div>
+            <a href="{{Route('proyecto.create')}}" class=" text-white btn btn-info mb-2">Nuevo proyecto</a>
+        </div>
+    @endif
 <div class="card">
     <table class="table table-hover">
         <thead>
@@ -16,7 +18,7 @@
         <tbody>
             @foreach($proyectos as $proyecto)
                 <tr>
-                <td><a href="{{Route('proyecto.show',$proyecto->cliente_cliID)}}"> {{$proyecto->ProyectoNombre}}</a></td>
+                <td><a href="{{Route('proyecto.show',$proyecto->id)}}"> {{$proyecto->ProyectoNombre}}</a></td>
                 <td>{{$proyecto->ProyFechaIni}}</td>
                 <td>{{$proyecto->ProyectoFechaFin}}</td>
                 <td class="presupuesto">{{$proyecto->ProyectoPresupuesto}}</td>

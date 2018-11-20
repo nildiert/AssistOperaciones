@@ -88,9 +88,11 @@
                         <li>
                         <a href="{{Route('proyecto.index')}}">Ver</a>
                         </li>
+                        @if(Auth::user()->hasRole('admin'))
                         <li>
                             <a href="{{Route('proyecto.create')}}">Agregar</a>
                         </li>
+                        @endif
 
                     </ul>
                     <a href="#asignacionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Asignación</a>
@@ -103,6 +105,9 @@
                         </li>
 
                     </ul>
+
+                @if(Auth::user()->hasRole('admin'))
+
                     <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Roles</a>
                     <ul class="collapse list-unstyled" id="rolesSubmenu">
                         <li>
@@ -121,6 +126,7 @@
                             <a href="{{Route('asignacion.create')}}">Agregar</a>
                         </li>
                     </ul>
+                @endif
 
                     <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
                     <ul class="collapse list-unstyled" id="clientesSubmenu">

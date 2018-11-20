@@ -9,7 +9,7 @@ class Proyecto extends Model
     //
     protected $table="proyecto";
     protected $fillable=[
-        'ProyID',
+        'id',
         'cliente_cliID',
         'ProyectoNombre',
         'ProyCodigo',

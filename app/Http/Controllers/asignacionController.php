@@ -6,6 +6,7 @@ use App\Asignacion;
 use App\Personas;
 use App\FactProyec;
 use App\Proyecto;
+use Alert;
 use Illuminate\Http\Request;
 
 class asignacionController extends Controller
@@ -17,9 +18,11 @@ class asignacionController extends Controller
      */
     public function index()
     {
+
+        
         $asignaciones = Personas::leftJoin('asignacion','personas_PersonasID','PersonasID')
         ->leftJoin('factproyec', 'FactProyecID','factproyec_FactProyecID')
-        ->leftJoin('proyecto','ProyID','proyecto_ProyID')
+        ->leftJoin('proyecto','id','proyecto_ProyID')
         ->where('asig_estado','=','1')
         ->get();
         return view('asignacion.index',compact('asignaciones'));
@@ -33,7 +36,9 @@ class asignacionController extends Controller
      */
     public function create()
     {
-        //
+        Alert::message('Message','Optional Title');
+
+        return view('asignacion.create');
     }
 
     /**

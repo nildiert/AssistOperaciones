@@ -96,6 +96,7 @@ class proyectoController extends Controller
     public function show($id)
     {
 
+        $proyectos = Proyecto::find($id);
         // return $id;
         // // //
         // $proyectos = Asignacion::leftJoin('proyecto','asignacion.factproyec_FactProyecID','ProyID')
@@ -108,7 +109,7 @@ class proyectoController extends Controller
 
         // return $proyectos;
 
-        return $id;
+        return view('proyecto.show',compact('proyectos'));
 
     }
 
