@@ -5365,6 +5365,10 @@ button.close {
   margin: 0.5rem;
   pointer-events: none;
 }
+.higherWider {
+  width:970px;
+  margin-top:-250px;
+}
 
 .modal.fade .modal-dialog {
   transition: -webkit-transform 0.3s ease-out;
@@ -5507,7 +5511,7 @@ button.close {
 
 @media (min-width: 992px) {
   .modal-lg {
-    max-width: 800px;
+    max-width: 970px;
   }
 }
 

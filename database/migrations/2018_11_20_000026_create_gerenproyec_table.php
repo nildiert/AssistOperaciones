@@ -43,7 +43,7 @@ class CreateGerenproyecTable extends Migration
                 ->onUpdate('no action');
 
             $table->foreign('Proyecto_ProyID', 'fk_GerenProyec_Proyecto1_idx')
-                ->references('ProyID')->on('proyecto')
+                ->references('id')->on('proyecto')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });

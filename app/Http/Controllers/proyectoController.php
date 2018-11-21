@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\FactProyec;
 use App\Proyecto;
 use App\Clientes;
 use App\Linea;
 use App\Asignacion;
+use App\ProyLinNeg;
+use App\Gerentes;
+use App\GerenProyec;
+use App\Personas;
 use Illuminate\Http\Request;
+
 
 class proyectoController extends Controller
 {
@@ -21,7 +27,11 @@ class proyectoController extends Controller
      */
     public function index()
     {
+
         //
+
+
+
         $proyectos = Proyecto::orderBy('ProyectoNombre','ASC')->get();
         // return $proyectos;
         return view('proyecto.index',compact('proyectos'));
@@ -35,10 +45,11 @@ class proyectoController extends Controller
     public function create()
     {
         //Contar la cantidad de proyectos por cliente y luego ejecutar el conteo
+        $gerentes = Gerentes::orderBy('GerenteNombre','ASC')->pluck('GerenteNombre','GerenteID');
         $clientes = Clientes::orderBy('cliNombre','ASC')->pluck('cliNombre','cliID');
         $lineas = Linea::orderBy('linNegNombre','ASC')->pluck('linNegNombre','linNegID');
 
-        return view('proyecto.create',compact('clientes','lineas'));
+        return view('proyecto.create',compact('clientes','lineas','gerentes'));
         // return $clientes;
     }
 
@@ -53,7 +64,9 @@ class proyectoController extends Controller
         $idCliente = $request->cliente_cliID;
 
         $this->validate($request,[
-            'linNegNombre'=>'required',
+
+            'Gerente_GerenteID'=>'required',
+            'lineanegocio_linNegID'=>'required',
             'cliente_cliID'=>'required',
             'ProyectoNombre'=>'required',
             'ProyFechaIni'=>'required',
@@ -64,7 +77,6 @@ class proyectoController extends Controller
 
 
         $request->merge([
-            'linNegNombre'=> strtoupper($request->linNegNombre),
             'ProyectoDescripcion'=>($request->ProyectoDescripcion),
             'ProyectoNombre'=>strtoupper($request->ProyectoNombre),
             'cliente_cliID'=>($request->cliente_cliID),
@@ -73,8 +85,12 @@ class proyectoController extends Controller
             'ProyectoPresupuesto'=>($request->ProyectoPresupuesto),
         ]);
 
-            $idproyecto = Proyecto::create($request->only([
-                'linNegNombre',
+
+        // DEBES INSERTAR ESTOS DOS DATOS EN LA TABLA DE PROYECTOS Y LINEAS DE NEGOCIO
+        // '$request->lineanegocio_linNegID',
+        // $idproyecto
+            
+        $idproyecto = Proyecto::insertGetId($request->only([
                 'ProyectoDescripcion',
                 'ProyectoNombre',
                 'cliente_cliID',
@@ -82,9 +98,24 @@ class proyectoController extends Controller
                 'ProyectoFechaFin',
                 'ProyectoPresupuesto'
             ]));
+
+            // Insertamos en la tabla de proyectos y lineas de negocio
+            ProyLinNeg::insert([
+                'lineanegocio_linNegID'=>$request->lineanegocio_linNegID,
+                'proyecto_ProyID'=>$idproyecto
+                ]);
+
+            // Insertamos en la tabla de gerentes y proyectos
+            GerenProyec::insert([
+                'Gerente_GerenteID'=>$request->Gerente_GerenteID,
+                'Proyecto_ProyID'=>$idproyecto
+            ]);
+            
         // Proyecto::create($request->all());
         return redirect()->route('proyecto.index');
         // return redirect()->;
+        // return $idproyecto;
+        // return $request;
     }
 
     /**
@@ -95,7 +126,36 @@ class proyectoController extends Controller
      */
     public function show($id)
     {
+        $nombres = Linea::leftJoin('proylinneg','proylinneg.lineanegocio_linNegID','lineanegocio.linNegID')
+        ->leftJoin('proyecto','proyecto.id','proylinneg.proyecto_ProyID')
+        ->leftJoin('cliente','cliente.cliID','proyecto.cliente_cliID')
+        ->where('proyecto.id','=',$id)->get();
 
+        // Extraemos el id del cliente
+
+            foreach ($nombres as $nombre):
+                $cliente= $nombre->cliente_cliID;
+            endforeach;
+
+        $cantProyectos = Proyecto::select('cliente_cliID')->where('cliente_cliID','=',$cliente)->count();
+        $cantProyectos++;
+        strval($cantProyectos);
+        $cantCaracteres = strlen($cantProyectos);
+
+        while($cantCaracteres < 3){
+
+            
+            $cantProyectos = "0".$cantProyectos;
+            $cantCaracteres = strlen($cantProyectos);
+        }
+        
+        // return strlen($cantCaracteres);
+        // CUENTA DE LOS PROYECTOS QUE TIENE CADA CLIENTE
+
+        $recursos = Personas::where('personas.PersonasEstado','=','1')->orderBy('PersonasNombreCompleto','ASC')->pluck('PersonasNombreCompleto','PersonasID');
+        $gerentes = Proyecto::leftJoin('gerenproyec','gerenproyec.Proyecto_ProyID','proyecto.id')->leftJoin('gerente','gerente.GerenteID','gerenproyec.Gerente_GerenteID')->where('proyecto.id','=',$id)->get();
+        $listaFacturas = FactProyec::leftJoin('proyecto','proyecto.id','factproyec.proyecto_id')->where('proyecto.id','=',$id)->pluck('FactProyecCodigo','FactProyecID');
+        $facturas = FactProyec::leftJoin('proyecto','proyecto.id','factproyec.proyecto_id')->where('proyecto.id','=',$id)->get();
         $proyectos = Proyecto::find($id);
         // return $id;
         // // //
@@ -109,7 +169,9 @@ class proyectoController extends Controller
 
         // return $proyectos;
 
-        return view('proyecto.show',compact('proyectos'));
+        return view('proyecto.show',compact('proyectos','facturas','listaFacturas','gerentes','recursos','nombres','cantProyectos'));
+        // return $cantProyectos;
+        // return $gerente;
 
     }
 

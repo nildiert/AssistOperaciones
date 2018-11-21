@@ -29,9 +29,9 @@ class CreateAreapersonasTable extends Migration
             $table->string('arPerUsuario', 45)->nullable()->default(null);
             $table->tinyInteger('arPersEstado')->nullable()->default('1');
 
-            $table->index(["area_AreID"], 'fk_areaPersonas_area1_idx');
-
             $table->index(["personas_PersonasID"], 'fk_areaPersonas_personas1_idx');
+
+            $table->index(["area_AreID"], 'fk_areaPersonas_area1_idx');
             $table->nullableTimestamps();
 
 

@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Asignacion;
-use App\Personas;
-use App\FactProyec;
-use App\Proyecto;
-use Alert;
+use App\ProyLinNeg;
 use Illuminate\Http\Request;
 
-class asignacionController extends Controller
+class ProyLinNegController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +14,7 @@ class asignacionController extends Controller
      */
     public function index()
     {
-
-        
-        $asignaciones = Personas::leftJoin('asignacion','personas_PersonasID','PersonasID')
-        ->leftJoin('factproyec', 'FactProyecID','factproyec_FactProyecID')
-        ->leftJoin('proyecto','id','proyecto_ProyID')
-        ->where('asig_estado','=','1')
-        ->get();
-        return view('asignacion.index',compact('asignaciones'));
-        // return $asignaciones;
+        //
     }
 
     /**
@@ -36,9 +24,7 @@ class asignacionController extends Controller
      */
     public function create()
     {
-        Alert::message('Message','Optional Title');
-
-        return view('asignacion.create');
+        //
     }
 
     /**
@@ -49,16 +35,16 @@ class asignacionController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Asignacion  $asignacion
+     * @param  \App\ProyLinNeg  $proyLinNeg
      * @return \Illuminate\Http\Response
      */
-    public function show(Asignacion $asignacion)
+    public function show(ProyLinNeg $proyLinNeg)
     {
         //
     }
@@ -66,10 +52,10 @@ class asignacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Asignacion  $asignacion
+     * @param  \App\ProyLinNeg  $proyLinNeg
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asignacion $asignacion)
+    public function edit(ProyLinNeg $proyLinNeg)
     {
         //
     }
@@ -78,10 +64,10 @@ class asignacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Asignacion  $asignacion
+     * @param  \App\ProyLinNeg  $proyLinNeg
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Asignacion $asignacion)
+    public function update(Request $request, ProyLinNeg $proyLinNeg)
     {
         //
     }
@@ -89,10 +75,10 @@ class asignacionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Asignacion  $asignacion
+     * @param  \App\ProyLinNeg  $proyLinNeg
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Asignacion $asignacion)
+    public function destroy(ProyLinNeg $proyLinNeg)
     {
         //
     }

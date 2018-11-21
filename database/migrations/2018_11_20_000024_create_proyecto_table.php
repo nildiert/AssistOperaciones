@@ -30,7 +30,7 @@ class CreateProyectoTable extends Migration
             $table->date('ProyectoFechaFin')->nullable()->default(null);
             $table->double('ProyectoPresupuesto')->nullable()->default(null);
             $table->string('Proyecto_Usuario', 45)->nullable()->default(null);
-            $table->tinyInteger('ProyectoEstado',1)->nullable()->default(1);
+            $table->tinyInteger('ProyectoEstado')->nullable()->default('1');
             $table->longText('ProyectoDescripcion')->nullable()->default(null);
 
             $table->index(["cliente_cliID"], 'fk_Proyecto_cliente1_idx');

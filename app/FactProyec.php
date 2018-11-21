@@ -16,6 +16,7 @@ class FactProyec extends Model
         'FactProyecFechaFin',
         'FactProyec_Usuario',
         'FactProyec_Estado',
+        'proyecto_id',
         'created_at',
         'updated_at',
     ];

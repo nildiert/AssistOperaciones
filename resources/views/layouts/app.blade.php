@@ -14,6 +14,9 @@
     {!!Html::style('css/bootstrap.min.css')!!}
     <!-- Our Custom CSS -->
     {!!Html::style('css/style.css')!!}
+    {!!Html::style('css/jquery-ui.min.css')!!}
+    {!!Html::style('css/jquery-ui.structure.min.css')!!}
+    {!!Html::style('css/jquery-ui.theme.min.css')!!}
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     {!!Html::script('js/jquery.min.js')!!}
@@ -225,6 +228,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     {{-- {!!Html::script('js/jquery.number.min.js')!!} --}}
 
+    {!!Html::script('js/jquery-ui.min.js')!!}
+    
+    {!!Html::script('js/jquery-ui.min.js')!!}
+    {!!Html::script('js/jquery-ui.min.js')!!}
+    {!!Html::script('js/jquery-ui.min.js')!!}
 
     <script>
             var myVar;

@@ -13,8 +13,10 @@
                 {!!Form::open(['action'=>'proyectoController@store'])!!}
                 {!!Form::label('Cliente')!!}
                 {!!Form::select('cliente_cliID',$clientes,'Selecciona cliente', ['class'=>'form-control mb-1','id'=>'cliente','placeholder'=>'Selecciona cliente'])!!}
+                {!!Form::label('Gerente')!!}
+                {!!Form::select('Gerente_GerenteID',$gerentes,'Selecciona gerente', ['class'=>'form-control mb-1','id'=>'gerente','placeholder'=>'Selecciona gerente'])!!}
                 {!!Form::label('Linea de negocio')!!}
-                {!!Form::select('linNegNombre',$lineas,'Selecciona linea de negocio',['class'=>'form-control mb-1','id'=>'linea','placeholder'=>'Selecciona linea de negocio'])!!}
+                {!!Form::select('lineanegocio_linNegID',$lineas,'Selecciona linea de negocio',['class'=>'form-control mb-1','id'=>'linea','placeholder'=>'Selecciona linea de negocio'])!!}
                 {!!Form::label('ProyectoNombre','Nombre proyecto')!!}
                 {!!Form::text('ProyectoNombre',null,['class'=>'form-control','id'=>'proyNombre'])!!}
                 {!!Form::label('Fecha inicio')!!}

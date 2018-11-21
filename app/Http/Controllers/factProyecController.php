@@ -36,7 +36,14 @@ class factProyecController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $factProye = FactProyec::create($request->only([
+            'FactProyecTipo',
+            'FactProyecCodigo',
+            'FactProyecFechaIni',
+            'FactProyecFechaFin',
+            'proyecto_id',
+        ]));
+        return redirect()->route('proyecto.show',$request->proyecto_id);
     }
 
     /**
