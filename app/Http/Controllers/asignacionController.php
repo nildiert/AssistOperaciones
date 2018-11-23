@@ -49,7 +49,53 @@ class asignacionController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+
+
+       
+        
+        // $asignacionNueva = array(
+        //     'personas_PersonasID'=>'',
+        //     'asignacionUbicacion'=>'',
+        //     'asigFechaIni'=>'',
+        //     'asigFechaFin'=>'',
+        //     'asigPorcentaje'=>'',
+        //     'asigObservaciones'=>'',
+        //     'factproyec_FactProyecID'=>'',
+        //     'asigCodigo'=>'',
+
+        // );
+
+
+        // $rows = $request->input('personas_PersonasID','asigCodigo');
+        // $rows = $request->asigCodigo[0];
+
+        // $i =0;
+        // $asignaciones= [];
+        // dd($request->input()["asignacionUbicacion"]);
+        // foreach($request->input() as $rq => $key):
+        // $asig = new Asignacion();
+        /* $asig->asignacionUbicacion = $rq->asignacionUbicacion[$key]; *//* 
+           array_push($asignaciones, new Asignacion([
+                'personas_PersonasID'=>$rq->personas_PersonasID,
+                'asignacionUbicacion'=>$rq->asignacionUbicacion,
+                'asigFechaIni'=>$rq->asigFechaIni,
+                'asigFechaFin'=>$rq->asigFechaFin,
+                'asigPorcentaje'=>$rq->asigPorcentaje,
+                'asigObservaciones'=>$rq->asigObservaciones,
+                'factproyec_FactProyecID'=>$rq->factproyec_FactProyecID,
+                'asigCodigo'=>$rq->asigCodigo,
+            ])); */
+            // $i++;
+            // array_push($asignaciones, $asig);
+        // endforeach;
+        // dd($asignaciones);
+
+        
+        // endforeach;
+        // dd($asignacionNueva);    
+        return dd($objeto);
+
+        // return ($key);
     }
 
     /**

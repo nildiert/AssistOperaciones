@@ -217,8 +217,6 @@
 
 
 
-        
-
 {{-- ESTOS DOS FORMULARIOS GUARDAN LOS DATOS PARA COLOCARLE EL NOMBRE A LA ASIGNACIÓN          --}}
 
         {!!Form::hidden('codProyec',$cantProyectos,['class'=>'form-control','id'=>'codigoProyecto'])!!}
@@ -242,20 +240,16 @@
       var CodigoCliente =  $("#cliCod").val();
       var vlorFactura = $('#factura option:selected').val();
       var contenido = `
-
-      <tr>
-<td>{!!Form::select('personas_PersonasID[]',$recursos,'Selecciona recurso', ['class'=>'form-control','placeholder'=>'Selecciona Recurso'])!!}        </td>
-<td>{!!Form::select('asignacionUbicacion[]',['Cliente'=>'Cliente','Oficina'=>'Oficina','Oficina/Cliente'=>'Oficina/Cliente'],'Cliente',['class'=>'form-control','placeholder'=>'Selecciona ubicación'])!!}</td>
-<td>{!!Form::date('asigFechaIni[]',now(),['class'=>'form-control'])!!}</td>
-<td>{!!Form::date('asigFechaFin[]',now(),['class'=>'form-control'])!!}</td>
-<td>{!!Form::number('asigPorcentaje[]','100',['class'=>'form-control'])!!}</td>
-<td>{!!Form::text('comentarios[]',NULL,['class'=>'form-control','placeholder'=>'comentarios'])!!}</td>
-<input type="hidden" name="factproyec_FactProyecID[]" class="form-control factproyec_FactProyecID" value="${vlorFactura}" >  
-<input type="hidden" name="asigCodigo[]" class="form-control asigCodigo" value="${nombreAsignacion}" >  
-
-
-</tr>
-      `
+<tr>
+  <td>{!!Form::select('personas_PersonasID[]',$recursos,'Selecciona recurso', ['class'=>'form-control','placeholder'=>'Selecciona Recurso'])!!}        </td>
+  <td>{!!Form::select('asignacionUbicacion[]',['Cliente'=>'Cliente','Oficina'=>'Oficina','Oficina/Cliente'=>'Oficina/Cliente'],'Cliente',['class'=>'form-control','placeholder'=>'Selecciona ubicación'])!!}</td>
+  <td>{!!Form::date('asigFechaIni[]',now(),['class'=>'form-control'])!!}</td>
+  <td>{!!Form::date('asigFechaFin[]',now(),['class'=>'form-control'])!!}</td>
+  <td>{!!Form::number('asigPorcentaje[]','100',['class'=>'form-control'])!!}</td>
+  <td>{!!Form::text('asigObservaciones[]',NULL,['class'=>'form-control','placeholder'=>'comentarios'])!!}</td>
+  <input type="hidden" name="factproyec_FactProyecID[]" class="form-control factproyec_FactProyecID" value="${vlorFactura}" >  
+  <input type="hidden" name="asigCodigo[]" class="form-control asigCodigo" value="${nombreAsignacion}" >  
+</tr>`
 
               
 
