@@ -21,6 +21,7 @@ class Asignacion extends Model
         'asigFecha',
         'created_at',
         'updated_at',
+        'asigObservaciones',
 
     ];
 }

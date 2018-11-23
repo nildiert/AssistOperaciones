@@ -50,7 +50,7 @@
 
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr style="font-size: 14px">
                                         <td>{{$proyectos->ProyFechaIni}}</td>
                                         <td>{{$proyectos->ProyectoFechaFin}}</td>
                                         <td>$ <span id="presupuesto">{{$proyectos->ProyectoPresupuesto}}</span>  </td>
@@ -74,8 +74,22 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
-                        <h5 class="">ASIGNACIONES</h5> 
+                        <h5 style="font-size:16px">ASIGNACIONES</h5> 
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target=".modal-asignacion">Agregar</button>
+                    </div>
+                    <div class="card-text">
+                      <table class="table table-hover">
+
+                        <tbody>
+                          @foreach($asignaciones as $asignacion)
+                            <tr>
+                              <td hidden>{{$asignacion->factproyec_FactProyecID}}</td>
+                            <td style="font-size: 14px"><a href="{{Route('asignacion.show',$asignacion->factproyec_FactProyecID)}}">{{$asignacion->asigCodigo}}</a></td>
+                            </tr>
+                          @endforeach
+
+                        </tbody>
+                      </table>
                     </div>
                 </div>
             </div>
@@ -85,7 +99,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
-                        <h5>FACTURACIÓN</h5> 
+                        <h5 style="font-size:16px">FACTURACIÓN</h5> 
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target=".modal-facturacion">Agregar</button>
                     </div>
                     <div class="card-text">
@@ -94,12 +108,12 @@
 
                         </thead>
                         <tbody>
-                          <tr>
+                          <tr style="font-size:14px">
                             @if($facturas == NULL)
                               <td>No se han encontrado facturas</td>
                             @else
                               @foreach($facturas as $factura)
-                              <tr>
+                              <tr style="font-size:14px">
 
                                 <td><a href="">{{$factura->FactProyecCodigo}}</a></td>
                                 <td>{{$factura->FactProyecTipo}}</td>
@@ -192,7 +206,7 @@
     
                     <div class="form-group">
                       <label for="recipient-name" class="col-form-label">Tipo:</label>
-                      {!!Form::select('FactProyecTipo',['Orden de compra'=>'Orden de compra','Factura'=>'Factura'],'Selecciona tipo', ['class'=>'form-control mb-1','id'=>'cliente','placeholder'=>'Selecciona cliente'])!!}
+                      {!!Form::select('FactProyecTipo',['Orden de compra'=>'Orden de compra','Contrato'=>'Contrato'],'Selecciona tipo', ['class'=>'form-control mb-1','id'=>'cliente','placeholder'=>'Selecciona cliente'])!!}
                       <label for="asigCodigo" class="col-form-label">Código:</label>
                       {!!Form::text('FactProyecCodigo',null,['class'=>'form-control'])!!}
                       
@@ -232,30 +246,29 @@
 
 
     $(document).ready(function(){
-
+      let nuevaAsignacion =0;
       var codigoProyecto =$("#codigoProyecto").val();
       var nombreProyecto = $("#nombreProyecto").val();
       var nombreAsignacion ="";
       var codLineaNegocio = $("#linNegCod").val();
       var CodigoCliente =  $("#cliCod").val();
-      var vlorFactura = $('#factura option:selected').val();
-      var contenido = `
-<tr>
-  <td>{!!Form::select('personas_PersonasID[]',$recursos,'Selecciona recurso', ['class'=>'form-control','placeholder'=>'Selecciona Recurso'])!!}        </td>
-  <td>{!!Form::select('asignacionUbicacion[]',['Cliente'=>'Cliente','Oficina'=>'Oficina','Oficina/Cliente'=>'Oficina/Cliente'],'Cliente',['class'=>'form-control','placeholder'=>'Selecciona ubicación'])!!}</td>
-  <td>{!!Form::date('asigFechaIni[]',now(),['class'=>'form-control'])!!}</td>
-  <td>{!!Form::date('asigFechaFin[]',now(),['class'=>'form-control'])!!}</td>
-  <td>{!!Form::number('asigPorcentaje[]','100',['class'=>'form-control'])!!}</td>
-  <td>{!!Form::text('asigObservaciones[]',NULL,['class'=>'form-control','placeholder'=>'comentarios'])!!}</td>
-  <input type="hidden" name="factproyec_FactProyecID[]" class="form-control factproyec_FactProyecID" value="${vlorFactura}" >  
-  <input type="hidden" name="asigCodigo[]" class="form-control asigCodigo" value="${nombreAsignacion}" >  
-</tr>`
-
-              
+      var vlorFactura = $('#factura option:selected').val();              
 
             $('#presupuesto').number(true);
-            $("#agregar").click(function(){
-              $("#contenido").after(contenido);
+            $("#agregar").click(()=>{
+              
+              $("#contenido").after(`
+                  <tr>
+                    <td>{!!Form::select('nuevaAsignacion[${nuevaAsignacion}][personas_PersonasID]',$recursos,'Selecciona recurso', ['class'=>'form-control','placeholder'=>'Selecciona Recurso'])!!}        </td>
+                    <td>{!!Form::select('nuevaAsignacion[${nuevaAsignacion}][asignacionUbicacion]',['Cliente'=>'Cliente','Oficina'=>'Oficina','Oficina/Cliente'=>'Oficina/Cliente'],'Cliente',['class'=>'form-control','placeholder'=>'Selecciona ubicación'])!!}</td>
+                    <td>{!!Form::date('nuevaAsignacion[${nuevaAsignacion}][asigFechaIni]',now(),['class'=>'form-control'])!!}</td>
+                    <td>{!!Form::date('nuevaAsignacion[${nuevaAsignacion}][asigFechaFin]',now(),['class'=>'form-control'])!!}</td>
+                    <td>{!!Form::number('nuevaAsignacion[${nuevaAsignacion}][asigPorcentaje]','100',['class'=>'form-control'])!!}</td>
+                    <td>{!!Form::text('nuevaAsignacion[${nuevaAsignacion}][asigObservaciones]',NULL,['class'=>'form-control','placeholder'=>'comentarios'])!!}</td>
+                    <input type="hidden" name="factproyec_FactProyecID" class="form-control factproyec_FactProyecID" value="${vlorFactura}" >  
+                    <input type="hidden" name="asigCodigo" class="form-control asigCodigo" value="${nombreAsignacion}" >  
+                  </tr>`);
+              nuevaAsignacion = nuevaAsignacion+1;
             });
             $("#factura").change(function(){
                   vlorFactura = $('#factura option:selected').text();

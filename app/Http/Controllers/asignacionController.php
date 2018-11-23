@@ -50,52 +50,30 @@ class asignacionController extends Controller
     public function store(Request $request)
     {
 
-
-       
+        $codigo = $request->nombreAsignacion;
+        $factura =$request->Factura;
+        $data=[];
         
-        // $asignacionNueva = array(
-        //     'personas_PersonasID'=>'',
-        //     'asignacionUbicacion'=>'',
-        //     'asigFechaIni'=>'',
-        //     'asigFechaFin'=>'',
-        //     'asigPorcentaje'=>'',
-        //     'asigObservaciones'=>'',
-        //     'factproyec_FactProyecID'=>'',
-        //     'asigCodigo'=>'',
+        foreach($request->input()['nuevaAsignacion'] as $key=>$value):
+            $asig = new Asignacion($value);
+            $asig->asigCodigo= $codigo;
+            $asig->factproyec_FactProyecID = $factura; 
 
-        // );
-
-
-        // $rows = $request->input('personas_PersonasID','asigCodigo');
-        // $rows = $request->asigCodigo[0];
-
-        // $i =0;
-        // $asignaciones= [];
-        // dd($request->input()["asignacionUbicacion"]);
-        // foreach($request->input() as $rq => $key):
-        // $asig = new Asignacion();
-        /* $asig->asignacionUbicacion = $rq->asignacionUbicacion[$key]; *//* 
-           array_push($asignaciones, new Asignacion([
-                'personas_PersonasID'=>$rq->personas_PersonasID,
-                'asignacionUbicacion'=>$rq->asignacionUbicacion,
-                'asigFechaIni'=>$rq->asigFechaIni,
-                'asigFechaFin'=>$rq->asigFechaFin,
-                'asigPorcentaje'=>$rq->asigPorcentaje,
-                'asigObservaciones'=>$rq->asigObservaciones,
-                'factproyec_FactProyecID'=>$rq->factproyec_FactProyecID,
-                'asigCodigo'=>$rq->asigCodigo,
-            ])); */
-            // $i++;
-            // array_push($asignaciones, $asig);
-        // endforeach;
-        // dd($asignaciones);
-
+            array_push($data, $asig);
+            $asig->save();
+        endforeach;
         
-        // endforeach;
-        // dd($asignacionNueva);    
-        return dd($objeto);
+        $proyecto = FactProyec::select('proyecto_id')->where('FactProyecID','=',$request->Factura)->pluck('proyecto_id')->first();
 
-        // return ($key);
+        // foreach($data as $dt=>$v){
+        //     //Los valores del arreglo se van guardando a medida que se recorren en $v, por ello los valroes que se insertan son 
+        //     // los de la variable $v
+
+        //     Asignacion::insert($v);
+        // }
+    // return ($data);
+    return redirect()->route('proyecto.show',$proyecto);
+
     }
 
     /**
@@ -104,9 +82,17 @@ class asignacionController extends Controller
      * @param  \App\Asignacion  $asignacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Asignacion $asignacion)
+    public function show($asignacion)
     {
-        //
+        $asigCodigo = Asignacion::select('asigCodigo')->where('factproyec_FactProyecID','=',$asignacion)->pluck('asigCodigo')->first();
+        
+        $asignados = Personas::leftJoin('asignacion','personas.PersonasID','asignacion.personas_PersonasID')->where('asigCodigo','=',$asigCodigo)->get();
+        
+        
+        
+        return view('asignacion.show',compact('asignados','asigCodigo'));
+
+
     }
 
     /**

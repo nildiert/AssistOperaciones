@@ -30,8 +30,6 @@ class proyectoController extends Controller
 
         //
 
-
-
         $proyectos = Proyecto::orderBy('ProyectoNombre','ASC')->get();
         // return $proyectos;
         return view('proyecto.index',compact('proyectos'));
@@ -126,6 +124,9 @@ class proyectoController extends Controller
      */
     public function show($id)
     {
+
+
+
         $nombres = Linea::leftJoin('proylinneg','proylinneg.lineanegocio_linNegID','lineanegocio.linNegID')
         ->leftJoin('proyecto','proyecto.id','proylinneg.proyecto_ProyID')
         ->leftJoin('cliente','cliente.cliID','proyecto.cliente_cliID')
@@ -149,7 +150,6 @@ class proyectoController extends Controller
             $cantCaracteres = strlen($cantProyectos);
         }
         
-        // return strlen($cantCaracteres);
         // CUENTA DE LOS PROYECTOS QUE TIENE CADA CLIENTE
 
         $recursos = Personas::where('personas.PersonasEstado','=','1')->orderBy('PersonasNombreCompleto','ASC')->pluck('PersonasNombreCompleto','PersonasID');
@@ -157,20 +157,13 @@ class proyectoController extends Controller
         $listaFacturas = FactProyec::leftJoin('proyecto','proyecto.id','factproyec.proyecto_id')->where('proyecto.id','=',$id)->pluck('FactProyecCodigo','FactProyecID');
         $facturas = FactProyec::leftJoin('proyecto','proyecto.id','factproyec.proyecto_id')->where('proyecto.id','=',$id)->get();
         $proyectos = Proyecto::find($id);
-        // return $id;
-        // // //
-        // $proyectos = Asignacion::leftJoin('proyecto','asignacion.factproyec_FactProyecID','ProyID')
-        // ->leftJoin('factproyec','factproyec.FactProyecID','asignacion.factproyec_FactProyecID')
-        // ->leftJoin('personas','personas.PersonasID','asignacion.personas_PersonasID')
-        // ->leftJoin('proyecto','proyecto.ProyID','asignacion.proyecto_ProyID')
-        // // ->where('ProyID','=',$id)
-        // ->get()
-        // ;
 
-        // return $proyectos;
 
-        return view('proyecto.show',compact('proyectos','facturas','listaFacturas','gerentes','recursos','nombres','cantProyectos'));
-        // return $cantProyectos;
+        $asignaciones = Asignacion::groupBy('asigCodigo')
+        ->leftJoin('factproyec','asignacion.factproyec_FactProyecID','factproyec.FactProyecID')->where('factproyec.proyecto_id','=',$id)->get();
+
+
+        return view('proyecto.show',compact('proyectos','facturas','listaFacturas','gerentes','recursos','nombres','cantProyectos','asignaciones'));        // return $cantProyectos;
         // return $gerente;
 
     }

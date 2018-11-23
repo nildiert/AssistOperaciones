@@ -11,6 +11,8 @@
 |
 */
 
+// Route::get('asignacion/proyecto/{proyecto}/{factura}','asignacionController@show')->name('asignacion.name');
+
 Route::resources([
     'personas' => 'personasController',
     'cargos'=> 'cargosController',
@@ -34,12 +36,12 @@ Route::resources([
     'rolusuarios'=>'RoleUserController',
     'jquery'=>'jqueryController',
 
-
-
 ]);
 Route::get('/', function () {
     return view('auth.login');
 });
+
+
 Route::get('/register', function () {
     return view('auth.register');
 });

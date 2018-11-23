@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     @foreach($personas as $persona)
-                        <tr>
+                        <tr style="font-size: 14px">
                         <td  style="font-size: 14px" ><a href="{{route('personas.show',$persona->PersonasID)}}"
                                 class="
                                 @if($persona->PersonasEstado == 0)
