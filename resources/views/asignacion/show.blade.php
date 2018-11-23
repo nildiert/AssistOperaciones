@@ -21,7 +21,7 @@
                     <tbody>
                         @foreach($asignados as $asig)
                             <tr style="font-size: 14px">
-                                <td>{{$asig->PersonasNombreCompleto}}</td>
+                            <td><a class="text-secondary" href="{{Route('personas.show',$asig->personas_PersonasID)}}"> {{$asig->PersonasNombreCompleto}}</a></td>
                                 <td>{{$asig->asigFechaIni}}</td>
                                 <td>{{$asig->asigFechaFin}}</td>
                                 <td>{{$asig->asigPorcentaje}}</td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Personas;
+use App\Asignacion;
 use Alert;
 use Illuminate\Http\Request;
 
@@ -113,15 +114,24 @@ class personasController extends Controller
         ->where('PersonasID','=',$id)
         ->get();
 
+        
+
         $personas =Personas::leftJoin('cargpers','personas.PersonasID','personas_PersonasID')
         ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
         ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
         ->leftJoin('contratos','contratos.ContId','perscontr.PersContrID')
-        ->leftJoin('asignacion','asignacion.personas_PersonasID','PersonasID')
-        ->leftJoin('proyecto','proyecto.id','asignacion.proyecto_ProyID')
         ->where('PersonasID','=',$id)
         ->get();
-        return view('personas.show',compact('personas','pershabil'));
+
+        $proyectos = Asignacion::leftJoin('personas','asignacion.personas_PersonasID','personas.PersonasID')
+        ->leftJoin('factproyec','asignacion.factproyec_FactProyecID','factproyec.FactProyecID')
+        ->leftJoin('proyecto','factproyec.proyecto_id','proyecto.id')
+        ->where('personas.PersonasID','=',$id)->get();
+        
+        // return $proyectos;
+
+        // return ($personas);
+        return view('personas.show',compact('personas','pershabil','proyectos'));
         // return [$personas];
     }
 

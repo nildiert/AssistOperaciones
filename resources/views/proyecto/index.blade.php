@@ -22,7 +22,12 @@
                 <td>{{$proyecto->ProyFechaIni}}</td>
                 <td>{{$proyecto->ProyectoFechaFin}}</td>
                 <td class="presupuesto">{{$proyecto->ProyectoPresupuesto}}</td>
+                <td >@if($proyecto->ProyectoEstado == 1)
+                        <span class="badge badge-primary text-white">Activo</span>
+                        @else
+                        <span class="badge badge-danger text-white">Inactivo</span>
 
+                    @endif
                 </tr>
 
 
