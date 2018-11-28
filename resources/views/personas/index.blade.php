@@ -25,7 +25,8 @@
             </div>
             <div class="col-5 d-flex justify-content-end clearfix">
                     <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
-                    <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a>
+                    {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
+                    <button type="button" class="btn btn-info mb-3 mr-1 text-white" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
                 </div>
         </div>
         <div class="card p-4">
@@ -56,8 +57,10 @@
                         <td  style="font-size: 14px ">{{$persona->PersonasTitulo}}</td>
                         <td  style="font-size: 14px">{{$persona->PersonasFechaIngreso}}</td>
                             <td><a  class="btn btn-outline-info text-info" data-toggle="modal" data-target="#editModal" >Actualizar</a>  </td>                        <td>
-                                    {{ Form:: open(['method' => 'DELETE','route' => ['personas.destroy', $persona->PersonasID], 'id' => 'confirm_delete']) }}
-                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-outline-danger']) !!}
+                                    
+                                
+                                {{ Form:: open(['method' => 'DELETE','route' => ['personas.destroy', $persona->PersonasID], 'id' => 'confirm_delete']) }}
+                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-outline-danger', 'onclick'=>'return confirm("Seguro que desea eliminar ?")']) !!}
                                     {!! Form::close() !!}
                             </td>
                         </tr>
@@ -68,10 +71,94 @@
         </div>
         {{$personas->links()}}
     </div>
+
+    
+
 @endsection
 <!-- Button trigger modal -->
-      <!-- Modal Agregar-->
-      <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
+      
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+                <div class="modal-header">
+                        <h5 class="modal-title" id="createModalLabel">Agregar recurso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      <div class="modal-body ">
+                          
+                          {!!Form::open(['action'=>'personasController@store'])!!}
+                          {!!Form::label('Apellidos')!!}
+                          
+                          <div class="form-row">
+                              <div class="col">
+                                  {!!Form::text('PersonasPriApellido',null,['placeholder'=>'Primer apellido', 'class'=>'toUpper form-control d-inline'])!!}
+                                </div>
+                                <div class="col">
+                                    {!!Form::text('PersonasSegApellido',null,['placeholder'=>'Segundo apellido', 'class'=>'toUpper form-control d-inline'])!!} 
+                                </div>
+                            </div>
+                            <hr>
+                            {!!Form::label('Nombres')!!}
+                            <div class="form-row">
+                                <div class="col">
+                                    {!!Form::text('PersonasPrimNombre',null,['placeholder'=>'Primer nombre', 'class'=>'toUpper form-control'])!!}
+                                </div>
+                                <div class="col">
+                                    {!!Form::text('PersonasSegNombre',null,['placeholder'=>'Segundo nombre', 'class'=>'toUpper form-control'])!!} 
+                                </div>
+                            </div>
+                            <hr>
+                                    {!!Form::label('Documentación')!!}
+                                    <div class="form-row">
+                                        <div class="col">
+                                            {!!Form::select('PersonasTipoDoc',array('CC'=>'Cedula de Ciudadania','TI'=>'Tarjeta de identidad','PA'=>'Pasaporte','CE'=>'Cedula de extranjeria'),null,['class'=>'form-control','placeholder'=>'Tipo de documento'])!!}
+                                        </div>
+                                        <div class="col">
+                                            {!!Form::number('PersonasDocumento',null,['placeholder'=>'Número de documento','class'=>'form-control'])!!}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    {!!Form::label('Información personal')!!}
+                                    <div class="form-row">
+                                        <div class="col">
+                                            {!!Form::number('PersonasTel',null,['placeholder'=>'Telefono','class'=>'form-control'])!!}
+                                        </div>
+                                        <div class="col">
+                                            {!!Form::text('PersonasEspecialidad',null,['placeholder'=>'Especialidad', 'class'=>'toUpper form-control'])!!}
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                            <div class="col mt-2">
+                                                {!!Form::label('Titulo')!!}
+                                                {!!Form::text('PersonasTitulo',null,['placeholder'=>'Titulo', 'class'=>'toUpper form-control'])!!}
+                                            </div>
+                                            <div class="col mt-2">
+                                                {!!Form::label('Fecha de ingreso')!!}
+
+                                                {!!Form::date('PersonasFechaIngreso',null,['class'=>'form-control'])!!}
+                                            </div>
+
+                                    </div>
+                                  {!!Form::text('PersonasNombreCompleto',null,['hidden'=>'hidden'])!!}
+                      @include('sweet::alert')
+                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        {!!Form::submit('Enviar',['class'=>'btn btn-primary'])!!}
+                        {!!Form::close()!!}
+                      </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<!-- Modal Agregar-->
+      <div class="modal fade bd-example-modal-lg" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -116,7 +203,9 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+{{-- MODAL DE EDITAR --}}
+
+    <div class="modal fade bd-example-modal-lg" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -161,3 +250,5 @@
               </div>
             </div>
         </div>
+
+{{-- DELETE MODAL --}}

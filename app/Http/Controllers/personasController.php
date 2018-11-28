@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Personas;
 use App\Asignacion;
+use App\Habilidades;
 use Alert;
 use Illuminate\Http\Request;
 
@@ -109,6 +110,10 @@ class personasController extends Controller
     public function show($id)
     {
         //
+
+        $habilidades = Habilidades::pluck('HabilidadesNombre','HabilidadesID');
+        // dd($habilidades);]
+
         $pershabil =  Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
         ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
         ->where('PersonasID','=',$id)
@@ -130,8 +135,12 @@ class personasController extends Controller
         
         // return $proyectos;
 
+        // return $personas;
+        
+
+        
         // return ($personas);
-        return view('personas.show',compact('personas','pershabil','proyectos'));
+        return view('personas.show',compact('personas','pershabil','proyectos','habilidades','id'));
         // return [$personas];
     }
 

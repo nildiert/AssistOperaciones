@@ -85,6 +85,7 @@
                     </li>
                 
                     <li>
+                        
 
                     <a href="#proyectosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Proyectos</a>
                     <ul class="collapse list-unstyled" id="proyectosSubmenu">
@@ -143,7 +144,7 @@
                     </ul>
 
 
-                    <a href="#jquerySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Curso jQuery</a>
+                    {{-- <a href="#jquerySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Curso jQuery</a>
                     <ul class="collapse list-unstyled" id="jquerySubmenu">
                         <li>
                         <a href="{{Route('jquery.index')}}">Ver</a>
@@ -152,7 +153,7 @@
                             <a href="{{Route('asignacion.create')}}">Agregar</a>
                         </li>
 
-                    </ul>
+                    </ul> --}}
                 </li>
 
             </ul>
@@ -230,9 +231,6 @@
 
     {!!Html::script('js/jquery-ui.min.js')!!}
     
-    {!!Html::script('js/jquery-ui.min.js')!!}
-    {!!Html::script('js/jquery-ui.min.js')!!}
-    {!!Html::script('js/jquery-ui.min.js')!!}
 
     <script>
             var myVar;

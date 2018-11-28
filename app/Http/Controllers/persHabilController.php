@@ -43,7 +43,15 @@ class persHabilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $id = $request->id;
+        $data=[];
+        
+        foreach($request->input()['nuevaHabilidad'] as $key=>$value){
+            $perhabil = new PersHabil($value);
+            $perhabil->personas_PersonasID = $id;
+            $perhabil->save();
+        }
+        return redirect()->route('personas.show',$id);
     }
 
     /**
