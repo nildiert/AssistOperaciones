@@ -31,7 +31,7 @@
                             <td>
                               @foreach($gerentes as $gerente)
 
-                                 <a href="" class="text-primary">{{$gerente->GerenteNombre}}</a>
+                            <a href="{{Route('gerente.show',$gerente->GerenteID)}}" class="text-primary">{{$gerente->GerenteNombre}}</a>
 
                                  
                               @endforeach

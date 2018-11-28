@@ -57,9 +57,13 @@ class gerenteController extends Controller
      * @param  \App\Gerentes  $gerentes
      * @return \Illuminate\Http\Response
      */
-    public function show(Gerentes $gerentes)
+    public function show($id)
     {
-        //
+        $gerentes = Gerentes::leftJoin('gerenproyec','gerenproyec.Gerente_GerenteID','gerente.GerenteID')
+        ->leftJoin('proyecto','gerenproyec.Proyecto_ProyID','proyecto.id')
+        ->where('GerenteID',$id)->get();
+
+        return view('gerentes.show',compact('gerentes'));
     }
 
     /**
