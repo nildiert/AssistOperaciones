@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Habilidades;
+use App\Personas;
+use App\PersHabil;
+use DB;
 use Illuminate\Http\Request;
 
 class habilidadesController extends Controller
@@ -14,8 +17,14 @@ class habilidadesController extends Controller
      */
     public function index()
     {
-        //
-        $habilidades = Habilidades::orderBy('HabilidadesID','DESC')->paginate(50);
+        $habilidades = Personas::select('HabilidadesID','habilidades.HabilidadesNombre',DB::raw('COUNT(HabilidadesNombre) as cantidad'))
+        ->leftJoin('pershabil','pershabil.personas_PersonasID','personas.PersonasID')
+        ->leftJoin('habilidades','pershabil.Habilidadess_HabilidadesID','habilidades.HabilidadesID')
+        ->orderBy('HabilidadesNombre','ASC')
+        ->groupBy('HabilidadesNombre')
+        ->where('PersonasEstado','1')
+        ->get();
+        
         return view('habilidades.index',compact('habilidades'));
     }
 
@@ -99,9 +108,16 @@ class habilidadesController extends Controller
     {
         //
     }
-    public function search(Request $recurso){
-        dd($_GET);
-     return $recurso;
+    public function search($id){
+        
+        $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
+            ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
+            ->where('HabilidadesID',$id)
+            ->get();
+
+            return view('pershabil.index',compact('pershabil'));
+
+     return $id;
     }
 
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Personas;
 use App\Asignacion;
 use App\Habilidades;
+use App\Cargos;
+use App\Contratos;
 use Alert;
 use Illuminate\Http\Request;
 
@@ -111,6 +113,8 @@ class personasController extends Controller
     {
         //
 
+        $contratos = Contratos::select('ContId','ContTipo')->pluck('ContTipo','ContId');
+
         $habilidades = Habilidades::pluck('HabilidadesNombre','HabilidadesID');
         // dd($habilidades);]
 
@@ -124,7 +128,7 @@ class personasController extends Controller
         $personas =Personas::leftJoin('cargpers','personas.PersonasID','personas_PersonasID')
         ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
         ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
-        ->leftJoin('contratos','contratos.ContId','perscontr.PersContrID')
+        ->leftJoin('contratos','contratos.ContId','perscontr.Contratos_ContId')
         ->where('PersonasID','=',$id)
         ->get();
 
@@ -133,14 +137,13 @@ class personasController extends Controller
         ->leftJoin('proyecto','factproyec.proyecto_id','proyecto.id')
         ->where('personas.PersonasID','=',$id)->get();
         
-        // return $proyectos;
+        $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
+
+        // return $cargos;
 
         // return $personas;
-        
-
-        
         // return ($personas);
-        return view('personas.show',compact('personas','pershabil','proyectos','habilidades','id'));
+        return view('personas.show',compact('personas','pershabil','proyectos','habilidades','id','cargos','contratos'));
         // return [$personas];
     }
 

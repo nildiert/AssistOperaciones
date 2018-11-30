@@ -24,28 +24,14 @@ class CreateAsignacionTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('asigID');
-            $table->unsignedInteger('personas_PersonasID');
             $table->text('asigCodigo');
-            $table->date('asigFechaIni')->nullable()->default(null);
-            $table->double('asigPorcentaje')->nullable()->default('1');
-            $table->string('asigFechaFin', 45)->nullable()->default(null);
-            $table->text('asigObservaciones')->nullable()->default(null);
-            $table->string('asignacionUbicacion', 45)->nullable()->default(null);
             $table->string('asig_Usuario', 45)->nullable()->default(null);
-            $table->tinyInteger('asig_estado')->nullable()->default('1');
-            $table->date('asigFecha')->nullable()->default(null);
             $table->unsignedInteger('factproyec_FactProyecID');
-
-            $table->index(["personas_PersonasID"], 'fk_asignacion_personas1_idx');
+            $table->tinyInteger('asig_estado')->nullable()->default('1');
 
             $table->index(["factproyec_FactProyecID"], 'fk_asignacion_factproyec1_idx');
             $table->nullableTimestamps();
 
-
-            $table->foreign('personas_PersonasID', 'fk_asignacion_personas1_idx')
-                ->references('PersonasID')->on('personas')
-                ->onDelete('no action')
-                ->onUpdate('no action');
 
             $table->foreign('factproyec_FactProyecID', 'fk_asignacion_factproyec1_idx')
                 ->references('FactProyecID')->on('factproyec')

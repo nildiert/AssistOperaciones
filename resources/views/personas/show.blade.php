@@ -58,18 +58,34 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
-                            @foreach($personas as $pers)
-        
                             <h5 class="" style="font-size:18px"> ASSIST</h5>
-
-                                @endforeach
                         </div>
                         <div class="card-text">
                                     <table class="table table-hover table-responsive">
                                         <tbody>
                                             @foreach($personas as $pers)
-                                            <tr> <td>Cargo</td><td>{{$pers->CargosNombre}}</td><td></td> </tr>
-                                            <tr> <td>Contrato</td><td>{{$pers->ContTipo}}</td><td></td> </tr>
+                                                @if($pers->CargosNombre != NULL)    
+                                                <tr> <td>Cargo</td><td>{{$pers->CargosNombre}}</td><td></td> </tr>
+                                                @else
+                                                <tr>
+                                                    <td with="100px"><span class=""><p> No se ha asignado un cargo</p></span></td>
+                                                    <td><button class="btn btn-primary" data-toggle="modal" data-target="#agregarCargo">Agregar cargo</button></td>
+                                                    
+                                                     
+                                                </tr>
+                                                <br>
+                                                @endif
+                                                @if($pers->ContTipo != NULL)    
+                                                <tr> <td>Contrato</td><td>{{$pers->ContTipo}}</td><td></td> </tr>
+                                                @else
+                                                <tr>
+                                                    <td><p>No se ha asignado tipo de contrato</p> </td>
+                                                    <td>
+                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#agregarContrato">Agregar contrato</button>
+                                                    </td>
+                                                </tr>
+                                                @endif
+
                                             
                                         </tbody>
                                     </table>
@@ -123,19 +139,28 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
                 <div class="modal-header">
-                    <div class="d-flex justify-content-between">
-                    <h5 class="modal-title" id="editModalLabel">Agregar habilidad</h5>
-                    <div>
-                        <a href="#" class="btn btn-info" id="agregarHabilidad">+</a>
-                    </div>
-                    </div>
+                        <div class="d-flex justify-content-start">
+                            <h5 class="modal-title" id="editModalLabel">Agregar habilidad</h5>
+                        </div>  
+                        <div class="d-flex justify-content-end">
+                            <span> <a href="#" class="btn btn-info" id="agregarHabilidad">+</a></span>
+                        </div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
                 <div class="modal-body ">
                     {!!Form::open(['action'=>'persHabilController@store'])!!}
+                    <div class="form-row">
+                        <div class="col">{!!Form::label('Habilidad')!!}</div>
+                        <div class="col">{!!Form::label('Certificación')!!}</div>
+                        <div class="col">{!!Form::label('Nivel')!!}</div>
+                        
+                    </div>
                     <div id="contenido" class="mt-2">
+                        
+                        
+                        
                         <div class="form-row">
                             {!!Form::hidden('id',$id)!!}
                             <div class="col">
@@ -160,6 +185,97 @@
           </div>
         </div>
       </div>
+
+
+{{-- Modal agregar contrato --}}
+<div class="modal fade" id="agregarContrato" role="dialog" aria-labelledby="exampleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar contrato</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{Form::open(['action'=>'persContrController@store'])}}
+                {!!Form::label('Tipo de contrato')!!}
+                {!!Form::select('Contratos_ContId',$contratos,null,['class'=>'form-control'])!!}
+                <div class="form-row pt-2">
+                    <div class="col">
+                        {!!Form::hidden('Personas_PersonasID',$id)!!}
+                        {!!Form::label('Inicio')!!}
+                        {!!Form::date('PersContrFechaInicio',now(),['class'=>'form-control'])!!}
+                    </div>
+                    <div class="col">
+
+                        {!!Form::label('Fin')!!}
+                        {!!Form::date('PersContrFechaFin',null,['class'=>'form-control'])!!}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" >Guardar</button>
+                {!!Form::close()!!}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{{-- Modal agregar cargo --}}
+
+<div class="modal fade" id="agregarCargo" role="dialog" aria-labelleledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-tittle" id="exampleModalLabel">Agregar cargo</h5>
+                    <button class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {!!Form::open(['action'=>'CargPersController@store'])!!}
+                    {!!Form::label('Cargo')!!}
+                    {!!Form::select('cargos_CargosID',$cargos,null,['class'=>'form-control','placeholder'=>'Selecciona el cargo'])!!}
+                    <hr>
+                    <div class="form-row">
+                        {!!Form::hidden('personas_PersonasID',$id)!!}
+                        <div class="col">
+                            {!!Form::label('Fecha de inicio')!!}
+                            {!!Form::date('CargPersFechaInicio',now(),['class'=>'form-control'])!!}
+                        </div>
+                        <div class="col">
+                            {!!Form::label('Fecha de fin')!!}
+                            {!!Form::date('CargPersFechaFin',null,['class'=>'form-control'])!!}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-row">
+                        <div class="col">
+                            {!!Form::label('CargPersPruebaInicio')!!}
+                            {!!Form::date('CargPersPruebaInicio',now(),['class'=>'form-control'])!!}
+                        </div>
+                        <div class="col">
+                            {!!Form::label('CargPersPruebaFin')!!}
+                            {!!Form::date('CargPersPruebaFin',null,['class'=>'form-control'])!!}
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-primary">Guardar</button>
+                </div>
+                
+                {!!Form::close()!!}
+            </div>
+        </div>
+    </div>
+</div>
 
       
 

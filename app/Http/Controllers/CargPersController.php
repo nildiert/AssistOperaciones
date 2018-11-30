@@ -47,7 +47,8 @@ class CargPersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CargPers::create($request->all());
+        return redirect()->back();
     }
 
     /**

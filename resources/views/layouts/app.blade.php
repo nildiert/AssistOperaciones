@@ -75,7 +75,7 @@
                         <a href="#habilidadesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Habilidades</a>
                         <ul class="collapse list-unstyled" id="habilidadesSubmenu">
                             <li>
-                                <a href="{{Route('pershabil.index')}}">Ver</a>
+                                <a href="{{Route('habilidades.index')}}">Ver</a>
                             </li>
                             <li>
                             <a href="{{Route('habilidades.create')}}">Agregar</a>
@@ -99,28 +99,20 @@
                         @endif
 
                     </ul>
-                    <a href="#asignacionSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Asignación</a>
-                    <ul class="collapse list-unstyled" id="asignacionSubmenu">
-                        <li>
-                        <a href="{{Route('asignacion.index')}}">Ver</a>
-                        </li>
-                        <li>
-                            <a href="{{Route('asignacion.create')}}">Agregar</a>
-                        </li>
 
-                    </ul>
 
+                    <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
+                    <ul class="collapse list-unstyled" id="clientesSubmenu">
+                        <li>
+                            <a href="{{Route('cliente.index')}}">Ver</a>
+                    </li>
+                    <li>
+                        <a href="{{Route('asignacion.create')}}">Agregar</a>
+                    </li>
+
+                </ul>
+                
                 @if(Auth::user()->hasRole('admin'))
-
-                    <a href="#rolesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Roles</a>
-                    <ul class="collapse list-unstyled" id="rolesSubmenu">
-                        <li>
-                        <a href="{{Route('roles.index')}}">Ver</a>
-                        </li>
-                        <li>
-                            <a href="{{Route('asignacion.create')}}">Agregar</a>
-                        </li>
-                    </ul>
                     <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
                     <ul class="collapse list-unstyled" id="usuariosSubmenu">
                         <li>
@@ -132,16 +124,7 @@
                     </ul>
                 @endif
 
-                    <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
-                    <ul class="collapse list-unstyled" id="clientesSubmenu">
-                        <li>
-                        <a href="{{Route('cliente.index')}}">Ver</a>
-                        </li>
-                        <li>
-                            <a href="{{Route('asignacion.create')}}">Agregar</a>
-                        </li>
 
-                    </ul>
 
 
                     {{-- <a href="#jquerySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Curso jQuery</a>

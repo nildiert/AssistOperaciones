@@ -35,7 +35,8 @@ class persContrController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PersContr::create($request->all());
+        return redirect()->back();
     }
 
     /**
