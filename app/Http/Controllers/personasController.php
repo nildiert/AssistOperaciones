@@ -116,14 +116,11 @@ class personasController extends Controller
         $contratos = Contratos::select('ContId','ContTipo')->pluck('ContTipo','ContId');
 
         $habilidades = Habilidades::pluck('HabilidadesNombre','HabilidadesID');
-        // dd($habilidades);]
 
         $pershabil =  Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
         ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
         ->where('PersonasID','=',$id)
         ->get();
-
-        
 
         $personas =Personas::leftJoin('cargpers','personas.PersonasID','personas_PersonasID')
         ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
@@ -132,18 +129,15 @@ class personasController extends Controller
         ->where('PersonasID','=',$id)
         ->get();
 
-        $proyectos = Asignacion::leftJoin('personas','asignacion.personas_PersonasID','personas.PersonasID')
-        ->leftJoin('factproyec','asignacion.factproyec_FactProyecID','factproyec.FactProyecID')
-        ->leftJoin('proyecto','factproyec.proyecto_id','proyecto.id')
-        ->where('personas.PersonasID','=',$id)->get();
+        // $proyectos = Asignacion::leftJoin('personas','asignacion.personas_PersonasID','personas.PersonasID')
+        // ->leftJoin('factproyec','asignacion.factproyec_FactProyecID','factproyec.FactProyecID')
+        // ->leftJoin('proyecto','factproyec.proyecto_id','proyecto.id')
+        // ->where('personas.PersonasID','=',$id)->get();
         
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
 
-        // return $cargos;
 
-        // return $personas;
-        // return ($personas);
-        return view('personas.show',compact('personas','pershabil','proyectos','habilidades','id','cargos','contratos'));
+        return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos'));
         // return [$personas];
     }
 

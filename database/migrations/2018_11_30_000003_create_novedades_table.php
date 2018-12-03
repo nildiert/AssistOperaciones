@@ -26,7 +26,7 @@ class CreateNovedadesTable extends Migration
             $table->increments('NovId');
             $table->string('NovTipo', 45)->nullable()->default(null);
             $table->string('NovUsuario', 45)->nullable()->default(null);
-            $table->tinyInteger('NovEstado')->nullable()->default(null);
+            $table->tinyInteger('NovEstado')->nullable()->default('1');
             $table->nullableTimestamps();
         });
     }

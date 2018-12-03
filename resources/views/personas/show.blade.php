@@ -106,10 +106,10 @@
                             <div class="card-text">
                                         <table class="table table-hover table-responsive">
                                             <tbody>
-                                                @foreach($proyectos as $proyecto)
+                                                {{-- @foreach($proyectos as $proyecto)
                                             <tr><td width="400px"><a href="{{Route('proyecto.show',$proyecto->id)}}"> {{$proyecto->ProyectoNombre}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyecto->asigPorcentaje}} %</span></td> </tr>
                                                 
-                                                @endforeach
+                                                @endforeach --}}
                                             </tbody>
                                         </table>
                                         <hr>

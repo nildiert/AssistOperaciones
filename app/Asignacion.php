@@ -8,20 +8,13 @@ class Asignacion extends Model
 {
     protected $table = 'asignacion';
     protected $fillable = [
-        'asigID',
-        'personas_PersonasID',
-        'proyecto_ProyID',
-        'factproyec_FactProyecID',
-        'asigFechaIni',
-        'asigPorcentaje',
-        'asigFechaFin',
-        'asignacionUbicacion',
-        'asig_Usuario',
-        'asig_estado',
-        'asigFecha',
-        'created_at',
-        'updated_at',
-        'asigObservaciones',
+            'asigID',
+            'asigCodigo',
+            'asig_Usuario',
+            'factproyec_FactProyecID',
+            'asig_estado',
+            'created_at',
+            'updated_at',
 
     ];
 }

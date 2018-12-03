@@ -29,7 +29,7 @@ class CreatePersnovedTable extends Migration
             $table->date('PersNovedFechaInicio')->nullable()->default(null);
             $table->date('PersNovedFechaFin')->nullable()->default(null);
             $table->tinyInteger('PersNovedEstado')->nullable()->default('1');
-            $table->string('PersNovedUsuario', 45)->nullable()->default(null);
+            $table->string('PersNovedUsuario', 45)->nullable()->default('1');
 
             $table->index(["personas_PersonasID"], 'fk_persnoved_personas1_idx');
 

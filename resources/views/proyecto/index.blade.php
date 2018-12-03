@@ -2,8 +2,8 @@
 @section('content')
 <div class="container">
     @if(Auth::user()->hasRole('admin'))
-        <div>
-            <a href="{{Route('proyecto.create')}}" class=" text-white btn btn-info mb-2">Nuevo proyecto</a>
+        <div class="d-flex justify-content-end">
+            <div class="text-white btn btn-info mb-2" data-toggle="modal" data-target="#agregarProyecto">Nuevo proyecto</div>
         </div>
     @endif
 <div class="card">
@@ -43,6 +43,84 @@
 
 </div>
 
+
+<div class="modal fade" id="agregarProyecto" role="dialog" aria-labelledly="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Nuevo Proyecto</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                        {!!Form::open(['action'=>'proyectoController@store'])!!}
+                        {!!Form::label('Cliente')!!}
+                        {!!Form::select('cliente_cliID',$clientes,'Selecciona cliente', ['class'=>'form-control mb-1','id'=>'cliente','placeholder'=>'Selecciona cliente'])!!}
+                        {!!Form::label('Gerente')!!}
+                        {!!Form::select('Gerente_GerenteID',$gerentes,'Selecciona gerente', ['class'=>'form-control mb-1','id'=>'gerente','placeholder'=>'Selecciona gerente'])!!}
+                        {!!Form::label('Linea de negocio')!!}
+                        {!!Form::select('lineanegocio_linNegID',$lineas,'Selecciona linea de negocio',['class'=>'form-control mb-1','id'=>'linea','placeholder'=>'Selecciona linea de negocio'])!!}
+                        {!!Form::label('ProyectoNombre','Nombre proyecto')!!}
+                        {!!Form::text('ProyectoNombre',null,['class'=>'form-control','id'=>'proyNombre'])!!}
+                        {!!Form::label('Fecha inicio')!!}
+                        {!!Form::date('ProyFechaIni',now(),['class'=>'form-control'])!!}
+                        {!!Form::label('Fecha fin')!!}
+                        {!!Form::date('ProyectoFechaFin',now(),['class'=>'form-control'])!!}
+                        {!!Form::label('Presupuesto')!!}
+                        {!!Form::text('Pre',null,['class'=>'form-control','id'=>'pre'])!!}
+                        {!!Form::label('ProyectoDescripcion','Descripción')!!}
+                        {!!Form::text('ProyectoDescripcion',null,['class'=>'form-control'])!!}
+                        {!!Form::text('ProyectoPresupuesto',null,['class'=>'form-control','id'=>'ProyectoPresupuesto','hidden'])!!}
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        {!!Form::submit('Guardar proyecto',['class'=>'mt-3 btn btn-info form-group','id'=>'enviarProyecto'])!!}
+        
+        
+                        {!!Form::close()!!}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+        $(document).ready(function(){
+    
+            var valor ="";
+    
+            $("#linea").change(function(){
+                var linea = "";
+                var nombre = "";
+    
+                $("#linea option:selected").each(function(){
+                    linea += $(this).text() + "";
+                    nombre += $("#cliente option:selected").text() + "";
+                });
+                $("#proyNombre").val(nombre +"-"+linea);
+    
+            });
+    
+    
+            $("#pre").number(true);
+    
+            $("#enviarProyecto").click(function(){
+                valor = $("#pre").val();
+                $("#ProyectoPresupuesto").val(valor);
+                // $("#pre").remove();
+            });
+    
+    
+    
+        });
+    
+    
+    
+    
+    
+    </script>
 <script>
     $(document).ready(function(){
         $(".presupuesto").number(true);

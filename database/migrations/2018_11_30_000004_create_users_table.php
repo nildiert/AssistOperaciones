@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('indenty')->default('0');
             $table->string('password', 191);
             $table->tinyInteger('rol')->default('1');
-            $table->tinyInteger('estate')->default('0');
+            $table->tinyInteger('estate')->default('1');
             $table->rememberToken();
 
             $table->unique(["email"], 'users_email_unique');

@@ -9,8 +9,6 @@
             <div class="card">
                 {{-- {{dd($proyectos)}} --}}
                 {{-- @foreach($proyectos as $proyecto) --}}
-                
-                
                 <div class="card-body">
                   <table class="">
                     <tbody>
@@ -22,7 +20,6 @@
                             <strong > {{$proyectos->ProyectoNombre}}</strong>
                             <input type="hidden" id="nombreProyecto" value="{{$proyectos->ProyectoNombre}}">
                         </td>
-
                       </tr>
                       <tr>
                           <td>
@@ -30,10 +27,7 @@
                             </td>
                             <td>
                               @foreach($gerentes as $gerente)
-
                             <a href="{{Route('gerente.show',$gerente->GerenteID)}}" class="text-primary">{{$gerente->GerenteNombre}}</a>
-
-                                 
                               @endforeach
                             </td>
                       </tr>
@@ -83,8 +77,8 @@
                         <tbody>
                           @foreach($asignaciones as $asignacion)
                             <tr>
-                              <td hidden>{{$asignacion->factproyec_FactProyecID}}</td>
-                            <td style="font-size: 14px"><a href="{{Route('asignacion.show',$asignacion->factproyec_FactProyecID)}}">{{$asignacion->asigCodigo}}</a></td>
+                              <td hidden>{{$asignacion->asigID}}</td>
+                            <td style="font-size: 14px"><a href="{{Route('asignacion.show',$asignacion->asigID)}}">{{$asignacion->asigCodigo}}</a></td>
                             </tr>
                           @endforeach
 
@@ -141,7 +135,7 @@
 
 
 <div class="modal fade modal-asignacion " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
       <div class="modal-content">
           <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Nueva asignación </h5>  <br>
@@ -151,34 +145,10 @@
             </div>
             <div class="modal-body">
               {!!Form::open(['action'=>'asignacionController@store'])!!}
-              <div class="row d-flex">
-                <div class="col-4 ">
-                    {!!Form::select('Factura',$listaFacturas,'Selecciona factura', ['class'=>'form-control mb-2 ','id'=>'factura','placeholder'=>'Seleccione factura'])!!}
-                </div>
-                <div class="col-4">
-                    {!!Form::text('nombreAsignacion',null,['class'=>'form-control','readonly', 'id'=>'asigCodigo'])!!}
-                </div>
-                <div class="col-4  justify-content-end">
-                  <a href="#"  id ="agregar" class="btn btn-info ml-5">Agregar recurso</a>
-                </div>
-              </div>
-              <table class="table">
-                  
-                <thead>
-                  <th>Recurso</th>
-                    <th>Ubicación</th>
-                    <th>Inicio</th>
-                    <th>Fin</th>
-                    <th>Porcentaje</th>
-                    <th>Comentarios</th>
-                    <th></th>
-                    
-                  </thead>
-                  <tbody id="contenido">
-                    
-                    
-                  </tbody>
-                </table>
+                    {!!Form::select('factproyec_FactProyecID',$listaFacturas,'Selecciona factura', ['class'=>'form-control mb-2 ','id'=>'factura','placeholder'=>'Seleccione factura'])!!}
+                    {!!Form::text('asigCodigo',null,['class'=>'form-control','readonly', 'id'=>'asigCodigo'])!!}
+
+              
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

@@ -27,5 +27,18 @@
             </tbody>
         </table>
     </div>
+    <div class="table">
+            <h1>Sin Rol</h1>
+        <table class="table table-hover">
+            <thead>
+                <th>sdf</th>
+                <th>sdf</th>
+            </thead>
+            <tbody>
+                <td>sdf</td>
+                <td>sdf</td>
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection

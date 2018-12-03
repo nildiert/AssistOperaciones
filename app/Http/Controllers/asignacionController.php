@@ -6,6 +6,7 @@ use App\Asignacion;
 use App\Personas;
 use App\FactProyec;
 use App\Proyecto;
+use App\AsigPers;
 use Alert;
 use Illuminate\Http\Request;
 
@@ -49,30 +50,37 @@ class asignacionController extends Controller
      */
     public function store(Request $request)
     {
+    
+        Asignacion::create($request->only([
+            'asigCodigo',
+            'factproyec_FactProyecID',
+        ]));
+        return redirect()->back();
 
-        $codigo = $request->nombreAsignacion;
-        $factura =$request->Factura;
-        $data=[];
+    //     return $request;
+    //     $codigo = $request->nombreAsignacion;
+    //     $factura =$request->Factura;
+    //     $data=[];
         
-        foreach($request->input()['nuevaAsignacion'] as $key=>$value):
-            $asig = new Asignacion($value);
-            $asig->asigCodigo= $codigo;
-            $asig->factproyec_FactProyecID = $factura; 
+    //     foreach($request->input()['nuevaAsignacion'] as $key=>$value):
+    //         $asig = new Asignacion($value);
+    //         $asig->asigCodigo= $codigo;
+    //         $asig->factproyec_FactProyecID = $factura; 
 
-            array_push($data, $asig);
-            $asig->save();
-        endforeach;
+    //         array_push($data, $asig);
+    //         $asig->save();
+    //     endforeach;
         
-        $proyecto = FactProyec::select('proyecto_id')->where('FactProyecID','=',$request->Factura)->pluck('proyecto_id')->first();
+    //     $proyecto = FactProyec::select('proyecto_id')->where('FactProyecID','=',$request->Factura)->pluck('proyecto_id')->first();
 
-        // foreach($data as $dt=>$v){
-        //     //Los valores del arreglo se van guardando a medida que se recorren en $v, por ello los valroes que se insertan son 
-        //     // los de la variable $v
+    //     // foreach($data as $dt=>$v){
+    //     //     //Los valores del arreglo se van guardando a medida que se recorren en $v, por ello los valroes que se insertan son 
+    //     //     // los de la variable $v
 
-        //     Asignacion::insert($v);
-        // }
-    // return ($data);
-    return redirect()->route('proyecto.show',$proyecto);
+    //     //     Asignacion::insert($v);
+    //     // }
+    // // return ($data);
+    // return redirect()->route('proyecto.show',$proyecto);
 
     }
 
@@ -84,9 +92,16 @@ class asignacionController extends Controller
      */
     public function show($asignacion)
     {
-        $asigCodigo = Asignacion::select('asigCodigo')->where('factproyec_FactProyecID','=',$asignacion)->pluck('asigCodigo')->first();
+
+        $asignados = AsigPers::leftJoin('asignacion','asigpers.id','asignacion.asigID')->where('asignacion.asigID',$asignacion)->get();
+
+        return $asignados;
         
-        $asignados = Personas::leftJoin('asignacion','personas.PersonasID','asignacion.personas_PersonasID')->where('asigCodigo','=',$asigCodigo)->get();
+        return 'Pues si, llegaste hasta aquí mi perro'.$asignacion;
+
+        // $asigCodigo = Asignacion::select('asigCodigo')->where('factproyec_FactProyecID','=',$asignacion)->pluck('asigCodigo')->first();
+        
+        // $asignados = Personas::leftJoin('asignacion','personas.PersonasID','asignacion.personas_PersonasID')->where('asigCodigo','=',$asigCodigo)->get();
         
         
         

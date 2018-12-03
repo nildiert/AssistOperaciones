@@ -113,6 +113,8 @@ class habilidadesController extends Controller
         $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
             ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
             ->where('HabilidadesID',$id)
+            ->where('PersonasEstado','1')
+            ->orderBy('PersonasNombreCompleto','ASC')
             ->get();
 
             return view('pershabil.index',compact('pershabil'));

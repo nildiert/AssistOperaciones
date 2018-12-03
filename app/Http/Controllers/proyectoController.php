@@ -28,11 +28,14 @@ class proyectoController extends Controller
     public function index()
     {
 
-        //
-
+        //Contar la cantidad de proyectos por cliente y luego ejecutar el conteo
+        $gerentes = Gerentes::orderBy('GerenteNombre','ASC')->pluck('GerenteNombre','GerenteID');
+        $clientes = Clientes::orderBy('cliNombre','ASC')->pluck('cliNombre','cliID');
+        $lineas = Linea::orderBy('linNegNombre','ASC')->pluck('linNegNombre','linNegID');
+        
         $proyectos = Proyecto::orderBy('ProyectoNombre','ASC')->get();
         // return $proyectos;
-        return view('proyecto.index',compact('proyectos'));
+        return view('proyecto.index',compact('proyectos','clientes','lineas','gerentes'));
     }
 
     /**
@@ -139,7 +142,8 @@ class proyectoController extends Controller
             endforeach;
 
         $cantProyectos = Proyecto::select('cliente_cliID')->where('cliente_cliID','=',$cliente)->count();
-        $cantProyectos++;
+        // $cantProyectos++;
+        // return $cantProyectos;
         strval($cantProyectos);
         $cantCaracteres = strlen($cantProyectos);
 
@@ -161,7 +165,6 @@ class proyectoController extends Controller
 
         $asignaciones = Asignacion::groupBy('asigCodigo')
         ->leftJoin('factproyec','asignacion.factproyec_FactProyecID','factproyec.FactProyecID')->where('factproyec.proyecto_id','=',$id)->get();
-
 
         return view('proyecto.show',compact('proyectos','facturas','listaFacturas','gerentes','recursos','nombres','cantProyectos','asignaciones'));        // return $cantProyectos;
         // return $gerente;

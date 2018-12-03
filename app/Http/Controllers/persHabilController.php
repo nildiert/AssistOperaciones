@@ -108,8 +108,12 @@ class persHabilController extends Controller
     public function search(Request $skill){
 
         // dd($skill->busqueda);
-        $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
-        ->where('HabilidadesNombre','like','%'.$skill->busqueda.'%')->where('PersonasEstado','1')->get();
+        $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
+        ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
+        ->where('HabilidadesNombre','like','%'.$skill->busqueda.'%')
+        ->where('PersonasEstado','1')
+        ->orderBy('PersonasNombreCompleto','asc')
+        ->get();
         $count = $pershabil->count();
         return view('pershabil.index',compact('pershabil','count'));
     }
