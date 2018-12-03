@@ -103,7 +103,7 @@ class habilidadesController extends Controller
      *
      * @param  \App\Habilidades  $habilidades
      * @return \Illuminate\Http\Response
-     */
+     */ 
     public function destroy(Habilidades $habilidades)
     {
         //

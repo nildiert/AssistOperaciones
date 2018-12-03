@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\PersHabil;
 use App\Personas;
 use App\Habilidades;
@@ -90,7 +91,7 @@ class persHabilController extends Controller
      * @param  \App\PersHabil  $persHabil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PersHabil $persHabil)
+    public function update(Request $request, PersHabil $persHabil) 
     {
         //
     }
@@ -107,14 +108,25 @@ class persHabilController extends Controller
     }
     public function search(Request $skill){
 
-        // dd($skill->busqueda);
-        $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
-        ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
-        ->where('HabilidadesNombre','like','%'.$skill->busqueda.'%')
+
+
+        $habilidades = Personas::select('HabilidadesID','habilidades.HabilidadesNombre',DB::raw('COUNT(HabilidadesNombre) as cantidad'))
+        ->leftJoin('pershabil','pershabil.personas_PersonasID','personas.PersonasID')
+        ->leftJoin('habilidades','pershabil.Habilidadess_HabilidadesID','habilidades.HabilidadesID')
+        ->orderBy('HabilidadesNombre','ASC')
+        ->groupBy('HabilidadesNombre')
         ->where('PersonasEstado','1')
-        ->orderBy('PersonasNombreCompleto','asc')
+        ->where('HabilidadesNombre','like','%'.$skill->busqueda.'%')
         ->get();
-        $count = $pershabil->count();
-        return view('pershabil.index',compact('pershabil','count'));
+        // dd($skill->busqueda);
+        // $pershabil = Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
+        // ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
+        // ->where('HabilidadesNombre','like','%'.$skill->busqueda.'%')
+        // ->where('PersonasEstado','1')
+        // ->orderBy('PersonasNombreCompleto','asc')
+        // ->get();
+        // $count = $pershabil->count();
+        // return view('pershabil.index',compact('pershabil','count'));
+        return view('habilidades.index',compact('habilidades'));
     }
 }

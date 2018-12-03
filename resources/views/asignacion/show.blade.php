@@ -4,10 +4,14 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    {{$asigCodigo}}
+                    <div class="d-flex justify-content-between">
+                        {{$asigCodigo}}
+                        <button class="btn btn-info">Asignar personas</button>
+                    </div>
                 </div>
             </div>
             <div class="card-text">
+
                 <table class="table table-hover">
                     <thead>
                             <th>Nombre</th>

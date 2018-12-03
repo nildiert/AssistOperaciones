@@ -93,13 +93,14 @@ class asignacionController extends Controller
     public function show($asignacion)
     {
 
-        $asignados = AsigPers::leftJoin('asignacion','asigpers.id','asignacion.asigID')->where('asignacion.asigID',$asignacion)->get();
+        $asignados = AsigPers::leftJoin('asignacion','asigpers.id','asignacion.asigID')
+        ->where('asignacion.asigID',$asignacion)->get();
 
-        return $asignados;
+        // return $asignados;
         
-        return 'Pues si, llegaste hasta aquí mi perro'.$asignacion;
+        // return 'Pues si, llegaste hasta aquí mi perro'.$asignacion;
 
-        // $asigCodigo = Asignacion::select('asigCodigo')->where('factproyec_FactProyecID','=',$asignacion)->pluck('asigCodigo')->first();
+        $asigCodigo = Asignacion::select('asigCodigo')->where('factproyec_FactProyecID','=',$asignacion)->pluck('asigCodigo')->first();
         
         // $asignados = Personas::leftJoin('asignacion','personas.PersonasID','asignacion.personas_PersonasID')->where('asigCodigo','=',$asigCodigo)->get();
         
