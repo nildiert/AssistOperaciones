@@ -26,6 +26,8 @@ class asignacionController extends Controller
         ->leftJoin('proyecto','id','proyecto_ProyID')
         ->where('asig_estado','=','1')
         ->get();
+
+        
         return view('asignacion.index',compact('asignaciones'));
         // return $asignaciones;
     }
@@ -50,6 +52,15 @@ class asignacionController extends Controller
      */
     public function store(Request $request)
     {
+        // foreach($request->input()['nuevaAsignacion'] as $key=>$value):
+            
+        //      $asig = new AsigPers($value);
+        //     $asig->save();
+        // endforeach;
+
+        // return redirect()->back();
+
+
     
         Asignacion::create($request->only([
             'asigCodigo',
@@ -62,14 +73,6 @@ class asignacionController extends Controller
     //     $factura =$request->Factura;
     //     $data=[];
         
-    //     foreach($request->input()['nuevaAsignacion'] as $key=>$value):
-    //         $asig = new Asignacion($value);
-    //         $asig->asigCodigo= $codigo;
-    //         $asig->factproyec_FactProyecID = $factura; 
-
-    //         array_push($data, $asig);
-    //         $asig->save();
-    //     endforeach;
         
     //     $proyecto = FactProyec::select('proyecto_id')->where('FactProyecID','=',$request->Factura)->pluck('proyecto_id')->first();
 
@@ -92,23 +95,20 @@ class asignacionController extends Controller
      */
     public function show($asignacion)
     {
-
-        $asignados = AsigPers::leftJoin('asignacion','asigpers.id','asignacion.asigID')
-        ->where('asignacion.asigID',$asignacion)->get();
+        $asignados = AsigPers::leftJoin('asignacion','asigpers.asignacion_asigID','asignacion.asigID')
+        ->leftJoin('personas','asigpers.personas_PersonasID','personas.PersonasID')
+        ->orderBy('PersonasNombreCompleto','ASC')
+        ->where('asignacion.asigID',$asignacion)
+        ->get();
 
         // return $asignados;
-        
-        // return 'Pues si, llegaste hasta aquí mi perro'.$asignacion;
-
         $asigCodigo = Asignacion::select('asigCodigo')->where('factproyec_FactProyecID','=',$asignacion)->pluck('asigCodigo')->first();
+        $personas = Personas::select('PersonasID','PersonasNombreCompleto')
+        ->orderBy('PersonasNombreCompleto','ASC')
+        ->pluck('PersonasNombreCompleto','PersonasID');
+        // return $asignados;
         
-        // $asignados = Personas::leftJoin('asignacion','personas.PersonasID','asignacion.personas_PersonasID')->where('asigCodigo','=',$asigCodigo)->get();
-        
-        
-        
-        return view('asignacion.show',compact('asignados','asigCodigo'));
-
-
+        return view('asignacion.show',compact('asignados','asigCodigo','asignacion','personas'));
     }
 
     /**

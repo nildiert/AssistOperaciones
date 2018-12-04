@@ -183,7 +183,7 @@
                       <label for="message-text" class="col-form-label">Inicio:</label>
                       {!!Form::date('FactProyecFechaIni',now(),['class'=>'form-control', 'id'=>'message-text'])!!}
                       
-                      <label for="message-text" class="col-form-label">Date:</label>
+                      <label for="message-text" class="col-form-label">Fin:</label>
                       {!!Form::date('FactProyecFechaFin',now(),['class'=>'form-control', 'id'=>'message-text'])!!}
                       {!!Form::text('proyecto_id',$proyectos->id,['class'=>'form-control', 'id'=>'message-text','hidden'])!!}
                     </div>

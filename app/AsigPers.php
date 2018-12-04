@@ -13,6 +13,7 @@ class AsigPers extends Model
             'personas_PersonasID',
             'fechaInicio',
             'fechaFin',
+            'porcentaje',
             'observaciones',
             'ubicacion',
             'estado',

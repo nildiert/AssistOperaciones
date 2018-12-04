@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Clientes;
+use App\AsigPers;
 use Illuminate\Http\Request;
 
-class clienteController extends Controller
+class asigPersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,6 @@ class clienteController extends Controller
     public function index()
     {
         //
-        $clientes=Clientes::orderBy('cliID','DESC')->paginate(50);
-        return view('clientes.index',compact('clientes'));
     }
 
     /**
@@ -27,7 +25,6 @@ class clienteController extends Controller
     public function create()
     {
         //
-        return view('clientes.create');
     }
 
     /**
@@ -38,29 +35,22 @@ class clienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $this->validate($request,[
-            'cliNombre',
-            'cliCod'
-        ]);
-        $request->merge([
-            'cliNombre'=>strtoupper($request->cliNombre),
-            'cliCod'=>strtoupper($request->cliCod)
-        ]);
-        if($request->cliNombre != NULL){
-            Clientes::create($request->all());
-        }
+            foreach($request->input()['nuevaAsignacion'] as $key=>$value):
+            
+             $asig = new AsigPers($value);
+            $asig->save();
+        endforeach;
 
-        return redirect()->route('cliente.index')->with('success','Registro agregado exitosamente');
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Clientes  $clientes
+     * @param  \App\AsigPers  $asigPers
      * @return \Illuminate\Http\Response
      */
-    public function show(Clientes $clientes)
+    public function show(AsigPers $asigPers)
     {
         //
     }
@@ -68,10 +58,10 @@ class clienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Clientes  $clientes
+     * @param  \App\AsigPers  $asigPers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Clientes $clientes)
+    public function edit(AsigPers $asigPers)
     {
         //
     }
@@ -80,10 +70,10 @@ class clienteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Clientes  $clientes
+     * @param  \App\AsigPers  $asigPers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Clientes $clientes)
+    public function update(Request $request, AsigPers $asigPers)
     {
         //
     }
@@ -91,10 +81,10 @@ class clienteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Clientes  $clientes
+     * @param  \App\AsigPers  $asigPers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Clientes $clientes)
+    public function destroy(AsigPers $asigPers)
     {
         //
     }

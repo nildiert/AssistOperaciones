@@ -36,6 +36,7 @@ Route::resources([
     'rolusuarios'=>'RoleUserController',
     'jquery'=>'jqueryController',
     'perscontr'=>'persContrController',
+    'asigpers'=>'asigPersController',
     
 
 ]);

@@ -97,19 +97,18 @@
                 <div class="mt-3 card">
                         <div class="card-body">
                             <div class="card-title d-flex justify-content-between">
-                                @foreach($personas as $pers)
             
                                 <h5 class="" style="font-size:18px"> ASIGNACIÓN</h5>
-    
-                                    @endforeach
+                                
                             </div>
                             <div class="card-text">
-                                        <table class="table table-hover table-responsive">
-                                            <tbody>
-                                                {{-- @foreach($proyectos as $proyecto)
-                                            <tr><td width="400px"><a href="{{Route('proyecto.show',$proyecto->id)}}"> {{$proyecto->ProyectoNombre}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyecto->asigPorcentaje}} %</span></td> </tr>
-                                                
-                                                @endforeach --}}
+                                <table class="table table-hover table-responsive">
+                                    <tbody>
+                                            
+                                            @foreach($proyectos as $proyect)
+                                            
+                                    <tr><td width="400px"><a href="{{route('asignacion.show',$proyect->asigID)}}"> {{$proyect->asigCodigo}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyect->porcentaje}}%</span></td> </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                         <hr>
@@ -142,13 +141,13 @@
                         <div class="d-flex justify-content-start">
                             <h5 class="modal-title" id="editModalLabel">Agregar habilidad</h5>
                         </div>  
-                        <div class="d-flex justify-content-end">
-                            <span> <a href="#" class="btn btn-info" id="agregarHabilidad">+</a></span>
-                        </div>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
-                </div>
+                    </div>
+                                        <div class="d-flex justify-content-end pt-2 pr-2">
+                                            <span> <a href="#" class="btn btn-info" id="agregarHabilidad">Agregar</a></span>
+                                        </div>
                 <div class="modal-body ">
                     {!!Form::open(['action'=>'persHabilController@store'])!!}
                     <div class="form-row">

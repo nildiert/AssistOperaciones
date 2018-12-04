@@ -26,6 +26,8 @@
                     </div>
             </div>
 
+<div class="table">
+
 
 
 <div class="table-container">
@@ -64,5 +66,6 @@
 
         </table>
     </div>
+</div>
 </div>
 @endsection
