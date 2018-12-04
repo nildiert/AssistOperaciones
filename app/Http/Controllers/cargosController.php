@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use DB;
+use App\CargPers;
+use App\Personas;
+use App\PersContr;
+use App\Contratos;
 use App\Cargos;
 use Illuminate\Http\Request;
 
@@ -104,5 +110,22 @@ class cargosController extends Controller
     public function destroy(Cargos $cargos)
     {
         //
+    }
+    public function search(Request $request){
+
+
+        
+        $cargpers =Personas::select('CargosID','CargosNombre',DB::raw('COUNT(CargosNombre) as cuenta'))
+        ->leftJoin('cargpers','personas.PersonasID','personas_PersonasID')
+                ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
+                ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
+                ->leftJoin('contratos','contratos.ContId','perscontr.PersContrID')
+                ->groupBy('CargosNombre')
+                ->where('CargosNombre','like','%'.$request->busqueda.'%')
+                ->where('PersonasEstado','1')
+                ->get();
+                
+                return view('cargos.index',compact('cargpers'));
+
     }
 }

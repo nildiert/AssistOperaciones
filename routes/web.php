@@ -62,7 +62,7 @@ Route::get('redirect', function(){
 Route::GET('personas/search/{busqueda}','personasController@search')->name('personas.search');//Busca personas por nombre o apellido
 Route::GET('pershabil/search/{busqueda}','persHabilController@search')->name('pershabil.search');//Busca habilidades por persona
 Route::GET('habilidades/search/{busqueda}','habilidadesController@search')->name('habilidades.search');//Busca habilidades por persona
-Route::GET('cargpers/search/{busqueda}','CargPersController@search')->name('cargpers.search');//Busca habilidades por persona
+Route::GET('cargos/search/{busqueda}','cargosController@search')->name('cargos.search');//Busca habilidades por persona
 //Hasta aquí
 
 //

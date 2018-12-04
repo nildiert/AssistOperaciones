@@ -29,7 +29,7 @@ class Controller extends BaseController
                 $route='pershabil.search';
                 break;
             case 'cargo':
-                $route='cargpers.search';
+                $route='cargos.search';
                 break;
         }
 

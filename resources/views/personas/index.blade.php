@@ -1,34 +1,34 @@
 @extends('layouts.app')
 @section('content')
+<div class="d-flex mt-3 ">
+    <!--href="{{route('personas.create')}}-->
+
+    <!--Busqueda de personas-->
+    <div class="col-7 ">
+        @include('personas.error')
+        {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
+        <div class="input-group">
+            {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
+            {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar', 'required'])}}
+            
+            <div class="input-group-append">
+                {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
+                
+            </div>
+            {!!Form::close()!!}
+
+        </div>
+    </div>
+    <div class="col-5 d-flex justify-content-end clearfix">
+            <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
+            {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
+            <button type="button" class="btn btn-info mb-3 mr-1 text-white" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
+        </div>
+</div>
 <div class="container">
     @include('sweet::alert')
 {{--sdfsdf--}}
 
-        <div class="d-flex mt-3 ">
-            <!--href="{{route('personas.create')}}-->
-
-            <!--Busqueda de personas-->
-            <div class="col-7 ">
-                @include('personas.error')
-                {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
-                <div class="input-group">
-                    {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
-                    {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar', 'required'])}}
-                    
-                    <div class="input-group-append">
-                        {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
-                        
-                    </div>
-                    {!!Form::close()!!}
-
-                </div>
-            </div>
-            <div class="col-5 d-flex justify-content-end clearfix">
-                    <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
-                    {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
-                    <button type="button" class="btn btn-info mb-3 mr-1 text-white" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
-                </div>
-        </div>
         <div class="card p-4">
 
 
@@ -38,7 +38,6 @@
                     <th>NOMBRE COMPLETO</th>
                     <th>DOCUMENTO</th>
                     <th>TELEFONO</th>
-                    <th>TITULO</th>
                     <th>INGRESO</th>
                     <th>ACTUALIZAR</th>
                     <th>ELIMINAR</th>
@@ -54,7 +53,6 @@
                             "> {{$persona->PersonasNombreCompleto}}</a></td>
                         <td  style="font-size: 14px">{{$persona->PersonasDocumento}}</td>
                         <td  style="font-size: 14px">{{$persona->PersonasTel}}</td>
-                        <td  style="font-size: 14px ">{{$persona->PersonasTitulo}}</td>
                         <td  style="font-size: 14px">{{$persona->PersonasFechaIngreso}}</td>
                             <td><a  class="btn btn-outline-info text-info" data-toggle="modal" data-target="#editModal" >Actualizar</a>  </td>                        <td>
                                     
