@@ -30,7 +30,7 @@ class CreateAsigpersTable extends Migration
             $table->date('fechaFin')->nullable();
             $table->text('observaciones')->nullable();
             $table->string('ubicacion', 45)->nullable();
-            $table->integer('porcentaje', 3)->nullable()->default('100');
+            $table->integer('porcentaje')->unsigned();
             $table->tinyInteger('estado')->nullable()->default('1');
 
             $table->index(["asignacion_asigID"], 'fk_asigpers_asignacion1_idx');
