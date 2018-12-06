@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UsersControllers extends Controller
@@ -20,16 +21,37 @@ class UsersControllers extends Controller
         ->leftJoin('roles','roles.id','role_user.role_id')
         ->select(
             'users.name AS name',
+            'users.id AS id',
             'users.email AS email',
             'users.phone AS phone',
             'users.indenty AS indenty',
-            'roles.name AS rol'
-
-            )
+            'roles.name AS rol',
+            'roles.description AS description',
+            'role_user.role_id AS role_id',
+            'role_user.id AS role_user_id'
+        )
+            ->where('roles.name','!=',NULL)
+            ->get();
+            // return $usuarios;
+        $usuariosInactivos =User::leftJoin('role_user','role_user.user_id','users.id')
+        ->leftJoin('roles','roles.id','role_user.role_id')
+        ->select(
+            'users.email AS email',
+            'users.id AS id',
+            'users.name AS name',
+            'users.phone AS phone',
+            'users.indenty AS indenty',
+            'roles.name AS rol',
+            'roles.description AS description'
+        )
+            ->where('roles.name',NULL)
             ->get();
 
-        return view('usuarios.index',compact('usuarios'));
-        // return $usuarios;
+            $roles= Role::select('description','id')->pluck('description','id');
+            $cuenta = $usuariosInactivos->count();
+
+            // return $usuarios;
+        return view('usuarios.index',compact('usuarios','usuariosInactivos','cuenta','roles'));
     }
 
     /**

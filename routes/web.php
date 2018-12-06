@@ -37,6 +37,7 @@ Route::resources([
     'jquery'=>'jqueryController',
     'perscontr'=>'persContrController',
     'asigpers'=>'asigPersController',
+    'roluser'=>'RoleUserController',
     
 
 ]);
@@ -53,10 +54,13 @@ Route::get('/home', function () {
 });
 
 
+
 Route::get('redirect', function(){
     Alert::error('Registro agregado exitosamente!');
     return redirect('/');
 });
+
+Route::POST('usuarios/actualizar','RoleUserController@actualizar')->name('roleuser.actualizar');
 
 //Validar porque seguramente toque borrar estas rutas
 Route::GET('personas/search/{busqueda}','personasController@search')->name('personas.search');//Busca personas por nombre o apellido

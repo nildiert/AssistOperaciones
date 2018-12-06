@@ -1,44 +1,72 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="table">
-        <table class="table table-hover">
-            <thead>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Documento</th>
-                <th>Rol</th>
-            </thead>
-            <tbody>
-                @foreach($usuarios as $usuario)
-                <tr>
-                <td>{{$usuario->name}}</td>
-                <td>{{$usuario->email}}</td>
-                <td>{{$usuario->phone}}</td>
-                <td>{{$usuario->indenty}}</td>
-                    @if($usuario->rol == NULL)
-                        <td class="text-danger"><a href="">Sin rol</a> </td>
-                    @else
-                        <td>{{$usuario->rol}}</td>
-                    @endif
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="card p-4">
+        <div class="table">
+            <table class="table table-hover">
+                <thead>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                </thead>
+                {!!Form::open(['action'=>'RoleUserController@actualizar'])!!}
+                <tbody>
+                    @foreach($usuarios as $key=>$usuario)
+                    <tr>
+                    <td hidden>{{Form::hidden('actualizarRol['.$key.'][id]',$usuario->role_user_id)}}</td>
+                    <td hidden>{{Form::hidden('actualizarRol['.$key.'][user_id]',$usuario->id)}}</td>
+                        <td>{{$usuario->name}}</td>
+                        <td>{{$usuario->email}}</td>
+
+                        {{-- <td>{{$usuario->description}}</td> --}}
+                        <td>{!!Form::select('actualizarRol['.$key.'][role_id]',$roles,$usuario->role_id,['class'=>'form-control'])!!}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end">
+                {!!Form::submit('Actualizar',['class'=>'btn btn-info'])!!}
+            </div>
+            {!!Form::close()!!}
+        </div>
     </div>
-    <div class="table">
-            <h1>Sin Rol</h1>
-        <table class="table table-hover">
-            <thead>
-                <th>sdf</th>
-                <th>sdf</th>
-            </thead>
-            <tbody>
-                <td>sdf</td>
-                <td>sdf</td>
-            </tbody>
-        </table>
+    
+    @if($cuenta)
+    <div class="card pt-4 pl-4 pr-4 mt-2">
+        <div class="">
+            <h4 class="pl-3 card-title">Rol por asignar</h4>
+        </div>
+        <div class="card-body">
+
+        
+            <div class="table">
+                <table class="table table-hover">
+                    <thead> 
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                    </thead>
+                    {!!Form::open(['action'=>'RoleUserController@store'])!!}
+                    <tbody>
+                        @foreach($usuariosInactivos as $key=>$value)
+                        <tr>
+                            <td>{{$value->name}}</td>
+                            <td>{{$value->email}}</td>
+                            <td class="text-danger">{!!Form::select('nuevoRol['.$key.'][role_id]',$roles,'Selecciona rol',['class'=>'form-control','placeholder'=>'Selecciona rol'])!!} </td>
+                            <td hidden> {!!Form::hidden('nuevoRol['.$key.'][user_id]',$value->id)!!}</td>
+                        </tr>
+                        @endforeach
+                        
+                    </tbody>
+
+                </table>
+                <div class="d-flex justify-content-end">
+                    {!!Form::submit('Guardar',['class'=>'btn btn-info'])!!}
+                    {!!Form::close()!!}
+                </div>
+            </div>
+        </div>
     </div>
+        @endif
 </div>
-@endsection
+    @endsection
