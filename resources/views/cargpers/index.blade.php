@@ -42,7 +42,7 @@
             <tbody>
                 @foreach($cargpers as $cp)
                 <tr>
-                <td style="font-size: 15px"><a href="{{Route('personas.show',$cp->PersonasID)}}"></a> {{$cp->PersonasNombreCompleto}}</td> 
+                <td style="font-size: 15px"><a href="{{Route('personas.show',$cp->PersonasID)}}"> {{$cp->PersonasNombreCompleto}}</a></td> 
                        <td style="font-size: 15px">{{$cp->CargosNombre}}</td> 
                        <td style="font-size: 15px">{{$cp->ContTipo}}</td> 
                        <td style="font-size: 15px">{{$cp->CargPersFechaInicio}}</td> 

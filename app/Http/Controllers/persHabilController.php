@@ -44,7 +44,7 @@ class persHabilController extends Controller
      */
     public function store(Request $request)
     {
-
+        // return $request;
 
         $id = $request->id;
         $data=[];
@@ -115,8 +115,8 @@ class persHabilController extends Controller
         ->groupBy('HabilidadesNombre')
         ->where('PersonasEstado','1')
         ->where('HabilidadesNombre','like','%'.$skill->busqueda.'%')
-        ->get();
-
+        ->get(); 
+        
         return view('habilidades.index',compact('habilidades'));
     }
 }

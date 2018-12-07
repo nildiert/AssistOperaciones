@@ -36,13 +36,13 @@ class RoleUserController extends Controller
     public function store(Request $request)
     {
 
-         foreach($request->input()['nuevoRol'] as $key=>$value){
-             $rolUser = new RoleUser($value);
-             if($rolUser->role_id !=NULL){
-                    $rolUser->save();
-             }
-         }
-         return redirect()->back();
+        foreach ($request->input()['nuevoRol'] as $key => $value) {
+            $rolUser = new RoleUser($value);
+            if ($rolUser->role_id != null) {
+                $rolUser->save();
+            }
+        }
+        return redirect()->back();
 
     }
 
@@ -94,17 +94,15 @@ class RoleUserController extends Controller
     {
         //
     }
-    public function actualizar(Request $request){
-        
-        foreach($request->input()['actualizarRol'] AS $key=>$value){
-            
-            $userRol =RoleUser::where('id',$value['id'])->first();
-            $rol=(int)($value['role_id']);
-            $userRol->role_id = $rol;
+    public function actualizar(Request $request)
+    {
+    // Recorro y actualizo datos
+        foreach ($request->input()['actualizarRol'] as $key => $value) {
+            $userRol = RoleUser::where('id', $value['id'])->first();
+            $userRol->role_id = (int)($value['role_id']);
             $userRol->save();
-            
         }
         return redirect()->back();
     }
-    
+
 }

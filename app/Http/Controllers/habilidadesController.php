@@ -93,9 +93,14 @@ class habilidadesController extends Controller
      * @param  \App\Habilidades  $habilidades
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Habilidades $habilidades)
+    public function update(Request $request,$habilidades)
     {
-        //
+        // return $request->HabilidadesNombre;
+        $habilidad = Habilidades::where('HabilidadesID',$habilidades)->update([
+            'HabilidadesNombre'=>$request->HabilidadesNombre,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -116,10 +121,11 @@ class habilidadesController extends Controller
             ->where('PersonasEstado','1')
             ->orderBy('PersonasNombreCompleto','ASC')
             ->get();
+        $habilidad= Habilidades::where('HabilidadesID',$id)->first();
+        // return $habilidad;
 
-            return view('pershabil.index',compact('pershabil'));
+            return view('pershabil.index',compact('pershabil','habilidad'));
 
-     return $id;
     }
 
 

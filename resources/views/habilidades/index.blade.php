@@ -16,7 +16,7 @@
                     
                 </div>
                 {!!Form::close()!!}
-
+sdfsdf
             </div>
         </div>
         <div class="col-5 d-flex justify-content-end clearfix">
@@ -25,15 +25,15 @@
                 <button class="btn btn-info align-self-start" data-toggle="modal" data-target="#ingresoHabilidad">Nueva habilidad</button>
             </div>
     </div>
-<div class="container">
+    <div class="container">
 
-    
+
         <div class="card pl-5 pr-5 pt-2">
             <table class="table table-hover">
                 <thead>
                     <th>Habilidad</th>
                     <th>Cantidad</th>
-
+                    
                     <th colspan="2">Acciones</th>
                 </thead>
                 <tbody>
@@ -41,7 +41,7 @@
                     <tr>
                         @if($habilidad->HabilidadesNombre != NULL)
                         <td style="font-size: 14px"><a href="{{Route('habilidades.search',$habilidad->HabilidadesID)}}">{{$habilidad->HabilidadesNombre}}</a></td>
-                    <td style="font-size: 14px">{{$habilidad->cantidad}} </td>
+                        <td style="font-size: 14px">{{$habilidad->cantidad}} </td>
                         <td><button class="btn btn-outline-info">Actualizar</button> </td>
                         <td><button class="btn btn-outline-danger">Eliminar</button> </td>
                         @endif
@@ -49,7 +49,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+    </div>
 
 
 
