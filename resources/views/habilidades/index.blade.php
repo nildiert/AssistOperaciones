@@ -16,7 +16,6 @@
                     
                 </div>
                 {!!Form::close()!!}
-sdfsdf
             </div>
         </div>
         <div class="col-5 d-flex justify-content-end clearfix">

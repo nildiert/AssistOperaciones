@@ -1,9 +1,10 @@
+
 @extends('layouts.app')
 @section('content')
 <div class="container ">
     @include('sweet::alert')
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
@@ -21,20 +22,63 @@
                             @endforeach
                     </div>
                     <div class="card-text">
-                                <table class="table table-hover table-responsive">
                                     <tbody>
                                         @foreach($personas as $pers)
-                                        <tr> <td>Documento</td><td>{{$pers->PersonasDocumento}}</td><td></td> </tr>
-                                        <tr> <td>Telefono</td><td>{{$pers->PersonasTel}}</td><td></td> </tr>
-                                        <tr> <td>Especialidad</td><td>{{$pers->PersonasEspecialidad}}</td><td></td> </tr>
-                                        <tr> <td>Estado</td><td>{{$pers->PersonasActivo}}</td><td></td> </tr>
-                                        <tr> <td>Titulo</td><td>{{$pers->PersonasTitulo}}</td><td></td> </tr>
-                                        <tr> <td>Ingreso</td><td>{{$pers->PersonasFechaIngreso}}</td><td></td> </tr>
-                                        @if($pers->PersonasEstado == 0)
-                                            <tr> <td>Retiro</td><td class="text-danger">{{$pers->PersonasFechaRetiro}}</td><td></td> </tr>
-                                        @endif
+                                        {!!Form::open(['method'=>'PUT','route'=>['personas.update',$pers->PersonasID]])!!}
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {!!Form::label('PersonasPriApellido','Primer apellido')!!}{!!Form::text('PersonasPriApellido',$pers->PersonasPriApellido,['class'=>'form-control'])!!}
+                                            </div>
+                                            <div class="col">
+                                                {!!Form::label('PersonasSegApellido','Segundo apellido')!!}{!!Form::text('PersonasSegApellido',$pers->PersonasSegApellido,['class'=>'form-control'])!!}
+                                            </div>
+                                            <div class="col">
+                                                {!!Form::label('PersonasPrimNombre','Primer nombre')!!}{!!Form::text('PersonasPrimNombre',$pers->PersonasPrimNombre,['class'=>'form-control'])!!}
+                                            </div>
+                                            <div class="col">
+                                                {!!Form::label('PersonasSegNombre','Segundo nombre')!!}{!!Form::text('PersonasSegNombre',$pers->PersonasSegNombre,['class'=>'form-control'])!!}
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {!!Form::label('PersonasTipoDoc','Tipo documento')!!}{!!Form::select('PersonasTipoDoc',['CC'=>'Cedula de ciudadania','CE'=>'Cédula de extranjeria','PA'=>'Pasaporte'],$pers->PersonasTipoDoc,['class'=>'form-control'])!!}
+                                            </div>
+                                            <div class="col">
+                                                {!!Form::label('PersonasDocumento','Documento')!!}{!!Form::text('PersonasDocumento',$pers->PersonasDocumento,['class'=>'form-control'])!!}
+                                            </div>
+                                            <div class="col">
+                                                {!!Form::label('PersonasTel','Telefono')!!}{!!Form::number('PersonasTel',$pers->PersonasTel,['class'=>'form-control'])!!}
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                    {!!Form::label('PersonasEspecialidad','Especialidad')!!}{!!Form::text('PersonasEspecialidad',$pers->PersonasEspecialidad,['class'=>'form-control'])!!}
+                                            </div>
+                                            <div class="col">
+                                                {!!Form::label('PersonasTitulo','Titulo')!!}{!!Form::text('PersonasTitulo',$pers->PersonasTitulo,['class'=>'form-control'])!!}
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {!!Form::label('PersonasFechaIngreso','Ingreso')!!}{!!Form::date('PersonasFechaIngreso',$pers->PersonasFechaIngreso,['class'=>'form-control'])!!}
+                                            </div>
+                                            @if(!$pers->PersonasEstado)
+                                            <div class="col">
+                                                {!!Form::label('PersonasFechaRetiro','Retiro')!!}{!!Form::date('PersonasFechaRetiro',$pers->PersonasFechaRetiro,['class'=>'form-control'])!!}
+                                            </div>
+                                            @endif
+                                            <div class="col">
+                                                {!!Form::label('PersonasActivo','Estado')!!}{!!Form::text('PersonasActivo',$pers->PersonasActivo,['class'=>'form-control'])!!}
+                                            </div>
+                                        </div>
                                     </tbody>
-                                </table>
+                                <div class="d-flex justify-content-end pb-2">
+                                    {!!Form::submit('Actualizar',['class'=>'btn btn-info mt-2'])!!}
+                                </div>
+                                {!!Form::close()!!}
                     @endforeach
                     </div>
                     <div class="card-footer">
@@ -65,7 +109,13 @@
                                         <tbody>
                                             @foreach($personas as $pers)
                                                 @if($pers->CargosNombre != NULL)    
-                                                <tr> <td>Cargo</td><td>{{$pers->CargosNombre}}</td><td></td> </tr>
+                                                
+                                                
+                                                
+                                                
+                                                <tr><td colspan="3">{{$pers->CargosNombre}}</td></tr>
+                                                <tr><td>Inicio prueba:</td><td colspan="3">{{$pers->CargPersPruebaInicio}}</td> </tr>
+                                                <tr><td>Fin prueba:</td><td colspan="3">{{$pers->CargPersPruebaInicio}}</td></tr>
                                                 @else
                                                 <tr>
                                                     <td with="100px"><span class=""><p> No se ha asignado un cargo</p></span></td>
@@ -76,7 +126,7 @@
                                                 <br>
                                                 @endif
                                                 @if($pers->ContTipo != NULL)    
-                                                <tr> <td>Contrato</td><td>{{$pers->ContTipo}}</td><td></td> </tr>
+                                                {{now()<$pers->PersContrFechaInicio}}                                                <tr> <td>Contrato</td><td>{{$pers->PersContrFechaInicio}}</td><td>{{$pers->ContTipo}}</td></tr>
                                                 @else
                                                 <tr>
                                                     <td><p>No se ha asignado tipo de contrato</p> </td>
@@ -90,16 +140,18 @@
                                         </tbody>
                                     </table>
                         @endforeach
+
                         </div>
                     </div>
                 </div>
-
+<div class="d-flex justify-content-end mt-2">
+    <button class="btn btn-info mr-2">Actualizar cargo</button>
+    <button class="btn btn-info">Actualizar contrato</button>
+</div>
                 <div class="mt-3 card">
                         <div class="card-body">
                             <div class="card-title d-flex justify-content-between">
-            
                                 <h5 class="" style="font-size:18px"> ASIGNACIÓN</h5>
-                                
                             </div>
                             <div class="card-text">
                                 <table class="table table-hover table-responsive">
@@ -111,7 +163,7 @@
                                             @endforeach
                                             </tbody>
                                         </table>
-                                        <hr>
+                                        <hr> 
                                         
                             </div>
                         </div>

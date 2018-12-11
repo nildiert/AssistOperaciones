@@ -8,18 +8,20 @@
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Rol</th>
+                    <th>Estado</th>
                 </thead>
                 {!!Form::open(['action'=>'RoleUserController@actualizar'])!!}
                 <tbody>
                     @foreach($usuarios as $key=>$usuario)
                     <tr>
-                    <td hidden>{{Form::hidden('actualizarRol['.$key.'][id]',$usuario->role_user_id)}}</td>
-                    <td hidden>{{Form::hidden('actualizarRol['.$key.'][user_id]',$usuario->id)}}</td>
-                        <td>{{$usuario->name}}</td>
-                        <td>{{$usuario->email}}</td>
+                    <td  style="font-size: 10px" hidden>{{Form::hidden('actualizarRol['.$key.'][id]',$usuario->role_user_id)}}</td>
+                    <td  style="font-size: 10px" hidden>{{Form::hidden('actualizarRol['.$key.'][user_id]',$usuario->id)}}</td>
+                        <td style="font-size: 15px" >{{$usuario->name}}</td>
+                        <td style="font-size: 15px" >{{$usuario->email}}</td>
 
                         {{-- <td>{{$usuario->description}}</td> --}}
-                        <td>{!!Form::select('actualizarRol['.$key.'][role_id]',$roles,$usuario->role_id,['class'=>'form-control'])!!}</td>
+                        <td style="font-size: 15px" >{!!Form::select('actualizarRol['.$key.'][role_id]',$roles,$usuario->role_id,['class'=>'form-control'])!!}</td>
+                        <td style="font-size: 15px" >{!!Form::select('actualizarRol['.$key.'][estate]',['0'=>'Inactivo','1'=>'Activo'],'1',['class'=>'form-control'])!!}</td>
                     </tr>
                     @endforeach
                 </tbody>

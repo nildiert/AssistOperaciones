@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\RoleUser;
+use App\User;
 use Illuminate\Http\Request;
 
 class RoleUserController extends Controller
@@ -97,10 +98,13 @@ class RoleUserController extends Controller
     public function actualizar(Request $request)
     {
     // Recorro y actualizo datos
-        foreach ($request->input()['actualizarRol'] as $key => $value) {
-            $userRol = RoleUser::where('id', $value['id'])->first();
-            $userRol->role_id = (int)($value['role_id']);
-            $userRol->save();
+    foreach ($request->input()['actualizarRol'] as $key => $value) {
+        $userRol = RoleUser::where('id', $value['id'])->first();
+        $userRol->role_id = (int)($value['role_id']);
+        $userRol->save();
+        
+        $user=User::where('id',$value['user_id'])->first();
+        // return $user->estate;
         }
         return redirect()->back();
     }

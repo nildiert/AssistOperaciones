@@ -65,7 +65,6 @@ class personasController extends Controller
             'PersonasTitulo'=>'required',
             'created_at',
             'updated_at',
-            'PersonasNombreCompleto',
             'PersonasFechaIngreso'=>'required']);
 
             //Concatenamos nombres y apellidos para insertar el campo de nombre completo
@@ -101,7 +100,7 @@ class personasController extends Controller
     return redirect()->route('personas.index')->with('success','Registro agregado satisfactoriamente');
         return $request;
 
-    }
+    } 
 
     /**
      * Display the specified resource.
@@ -129,7 +128,7 @@ class personasController extends Controller
         // return $proyectos;
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
 
-
+        // return $personas;
         return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos'));
         // return [$personas];
     }
@@ -157,6 +156,7 @@ class personasController extends Controller
     public function update(Request $request,$id)
     {
    //
+//    return $request;
          $this->validate($request,[
         'PersonasPriApellido'=>'required',
         'PersonasSegApellido',
@@ -167,6 +167,7 @@ class personasController extends Controller
         'PersonasTel'=>'required',
         'PersonasEspecialidad'=>'required',
         'PersonasTitulo'=>'required',
+        'PersonasActivo'=>'required',
         'PersonasFechaIngreso'=>'required'
         ]);
         if(empty($request->PersonasSegNombre)){
@@ -190,6 +191,7 @@ class personasController extends Controller
             'PersonasEspecialidad' => strtoupper($request->PersonasEspecialidad),
             'PersonasTitulo' => strtoupper($request->PersonasTitulo),
         ]);
+        // return $request;
         Alert::success('Registro actualizado correctamente');
 
         Personas::find($id)->update($request->all());

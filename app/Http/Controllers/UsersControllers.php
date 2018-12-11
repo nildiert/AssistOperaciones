@@ -25,6 +25,7 @@ class UsersControllers extends Controller
             'users.email AS email',
             'users.phone AS phone',
             'users.indenty AS indenty',
+            'users.estate AS estate',
             'roles.name AS rol',
             'roles.description AS description',
             'role_user.role_id AS role_id',
