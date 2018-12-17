@@ -9,7 +9,7 @@
         {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
         <div class="input-group">
             {!!Form::select('tipoBusqueda',['pers'=>'Persona','habil'=>'Habilidad','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
-            {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar', 'required'])}}
+            {{Form::text('busqueda',null,['class'=>'pl-2 form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'', 'required'])}}
             
             <div class="input-group-append">
                 {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
@@ -20,9 +20,9 @@
         </div>
     </div>
     <div class="col-5 d-flex justify-content-end clearfix">
-            <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
+            <a class="btn btn-outline-secondary  mb-3 mr-1"  href="{{route('personas.index')}}">Volver</a>
             {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
-            <button type="button" class="btn btn-info mb-3 mr-1 text-white" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
+            <button type="button" class="btn btn-outline-info mb-3 mr-1" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
         </div>
 </div>
 <div class="container">

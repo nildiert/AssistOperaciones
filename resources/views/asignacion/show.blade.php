@@ -85,16 +85,16 @@
                             {!!Form::select(' nuevaAsignacion[0][personas_PersonasID]',$personas,NULL,['class'=>'form-control'])!!} 
                         </div>
                         <div class="col">
-                            {!!Form::date(' nuevaAsignacion[0][fechaInicio]',null,['class'=>'form-control'])!!} 
+                            {!!Form::date(' nuevaAsignacion[0][fechaInicio]',null,['class'=>'form-control mt-2'])!!} 
                         </div>
                         <div class="col">
-                            {!!Form::date(' nuevaAsignacion[0][fechaFin]',null,['class'=>'form-control'])!!} 
+                            {!!Form::date(' nuevaAsignacion[0][fechaFin]',null,['class'=>'form-control mt-2'])!!} 
                         </div>
                         <div class="col">
-                            {!!Form::number('nuevaAsignacion[0][porcentaje]','100',['class'=>'form-control'])!!}
+                            {!!Form::number('nuevaAsignacion[0][porcentaje]','100',['class'=>'form-control mt-2'])!!}
                         </div>
                         <div class="col">
-                            {!!Form::text(' nuevaAsignacion[0][observaciones]',null,['class'=>'form-control'])!!} 
+                            {!!Form::text(' nuevaAsignacion[0][observaciones]',null,['class'=>'form-control mt-2'])!!} 
                         </div>
                         <div class="col">
                             {!!Form::select(' nuevaAsignacion[0][ubicacion]',['Cliente'=>'Cliente','Oficina'=>'Oficina','Cliente/Oficina'=>'Cliente/Oficina',],null,['class'=>'form-control'])!!} 
@@ -124,16 +124,16 @@
                             {!!Form::select(' nuevaAsignacion[${agregar}][personas_PersonasID]',$personas,NULL,['class'=>'form-control'])!!} 
                         </div>
                         <div class="col">
-                            {!!Form::date(' nuevaAsignacion[${agregar}][fechaInicio]',null,['class'=>'form-control'])!!} 
+                            {!!Form::date(' nuevaAsignacion[${agregar}][fechaInicio]',null,['class'=>'form-control mt-2'])!!} 
                         </div>
                         <div class="col">
-                            {!!Form::date(' nuevaAsignacion[${agregar}][fechaFin]',null,['class'=>'form-control'])!!} 
+                            {!!Form::date(' nuevaAsignacion[${agregar}][fechaFin]',null,['class'=>'form-control mt-2'])!!} 
                         </div>
                         <div class="col">
-                            {!!Form::number('nuevaAsignacion[${agregar}][porcentaje]','100',['class'=>'form-control'])!!}
+                            {!!Form::number('nuevaAsignacion[${agregar}][porcentaje]','100',['class'=>'form-control mt-2'])!!}
                         </div>
                         <div class="col">
-                            {!!Form::text(' nuevaAsignacion[${agregar}][observaciones]',null,['class'=>'form-control'])!!} 
+                            {!!Form::text(' nuevaAsignacion[${agregar}][observaciones]',null,['class'=>'form-control mt-2'])!!} 
                         </div>
                         <div class="col">
                             {!!Form::select(' nuevaAsignacion[${agregar}][ubicacion]',['Cliente'=>'Cliente','Oficina'=>'Oficina','Cliente/Oficina'=>'Cliente/Oficina',],null,['class'=>'form-control'])!!} 

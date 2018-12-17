@@ -128,7 +128,7 @@
         
     </div>
     <div class="d-flex justify-content-end">
-            <a href="{{Route('proyecto.index')}}" class="btn btn-info mt-2">Volver</a>
+            <a href="{{Route('proyecto.index')}}" class="btn btn-outline-secondary mt-2">Volver</a>
                 </div>
 </div>
 

@@ -125,8 +125,8 @@ class personasController extends Controller
         $proyectos = Asignacion::select('asignacion.asigCodigo as asigCodigo','asignacion.asigID as asigID','asigpers.porcentaje as porcentaje')->leftJoin('asigpers','asigpers.asignacion_asigID','asignacion.asigID')
         ->where('asigpers.personas_PersonasID',$id)->get();
 
-        // return $proyectos;
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
+        // return $proyectos;
 
         // return $personas;
         return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos'));

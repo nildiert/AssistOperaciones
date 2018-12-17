@@ -42,13 +42,16 @@
                                         <hr>
                                         <div class="form-row">
                                             <div class="col">
-                                                {!!Form::label('PersonasTipoDoc','Tipo documento')!!}{!!Form::select('PersonasTipoDoc',['CC'=>'Cedula de ciudadania','CE'=>'Cédula de extranjeria','PA'=>'Pasaporte'],$pers->PersonasTipoDoc,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasTipoDoc','Tipo documento')!!}
+                                                {!!Form::select('PersonasTipoDoc',['CC'=>'Cedula de ciudadania','CE'=>'Cédula de extranjeria','PA'=>'Pasaporte'],$pers->PersonasTipoDoc,['class'=>'form-control'])!!}
                                             </div>
                                             <div class="col">
-                                                {!!Form::label('PersonasDocumento','Documento')!!}{!!Form::text('PersonasDocumento',$pers->PersonasDocumento,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasDocumento','Documento')!!}
+                                                {!!Form::text('PersonasDocumento',$pers->PersonasDocumento,['class'=>'form-control mt-2'])!!}
                                             </div>
                                             <div class="col">
-                                                {!!Form::label('PersonasTel','Telefono')!!}{!!Form::number('PersonasTel',$pers->PersonasTel,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasTel','Telefono')!!}
+                                                {!!Form::number('PersonasTel',$pers->PersonasTel,['class'=>'form-control mt-2'])!!}
                                             </div>
                                         </div>
                                         <hr>
@@ -63,7 +66,7 @@
                                         <hr>
                                         <div class="form-row">
                                             <div class="col">
-                                                {!!Form::label('PersonasFechaIngreso','Ingreso')!!}{!!Form::date('PersonasFechaIngreso',$pers->PersonasFechaIngreso,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasFechaIngreso','Ingreso')!!}{!!Form::date('PersonasFechaIngreso',$pers->PersonasFechaIngreso,['class'=>'form-control mt-2'])!!}
                                             </div>
                                             @if(!$pers->PersonasEstado)
                                             <div class="col">
@@ -97,10 +100,9 @@
                 </div>
             </div>
         </div>
+    </div>
 <hr>
 <div class="row">
-    
-</div>
         <div class="col-6 mt-2">
                 <div class="card">
                     <div class="card-body">
@@ -141,47 +143,43 @@
                         </div>
                     </div>
                 </div>
-<div class="d-flex justify-content-end mt-2">
-    <button class="btn btn-info mr-2">Actualizar cargo</button>
-    <button class="btn btn-info">Actualizar contrato</button>
-</div>
-<div class="col-6">
+                <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-outline-info mr-2">Actualizar cargo</button>
+                    <button class="btn btn-outline-info">Actualizar contrato</button>
+                </div>
+        </div>
 
-    <div class="card">
-        <div class="card-body">
-            <div class="card-title d-flex justify-content-between">
-                                <h5 class="" style="font-size:18px"> ASIGNACIÓN</h5>
-                            </div>
-                            <div class="card-text">
-                                <table class="table table-hover table-responsive">
-                                    <tbody>
-                                        
-                                            @foreach($proyectos as $proyect)
-                                            
-                                            <tr><td width="400px"><a href="{{route('asignacion.show',$proyect->asigID)}}"> {{$proyect->asigCodigo}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyect->porcentaje}}%</span></td> </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    <hr> 
-                                    
-                                </div>
-                            </div>
-                        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title d-flex justify-content-between">
+                        <h5 class="" style="font-size:18px"> ASIGNACIÓN</h5>
+
                     </div>
-
-
+                    <div class="card-text">
+                        <table class="table table-hover table-responsive">
+                            <tbody>
+                                @foreach($proyectos as $proyect)
+                                    @if($proyect->asigCodigo == NULL)
+                                        <p>NO HAY PROYECTOS ASIGNADOS</p>
+                                    @else
+                                        <tr><td width="400px"><a href="{{route('asignacion.show',$proyect->asigID)}}"> {{$proyect->asigCodigo}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyect->porcentaje}}%</span></td> </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <hr> 
+                    </div>
+                </div>
             </div>
-    
-            {{-- <div class="col-6 align-self-start">
-
-                </div> --}}
-
-    </div>{{--Fin del row--}}
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{{URL::previous()}}" class="btn btn-outline-info">Volver</a>
+            </div>
+        </div>
+    </div>{{-- Fin del row --}}
 </div>{{--Fin del container--}}
 
-<div class="d-flex justify-content-end">
-<a href="{{URL::previous()}}" class="btn btn-info">Volver</a>
-</div>
+
 
 
 

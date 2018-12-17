@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Personas;
+use App\Proyecto;
+use Illuminate\Support\Carbon;
 
 
 class HomeController extends Controller
@@ -24,7 +27,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $monday = Carbon::now()->startOfWeek();
+        $sunday= Carbon::now()->endOfWeek();
+        $inicioMes = Carbon::now()->startOfMonth();
+        $finMes = Carbon::now()->endOfMonth();
+        $retiradoSemana = Personas::whereBetween('PersonasFechaRetiro', [$monday, $sunday])->where('PersonasFechaRetiro','!=',NULL)->get();
+        $retiradoMes = Personas::whereBetween('PersonasFechaRetiro', [$inicioMes, $finMes])->where('PersonasFechaRetiro','!=',NULL)->get();
+        $ingresosMes = Personas::whereBetween('PersonasFechaIngreso', [$inicioMes, $finMes])->where('PersonasFechaIngreso','!=',NULL)->get();
+        $cuentaRetirosSemana = $retiradoSemana->count();
+        $cuentaRetirosMes = $retiradoMes->count();
+        $personas = Personas::select('PersonasEstado')->where('PersonasEstado','1')->count('PersonasEstado');
+        $proyectos = Proyecto::select('ProyectoEstado')->where('ProyectoEstado','1')->count('ProyectoEstado');
+        
+
+              
+  
+        
+
+        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes'));
     }
     public function someAdminStuff(Request $request)
     {

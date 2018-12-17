@@ -17,9 +17,11 @@
     {!!Html::style('css/jquery-ui.min.css')!!}
     {!!Html::style('css/jquery-ui.structure.min.css')!!}
     {!!Html::style('css/jquery-ui.theme.min.css')!!}
+
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     {!!Html::script('js/jquery.min.js')!!}
+    {!!Html::script('js/Chart.min.js')!!}
     
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -63,10 +65,6 @@
                         <li>
                             <a href="{{Route('personas.index')}}">Ver</a>
                         </li>
-                        <li>
-                        <a href="{{Route('personas.create')}}">Agregar</a>
-                        </li>
-
                     </ul>
                 </li>
                 
@@ -77,79 +75,40 @@
                             <li>
                                 <a href="{{Route('habilidades.index')}}">Ver</a>
                             </li>
-                            <li>
-                            <a href="{{Route('habilidades.create')}}">Agregar</a>
-                            </li>
-    
                         </ul>
                     </li>
-                
                     <li>
-                        
-
                     <a href="#proyectosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Proyectos</a>
                     <ul class="collapse list-unstyled" id="proyectosSubmenu">
                         <li>
                         <a href="{{Route('proyecto.index')}}">Ver</a>
                         </li>
                         @if(Auth::user()->hasRole('admin'))
-                        <li>
-                            <a href="{{Route('proyecto.create')}}">Agregar</a>
-                        </li>
                         @endif
-
                     </ul>
-
-
                     <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
                     <ul class="collapse list-unstyled" id="clientesSubmenu">
                         <li>
                             <a href="{{Route('cliente.index')}}">Ver</a>
-                    </li>
-                    <li>
-                        <a href="{{Route('asignacion.create')}}">Agregar</a>
-                    </li>
+                        </li>
 
-                </ul>
-                
+                    </ul>
                 @if(Auth::user()->hasRole('admin'))
                     <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
                     <ul class="collapse list-unstyled" id="usuariosSubmenu">
                         <li>
                         <a href="{{Route('usuarios.index')}}">Ver</a>
                         </li>
-                        <li>
-                            <a href="{{Route('asignacion.create')}}">Agregar</a>
-                        </li>
                     </ul>
                 @endif
-
-
-
-
-                    {{-- <a href="#jquerySubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Curso jQuery</a>
-                    <ul class="collapse list-unstyled" id="jquerySubmenu">
-                        <li>
-                        <a href="{{Route('jquery.index')}}">Ver</a>
                         </li>
-                        <li>
-                            <a href="{{Route('asignacion.create')}}">Agregar</a>
-                        </li>
-
-                    </ul> --}}
-                </li>
-
-            </ul>
-            
-            
-        </nav>
+                    </ul>
+            </nav>
 
         <!-- Page Content  -->
         <div id="content">
-
             <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                         <span></span>
@@ -203,6 +162,7 @@
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     {!!Html::script('js/jquery.min.js')!!}  
     {!!Html::script('js\jquery.number.min.js')!!}
+    
     {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> --}}
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>

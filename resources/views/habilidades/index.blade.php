@@ -9,7 +9,7 @@
             {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
             <div class="input-group">
                 {!!Form::select('tipoBusqueda',['habil'=>'Habilidad','pers'=>'Persona','cargo'=>'Cargo'],'Seleccione...',['class'=>'custom-select', 'id'=>'inputGroupSelect04 btn btn-outline-info pl-5'])!!}
-                {{Form::text('busqueda',null,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar', 'required'])}}
+                {{Form::text('busqueda',null,['class'=>'mt-1 pl-2 form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Buscar ', 'required'])}}
                 
                 <div class="input-group-append">
                     {!!Form::submit('Buscar',['class'=>'btn btn-outline-info'])!!}
@@ -19,9 +19,9 @@
             </div>
         </div>
         <div class="col-5 d-flex justify-content-end clearfix">
-                <a class="btn btn-info  mb-3 mr-1 text-white"  href="{{route('personas.index')}}">Volver</a>
+                <a class="btn btn-outline-secondary  mb-3 mr-1 align-self-start"  href="{{route('personas.index')}}">Volver</a>
                 {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
-                <button class="btn btn-info align-self-start" data-toggle="modal" data-target="#ingresoHabilidad">Nueva habilidad</button>
+                <button class="btn btn-outline-info align-self-start" data-toggle="modal" data-target="#ingresoHabilidad">Nueva habilidad</button>
             </div>
     </div>
     <div class="container">

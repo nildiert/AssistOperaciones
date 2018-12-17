@@ -33,9 +33,8 @@
         
         {!!Form::open(['method'=>'PUT','route'=>['habilidades.update',$habilidad->HabilidadesID]])!!}
         <div class="input-group mb-4">
-            {{-- {!!Form::hidden('HabilidadesID',$habilidad->HabilidadesID)!!} --}}
             {!!Form::text('HabilidadesID','Nombre habilidad',['class'=>'form-control', 'readonly','id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
-                    {{Form::text('HabilidadesNombre',$habilidad->HabilidadesNombre,['class'=>'form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Valor a buscar', 'required'])}}
+                    {{Form::text('HabilidadesNombre',$habilidad->HabilidadesNombre,['class'=>'ml-2 form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Buscar habilidad', 'required'])}}
                     
                     <div class="input-group-append">
                         {!!Form::submit('Cambiar nombre',['class'=>'btn btn-outline-info'])!!}
