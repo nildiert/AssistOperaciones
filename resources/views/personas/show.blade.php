@@ -71,7 +71,7 @@
                                             </div>
                                             @endif
                                             <div class="col">
-                                                {!!Form::label('PersonasActivo','Estado')!!}{!!Form::text('PersonasActivo',$pers->PersonasActivo,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasActivo','Estado')!!}{!!Form::select('PersonasActivo',['ACTIVO'=>'ACTIVO','INACTIVO'=>'INACTIVO'],$pers->PersonasEstado,['class'=>'form-control'])!!}
                                             </div>
                                         </div>
                                     </tbody>
@@ -97,8 +97,11 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-6">
+<hr>
+<div class="row">
+    
+</div>
+        <div class="col-6 mt-2">
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
@@ -109,10 +112,6 @@
                                         <tbody>
                                             @foreach($personas as $pers)
                                                 @if($pers->CargosNombre != NULL)    
-                                                
-                                                
-                                                
-                                                
                                                 <tr><td colspan="3">{{$pers->CargosNombre}}</td></tr>
                                                 <tr><td>Inicio prueba:</td><td colspan="3">{{$pers->CargPersPruebaInicio}}</td> </tr>
                                                 <tr><td>Fin prueba:</td><td colspan="3">{{$pers->CargPersPruebaInicio}}</td></tr>
@@ -120,8 +119,6 @@
                                                 <tr>
                                                     <td with="100px"><span class=""><p> No se ha asignado un cargo</p></span></td>
                                                     <td><button class="btn btn-primary" data-toggle="modal" data-target="#agregarCargo">Agregar cargo</button></td>
-                                                    
-                                                     
                                                 </tr>
                                                 <br>
                                                 @endif
@@ -148,23 +145,26 @@
     <button class="btn btn-info mr-2">Actualizar cargo</button>
     <button class="btn btn-info">Actualizar contrato</button>
 </div>
-                <div class="mt-3 card">
-                        <div class="card-body">
-                            <div class="card-title d-flex justify-content-between">
+<div class="col-6">
+
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title d-flex justify-content-between">
                                 <h5 class="" style="font-size:18px"> ASIGNACIÓN</h5>
                             </div>
                             <div class="card-text">
                                 <table class="table table-hover table-responsive">
                                     <tbody>
-                                            
+                                        
                                             @foreach($proyectos as $proyect)
                                             
-                                    <tr><td width="400px"><a href="{{route('asignacion.show',$proyect->asigID)}}"> {{$proyect->asigCodigo}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyect->porcentaje}}%</span></td> </tr>
+                                            <tr><td width="400px"><a href="{{route('asignacion.show',$proyect->asigID)}}"> {{$proyect->asigCodigo}}</a></td><td class="text-success"><span style = "font-size:12px" class="mt-1 badge badge-success text-white align-self-start">{{$proyect->porcentaje}}%</span></td> </tr>
                                             @endforeach
-                                            </tbody>
-                                        </table>
-                                        <hr> 
-                                        
+                                        </tbody>
+                                    </table>
+                                    <hr> 
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
