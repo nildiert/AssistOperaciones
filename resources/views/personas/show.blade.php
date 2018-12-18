@@ -70,11 +70,13 @@
                                             </div>
                                             @if(!$pers->PersonasEstado)
                                             <div class="col">
-                                                {!!Form::label('PersonasFechaRetiro','Retiro')!!}{!!Form::date('PersonasFechaRetiro',$pers->PersonasFechaRetiro,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasFechaRetiro','Retiro')!!}
+                                                {!!Form::date('PersonasFechaRetiro',$pers->PersonasFechaRetiro,['class'=>'form-control mt-2'])!!}
                                             </div>
                                             @endif
                                             <div class="col">
-                                                {!!Form::label('PersonasActivo','Estado')!!}{!!Form::select('PersonasActivo',['ACTIVO'=>'ACTIVO','INACTIVO'=>'INACTIVO'],$pers->PersonasEstado,['class'=>'form-control'])!!}
+                                                {!!Form::label('PersonasActivo','Estado')!!}
+                                                {!!Form::select('PersonasActivo',$estados,$pers->PersonasActivo,['class'=>'form-control'])!!}
                                             </div>
                                         </div>
                                     </tbody>
@@ -125,7 +127,8 @@
                                                 <br>
                                                 @endif
                                                 @if($pers->ContTipo != NULL)    
-                                                {{now()<$pers->PersContrFechaInicio}}                                                <tr> <td>Contrato</td><td>{{$pers->PersContrFechaInicio}}</td><td>{{$pers->ContTipo}}</td></tr>
+                                                {{now() < $pers->PersContrFechaInicio}}
+                                                <tr> <td>Contrato</td><td>{{$pers->PersContrFechaInicio}}</td><td>{{$pers->ContTipo}}</td></tr>
                                                 @else
                                                 <tr>
                                                     <td><p>No se ha asignado tipo de contrato</p> </td>

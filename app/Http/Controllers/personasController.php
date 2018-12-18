@@ -116,6 +116,7 @@ class personasController extends Controller
         ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
         ->where('PersonasID','=',$id)
         ->get();
+        $estados = ['ACTIVO'=>'ACTIVO','INACTIVO'=>'INACTIVO'];
         $personas =Personas::leftJoin('cargpers','personas.PersonasID','personas_PersonasID')
         ->leftJoin('cargos','cargos.CargosID','cargpers.cargos_CargosID')
         ->leftJoin('perscontr','personas.PersonasID','perscontr.Personas_PersonasID')
@@ -126,10 +127,10 @@ class personasController extends Controller
         ->where('asigpers.personas_PersonasID',$id)->get();
 
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
-        // return $proyectos;
+        // return $estados;
 
         // return $personas;
-        return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos'));
+        return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos','estados'));
         // return [$personas];
     }
 
