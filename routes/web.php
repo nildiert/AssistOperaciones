@@ -53,7 +53,7 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
-
+Route::post('/personas/retiro','personasController@retiro')->name('personas.retiro');
 
 Route::get('redirect', function(){
     Alert::error('Registro agregado exitosamente!');

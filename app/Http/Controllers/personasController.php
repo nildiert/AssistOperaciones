@@ -196,7 +196,7 @@ class personasController extends Controller
         Alert::success('Registro actualizado correctamente');
 
         Personas::find($id)->update($request->all());
-        return redirect()->route('personas.index');
+        return redirect()->back();
     }
 
     /**
@@ -234,6 +234,10 @@ class personasController extends Controller
         $personas =Personas::where('PersonasNombreCompleto','like','%'.$recurso->busqueda.'%')->paginate(10);
         $activos = Personas::where('PersonasEstado','1')->count();
         return view('personas.index',compact('personas','activos'));
+    }
+
+    public function retiro(Request $request){
+        return $request;
     }
 
 

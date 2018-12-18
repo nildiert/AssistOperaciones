@@ -80,8 +80,13 @@
                                             </div>
                                         </div>
                                     </tbody>
-                                        <button class="btn mt-2 btn-outline-danger">Retiro</button>
-                                        {!!Form::submit('Actualizar',['class'=>'btn btn-info mt-2'])!!}
+                                    <div class="mt-2">
+
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#retiroModal">
+                                            Retiro
+                                        </button>
+                                        {!!Form::submit('Actualizar',['class'=>'btn btn-info '])!!}
+                                    </div>
                                 {!!Form::close()!!}
                     @endforeach
                     </div>
@@ -327,7 +332,34 @@
     </div>
 </div>
 
-      
+ 
+
+  
+  <!-- Modal retiro de personas -->
+  <div class="modal fade" id="retiroModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Retiro de consultor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {!!Form::open(['action'=>'personasController@retiro'])!!}
+          {!!Form::label('PersonasFechaRetiro','Ingresa la fecha de retiro')!!}
+          {!!Form::date('PersonasFechaRetiro',now(),['class'=>'form-control'])!!}
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
+        </div>
+        {!!Form::close()!!}
+      </div>
+    </div>
+  </div>
+
 
 <script>
     var agregar = 0
