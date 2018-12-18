@@ -3,7 +3,7 @@
 <div class="container">
     @if(Auth::user()->hasRole('admin'))
         <div class="d-flex justify-content-end">
-            <div class="text-white btn btn-info mb-2" data-toggle="modal" data-target="#agregarProyecto">Nuevo proyecto</div>
+            <div class=" btn btn-outline-info mb-2" data-toggle="modal" data-target="#agregarProyecto">Nuevo proyecto</div>
         </div>
     @endif
 <div class="card">
@@ -75,7 +75,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        {!!Form::submit('Guardar proyecto',['class'=>'mt-3 btn btn-info form-group','id'=>'enviarProyecto'])!!}
+                        {!!Form::submit('Guardar proyecto',['class'=>' btn btn-info form-group','id'=>'enviarProyecto'])!!}
         
         
                         {!!Form::close()!!}

@@ -38,12 +38,7 @@ class HomeController extends Controller
         $cuentaRetirosMes = $retiradoMes->count();
         $personas = Personas::select('PersonasEstado')->where('PersonasEstado','1')->count('PersonasEstado');
         $proyectos = Proyecto::select('ProyectoEstado')->where('ProyectoEstado','1')->count('ProyectoEstado');
-        
-
-              
-  
-        
-
+        // return $retiradoSemana;
         return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes'));
     }
     public function someAdminStuff(Request $request)

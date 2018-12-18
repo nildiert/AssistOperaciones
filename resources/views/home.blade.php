@@ -27,7 +27,8 @@
                 <h5 class="card-title">{{$cuentaRetirosSemana}}</h5>
             </div>
             <div class="card-footer">
-                <h5 class="text-warning">Retiros semana</h5>
+                <a data-toggle="modal" data-target=".retirosSemana" href=""> <h5 class="text-warning">Retiros semana</h5></a>
+                {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".retirosSemana">Large modal</button> --}}
             </div>
         </div>
     </div>
@@ -40,7 +41,7 @@
                 <h5 class="text-primary">Retiros mes</h5>
             </div>
         </div>
-    </div>
+    </div> 
     <div class="col-6">
         <div class="card">
             <h5 class="card-header">Ingresos en el mes</h5>
@@ -86,27 +87,37 @@
     </div>
 
 </div>
-
-
-
-
-<!-- Large modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
-
-
-      
-      <!-- Modal -->
-      <div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- Modal de retiros de la semana  -->
+      <div class="modal fade retirosSemana" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Retiros del mes</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Retiros de la semana</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              ...
+              <table class="table table-hover">
+                  @if($cuentaRetirosSemana) 
+                  <thead>
+                    <th>Consultor</th>
+                    <th>Ingreso</th>
+                    <th>Retiro</th>
+                  </thead>
+                  <tbody>
+                    @foreach($retiradoSemana as $rs)
+                        <tr>
+                            <td>{{$rs->PersonasNombreCompleto}}</td>
+                            <td>{{$rs->PersonasFechaIngreso}}</td>
+                            <td>{{$rs->PersonasFechaRetiro}}</td>
+                        </tr>
+                    @endforeach
+                    @else
+                        <p>No se han registrado retiros esta semana</p>
+                    @endif
+                  </tbody>
+              </table>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
