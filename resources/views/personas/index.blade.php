@@ -1,10 +1,15 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+<<<<<<< HEAD
+=======
+
+>>>>>>> fceefaa49471fc1431333bb9b8bed012211ac9e9
 <div class="d-flex mt-3 ">
     <!--href="{{route('personas.create')}}-->
 
     <!--Busqueda de personas-->
+    
     <div class="col-7 ">
         @include('personas.error')
         {!!Form::open(['method' => 'get','action'=>'Controller@search'])!!}
@@ -26,7 +31,12 @@
             <button type="button" class="btn btn-outline-info mb-3 mr-1" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
         </div>
 </div>
+<<<<<<< HEAD
 
+=======
+</div>
+<div class="container">
+>>>>>>> fceefaa49471fc1431333bb9b8bed012211ac9e9
     @include('sweet::alert')
 {{--sdfsdf--}}
 
