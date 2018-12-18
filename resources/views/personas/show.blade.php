@@ -213,10 +213,10 @@
                         <div class="form-row">
                             {!!Form::hidden('id',$id)!!}
                             <div class="col">
-                                {!!Form::select('nuevaHabilidad[0][Habilidadess_HabilidadesID]',$habilidades,null,['class'=>'form-control','placeholder'=>'Habilidad'])!!}
+                                {!!Form::select('nuevaHabilidad[0][Habilidadess_HabilidadesID]',$habilidades,null,['class'=>'form-control ','placeholder'=>'Habilidad'])!!}
                             </div>
                             <div class="col">
-                                {!!Form::text('nuevaHabilidad[0][PersHabilCertificacion]','NO',['class'=>'form-control','placeholder'=>'Certificación'])!!}
+                                {!!Form::text('nuevaHabilidad[0][PersHabilCertificacion]','NO',['class'=>'form-control pt-3','placeholder'=>'Certificación'])!!}
                             </div>
                             <div class="col">
                                 {!!Form::select('nuevaHabilidad[0][PersHabilNivExp]',['BAJO'=>'BAJO', 'INTERMEDIO'=>'INTERMEDIO', 'AVANZADO'=>'AVANZADO'],'BAJO',['class'=>'form-control'])!!}
@@ -305,11 +305,11 @@
                     <hr>
                     <div class="form-row">
                         <div class="col">
-                            {!!Form::label('CargPersPruebaInicio')!!}
+                            {!!Form::label('Inicio prueba')!!}
                             {!!Form::date('CargPersPruebaInicio',now(),['class'=>'form-control'])!!}
                         </div>
                         <div class="col">
-                            {!!Form::label('CargPersPruebaFin')!!}
+                            {!!Form::label('Fin prueba')!!}
                             {!!Form::date('CargPersPruebaFin',null,['class'=>'form-control'])!!}
                             
                         </div>
@@ -340,7 +340,7 @@
                                 {!!Form::select('nuevaHabilidad[${agregar}][Habilidadess_HabilidadesID]',$habilidades,null,['class'=>'form-control','placeholder'=>'Habilidad'])!!}
                             </div>
                             <div class="col">
-                                {!!Form::text('nuevaHabilidad[${agregar}][PersHabilCertificacion]','NO',['class'=>'form-control','placeholder'=>'Certificación'])!!}
+                                {!!Form::text('nuevaHabilidad[${agregar}][PersHabilCertificacion]','NO',['class'=>'form-control pt-3','placeholder'=>'Certificación'])!!}
                             </div>
                             <div class="col">
                                 {!!Form::select('nuevaHabilidad[${agregar}][PersHabilNivExp]',['BAJO'=>'BAJO', 'INTERMEDIO'=>'INTERMEDIO', 'AVANZADO'=>'AVANZADO'],'BAJO',['class'=>'form-control'])!!}

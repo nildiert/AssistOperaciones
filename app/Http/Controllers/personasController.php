@@ -60,9 +60,9 @@ class personasController extends Controller
             'PersonasNombreCompleto',
             'PersonasDocumento'=>'required',
             'PersonasTipoDoc'=>'required',
-            'PersonasTel'=>'required',
-            'PersonasEspecialidad'=>'required',
-            'PersonasTitulo'=>'required',
+            'PersonasTel',
+            'PersonasEspecialidad',
+            'PersonasTitulo',
             'created_at',
             'updated_at',
             'PersonasFechaIngreso'=>'required']);
@@ -111,7 +111,7 @@ class personasController extends Controller
     public function show($id)
     {
         $contratos = Contratos::select('ContId','ContTipo')->pluck('ContTipo','ContId');
-        $habilidades = Habilidades::pluck('HabilidadesNombre','HabilidadesID');
+        $habilidades = Habilidades::orderBy('HabilidadesNombre','ASC')->pluck('HabilidadesNombre','HabilidadesID');
         $pershabil =  Personas::leftJoin('pershabil', 'personas.PersonasID', 'pershabil.personas_PersonasID')
         ->leftJoin('habilidades','HabilidadesID','Habilidadess_HabilidadesID')
         ->where('PersonasID','=',$id)
