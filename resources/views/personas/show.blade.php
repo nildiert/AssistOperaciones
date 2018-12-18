@@ -80,9 +80,8 @@
                                             </div>
                                         </div>
                                     </tbody>
-                                <div class="d-flex justify-content-end pb-2">
-                                    {!!Form::submit('Actualizar',['class'=>'btn btn-info mt-2'])!!}
-                                </div>
+                                        <button class="btn mt-2 btn-outline-danger">Retiro</button>
+                                        {!!Form::submit('Actualizar',['class'=>'btn btn-info mt-2'])!!}
                                 {!!Form::close()!!}
                     @endforeach
                     </div>
@@ -97,7 +96,6 @@
                             </div>
                         <div class="d-flex justify-content-end">
                                 <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-habilidades-modal-lg">Agregar habilidades</button>
-                            
                         </div>
                 </div>
             </div>
