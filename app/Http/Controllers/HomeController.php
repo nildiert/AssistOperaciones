@@ -32,14 +32,19 @@ class HomeController extends Controller
         $inicioMes = Carbon::now()->startOfMonth();
         $finMes = Carbon::now()->endOfMonth();
         $retiradoSemana = Personas::whereBetween('PersonasFechaRetiro', [$monday, $sunday])->where('PersonasFechaRetiro','!=',NULL)->get();
-        $retiradoMes = Personas::whereBetween('PersonasFechaRetiro', [$inicioMes, $finMes])->where('PersonasFechaRetiro','!=',NULL)->get();
+        $retiradoMes = Personas::whereBetween('PersonasFechaRetiro', [$inicioMes, $finMes])->where('PersonasFechaRetiro','!=',NULL)->where('PersonasEstado','0')->get();
         $ingresosMes = Personas::whereBetween('PersonasFechaIngreso', [$inicioMes, $finMes])->where('PersonasFechaIngreso','!=',NULL)->get();
         $cuentaRetirosSemana = $retiradoSemana->count();
         $cuentaRetirosMes = $retiradoMes->count();
         $personas = Personas::select('PersonasEstado')->where('PersonasEstado','1')->count('PersonasEstado');
         $proyectos = Proyecto::select('ProyectoEstado')->where('ProyectoEstado','1')->count('ProyectoEstado');
+
+        // Retiros del día
+
+         $retiros = Personas::select('PersonasID','PersonasNombreCompleto','PersonasFechaRetiro')->where('PersonasFechaRetiro',Carbon::today())->get();
+        //  return $retiros;
         // return $retiradoSemana;
-        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes'));
+        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes','retiros'));
     }
     public function someAdminStuff(Request $request)
     {

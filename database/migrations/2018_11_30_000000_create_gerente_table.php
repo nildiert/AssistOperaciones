@@ -28,6 +28,7 @@ class CreateGerenteTable extends Migration
             $table->date('GerenteFechaInicio')->nullable()->default(null);
             $table->date('GerenteFechaFin')->nullable()->default(null);
             $table->string('Gerente_Usuario', 45)->nullable()->default(null);
+            $table->integer('Gerente_PersonasId')->nullable()->default(null);
             $table->tinyInteger('Gerente_estado')->nullable()->default('1');
             $table->nullableTimestamps();
         });

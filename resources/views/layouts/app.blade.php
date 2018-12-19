@@ -93,7 +93,7 @@
                         </li>
 
                     </ul>
-                @if(Auth::user()->hasRole('admin'))
+                @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('gerOpe') || Auth::user()->hasRole('asistOpe'))
                     <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
                     <ul class="collapse list-unstyled" id="usuariosSubmenu">
                         <li>
@@ -127,23 +127,60 @@
                 @endif
             </li>
         @else
-            <li class="nav-item ">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                         {{ __('Cerrar sesión') }}
-                     </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
-            </li>
+        @if(Auth::user()->hasRole('admin'))
+            
+                <div class="btn-group">
+                    {{-- <a data-toggle="modal" class="btn btn-dark" data-target=".retirosPendientes" href="">Retiros pendientes <span class="badge badge-pill badge-secondary">{{$retiros->count()}}</span></a> --}}
+                    
+                    <div class="dropdown-menu">
+                        {{-- @foreach($retiros as $retiro)
+                        <a class="dropdown-item " href="#"><h6 class="h6"> {{$retiro->PersonasNombreCompleto}}</h6></a>
+                        @endforeach --}}
+                    </div>
+                </div> 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Periodo prueba <span class="badge badge-pill badge-warning">7</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div> 
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Fin contrato <span class="badge badge-pill badge-danger">7</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div> 
+        @endif
+          
+          {{-- Botón de cierre de sesión --}}
+          <div class="btn-group">
+            <button type="button" class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ Auth::user()->name }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                 {{ __('Cerrar sesión') }}
+             </a>
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            </div>
+          </div>
+            
         @endguest
     </ul>
 
@@ -152,12 +189,56 @@
                 </div>
             </nav>
 
+
+
+<div class="modal fade retirosPendientes" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Retiros de la semana</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-hover">
+                  {{-- @if($cuentaRetirosSemana) 
+                  <thead>
+                    <th>Consultor</th>
+                    <th>Ingreso</th>
+                    <th>Retiro</th>
+                  </thead>
+                  <tbody>
+                    @foreach($retiradoSemana as $rs)
+                        <tr>
+                            <td>{{$rs->PersonasNombreCompleto}}</td>
+                            <td>{{$rs->PersonasFechaIngreso}}</td>
+                            <td>{{$rs->PersonasFechaRetiro}}</td>
+                        </tr>
+                    @endforeach
+                    @else
+                        <p>No se han registrado retiros esta semana</p>
+                    @endif --}}
+                  </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
             <div class="content">
                 @yield('content')
             </div>
         </div>
     </div>
 </div>
+
+
+
+
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     {!!Html::script('js/jquery.min.js')!!}  
