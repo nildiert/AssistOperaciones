@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Personas;
 use App\Proyecto;
 use Illuminate\Support\Carbon;
+use App\PersContr;
 
 
 class HomeController extends Controller
@@ -39,9 +40,11 @@ class HomeController extends Controller
         $personas = Personas::select('PersonasEstado')->where('PersonasEstado','1')->count('PersonasEstado');
         $proyectos = Proyecto::select('ProyectoEstado')->where('ProyectoEstado','1')->count('ProyectoEstado');
 
-        // Retiros del día
 
          $retiros = Personas::select('PersonasID','PersonasNombreCompleto','PersonasFechaRetiro')->where('PersonasFechaRetiro',Carbon::today())->get();
+
+         $finContratos = PersContr::leftJoin('contratos','Contratos_ContId','ContId')
+         ->leftJoin('personas','','PersonasID')
         //  return $retiros;
         // return $retiradoSemana;
         return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes','retiros'));
