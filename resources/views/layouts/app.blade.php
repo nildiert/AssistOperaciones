@@ -138,30 +138,7 @@
                         @endforeach --}}
                     </div>
                 </div> 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-dark " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Periodo prueba <span class="badge badge-pill badge-warning">7</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </div> 
-                <div class="btn-group">
-                    <button type="button" class="btn btn-dark " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Fin contrato <span class="badge badge-pill badge-danger">7</span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </div> 
+
         @endif
           
           {{-- Botón de cierre de sesión --}}

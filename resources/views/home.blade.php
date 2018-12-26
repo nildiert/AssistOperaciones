@@ -90,17 +90,21 @@
             <h5 class="card-header">Novedades</h5>
             <div class="card-body">
                     <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                              Cras justo odio
+                            {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
+                              Periodo de prueba
                               <span class="badge badge-primary badge-pill">14</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                              Dapibus ac facilisis in
+                              Fin de contrato
                               <span class="badge badge-primary badge-pill">2</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                              Morbi leo risus
+                              Retiros del día
                               <span class="badge badge-primary badge-pill">1</span>
+                            </li> --}}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{route('usuarios.index')}}">Usuarios nuevos</a> 
+                              <span class="badge badge-primary badge-pill">{{$usuarios}}</span>
                             </li>
                           </ul>
             </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Personas;
 use App\Proyecto;
+use App\User;
+
 use Illuminate\Support\Carbon;
 use App\PersContr;
 
@@ -40,14 +42,17 @@ class HomeController extends Controller
         $personas = Personas::select('PersonasEstado')->where('PersonasEstado','1')->count('PersonasEstado');
         $proyectos = Proyecto::select('ProyectoEstado')->where('ProyectoEstado','1')->count('ProyectoEstado');
 
-
+        //Traemos la cuenta de usuarios inactivos
+        $usuarios = User::leftJoin('role_user','users.id','role_user.user_id')
+        ->where('role_id',NULL)->count();
+        
          $retiros = Personas::select('PersonasID','PersonasNombreCompleto','PersonasFechaRetiro')->where('PersonasFechaRetiro',Carbon::today())->get();
 
          $finContratos = PersContr::leftJoin('contratos','Contratos_ContId','ContId')
-         ->leftJoin('personas','','PersonasID')
+         ->leftJoin('personas','','PersonasID');
         //  return $retiros;
         // return $retiradoSemana;
-        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes','retiros'));
+        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes','retiros','usuarios'));
     }
     public function someAdminStuff(Request $request)
     {
