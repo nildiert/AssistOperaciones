@@ -59,12 +59,16 @@ class HomeController extends Controller
         ->whereBetween('cargpers.CargPersPruebaFin', [$monday, $sunday])->get();
 
 
-        //Traemos la cuenta de usuarios inactivos
+        //Traemos la cuenta de usuarios que no tienen rol asignado
         $usuarios = User::leftJoin('role_user','users.id','role_user.user_id')
         ->where('role_id',NULL)->count();
+
         
         // Contamos la cantidad de retiros del día
-        $retiros = Personas::select('PersonasID','PersonasNombreCompleto','PersonasFechaRetiro')->where('PersonasFechaRetiro',Carbon::today())->get();
+        $retiros = Personas::select('PersonasID','PersonasNombreCompleto','PersonasFechaRetiro')
+        ->where('PersonasFechaRetiro',Carbon::today())
+        ->where('PersonasEstado','!=',0)
+        ->get();
         
         
          $finContratos = PersContr::leftJoin('contratos','Contratos_ContId','ContId')

@@ -240,9 +240,19 @@ class personasController extends Controller
         return view('personas.index',compact('personas','activos'));
     }
 
-    public function retirar(){
-        $personas = Personas::all();
-        return $personas;
+    public function retirar($id){
+
+        //Buscamos el usuario con el id que recibimos
+        $usuario = Personas::find($id);
+
+        //Actualizamos los campos de inactividad
+        $usuario->PersonasActivo = 'INACTIVO';
+        $usuario->PersonasEstado = 0;
+
+        //Guardamos los cambios realizados
+        $usuario->save();
+
+        return redirect()->back();
     }
 
 

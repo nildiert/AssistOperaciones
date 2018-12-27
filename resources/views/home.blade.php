@@ -119,33 +119,39 @@
             <div class="card">
                 <h5 class="card-header">Novedades</h5>
                 <div class="card-body">
-                        <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a data-toggle="modal" data-target=".periodoPrueba" href="">Periodo de prueba</a>
-                                
-                                <span class="badge badge-primary badge-pill">{{$periodoPrueba->count()}}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a data-toggle="modal" data-target=".finContrato" href="">Fin contrato</a>
-                                <span class="badge badge-primary badge-pill">{{$finContratos->count()}}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a data-toggle="modal" data-target=".retiroDia" href="">Retiros del día</a>
-                                
-                                <span class="badge badge-primary badge-pill">{{$retiros->count()}}</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Usuarios nuevos
-                                <span class="badge badge-primary badge-pill">1</span>
-                                </li>
-                                
-                                @if($usuarios) {{-- Si hay usuarios sin rol, la plataforma muestra la novedad --}}
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a href="{{route('usuarios.index')}}">Usuarios nuevos</a> 
-                                <span class="badge badge-primary badge-pill">{{$usuarios}}</span>
-                                </li>
-                                @endif
-                            </ul>
+                    <ul class="list-group">
+                        @if($periodoPrueba->count())
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a data-toggle="modal" data-target=".periodoPrueba" href="">Periodo de prueba</a>
+                            
+                            <span class="badge badge-primary badge-pill">{{$periodoPrueba->count()}}</span>
+                            </li>
+                        @endif
+                        @if($finContratos->count())
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a data-toggle="modal" data-target=".finContrato" href="">Fin contrato</a>
+                            <span class="badge badge-primary badge-pill">{{$finContratos->count()}}</span>
+                            </li>
+                        @endif
+                        @if($retiros->count())
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a data-toggle="modal" data-target=".retiroDia" href="">Retiros del día</a>
+                            <span class="badge badge-primary badge-pill">{{$retiros->count()}}</span>
+                            </li>
+                        @endif
+                        @if($usuarios)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Usuarios nuevos
+                            <span class="badge badge-primary badge-pill">1</span>
+                            </li>
+                        @endif
+                        @if($usuarios) {{-- Si hay usuarios sin rol, la plataforma muestra la novedad --}}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{route('usuarios.index')}}">Usuarios nuevos</a> 
+                            <span class="badge badge-primary badge-pill">{{$usuarios}}</span>
+                            </li>
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>
@@ -213,7 +219,7 @@
                             <tbody>
                                 @foreach($periodoPrueba; as $pp)
                                     <tr>
-                                        <td>{{$pp->PersonasNombreCompleto}}</td>
+                                        <td><a href="{{route('personas.show',$pp->PersonasID)}}">{{$pp->PersonasNombreCompleto}}</a></td>
                                         <td>{{$pp->CargPersPruebaInicio}}</td>
                                         <td>{{$pp->CargPersPruebaFin}}</td>
                                     </tr>
@@ -252,7 +258,7 @@
                         <tbody>
                             @foreach($finContratos; as $fc)
                                 <tr>
-                                    <td>{{$fc->PersonasNombreCompleto}}</td>
+                                <td><a href="{{route('personas.show',$fc->PersonasID)}}"> {{$fc->PersonasNombreCompleto}}</a></td>
                                     <td>{{$fc->PersContrFechaInicio}}</td>
                                     <td>{{$fc->PersContrFechaFin}}</td>
 

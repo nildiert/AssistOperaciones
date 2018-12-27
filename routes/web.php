@@ -50,9 +50,7 @@ Route::get('/register', function () {
     return view('auth.register');
 });
 // Route::get('personas/retirar','personasController@retirar')->name('personas.retiro');
-Route::get('personas/retirar/{id}',function(){
-    return 'Estas aquí, we';
-})->name('personas.retiro');
+Route::get('personas/retirar/{id}','personasController@retirar')->name('personas.retiro');
 Route::get('/home', function () {
     return view('welcome');
 });
