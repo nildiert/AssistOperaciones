@@ -346,10 +346,11 @@
           </button>
         </div>
         <div class="modal-body">
-          {!!Form::open()!!}
+        @foreach($personas as $pers)
+          {!!Form::open(['method'=>'DELETE','route'=>['personas.destroy',$pers->PersonasID]])!!}
           {!!Form::label('PersonasFechaRetiro','Ingresa la fecha de retiro')!!}
           {!!Form::date('PersonasFechaRetiro',now(),['class'=>'form-control'])!!}
-          
+        @endforeach
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

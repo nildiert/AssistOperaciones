@@ -9,6 +9,7 @@ use App\Cargos;
 use App\Contratos;
 use Alert;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class personasController extends Controller
 {
@@ -131,11 +132,14 @@ class personasController extends Controller
         ->where('asigpers.personas_PersonasID',$id)->get();
 
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
-        // return $estados;
 
-        // return $personas;
+        $retiroPendiente = Personas::select('PersonasFechaRetiro')->where('PersonasID',$id)->pluck('PersonasFechaRetiro')->first();
+
+        //Convertimos la fecha en el formato usado por Carbon 
+        $retiroPendiente = (Carbon::parse($retiroPendiente));
+
+
         return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos','estados'));
-        // return [$personas];
     }
 
     /**
@@ -209,30 +213,28 @@ class personasController extends Controller
      * @param  \App\Personas  $personas
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        // Buscamos a la persona 
         $personas =Personas::find($id);
 
-        Alert::success('Registro eliminado exitosamente');
-
+        
+        // Si recibimos valores, ejecutamos lo siguiente:
         if($personas    != null){ 
 
-            $personas->PersonasEstado = 0;
-            $personas->PersonasActivo='INACTIVO';
+            
+            //Asignamos una fecha de retiro (El retiro aún no se realiza)
+            $personas->PersonasFechaRetiro=$request->PersonasFechaRetiro;
             $personas->save();
 
-            return redirect()->route('personas.index');
+            return redirect()->back();
 
         }
 
-        return redirect()->route('personas.index');
+        return redirect()->back();
 
     }
 
-    public function eliminar(Personas $personas){
-
-    }
     public function search(Request $recurso){
 
         $personas =Personas::where('PersonasNombreCompleto','like','%'.$recurso->busqueda.'%')->paginate(10);
