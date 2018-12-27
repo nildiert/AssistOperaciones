@@ -346,7 +346,7 @@
           </button>
         </div>
         <div class="modal-body">
-          {!!Form::open(['action'=>'personasController@retiro'])!!}
+          {!!Form::open()!!}
           {!!Form::label('PersonasFechaRetiro','Ingresa la fecha de retiro')!!}
           {!!Form::date('PersonasFechaRetiro',now(),['class'=>'form-control'])!!}
           

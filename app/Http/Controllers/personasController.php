@@ -13,8 +13,12 @@ use Illuminate\Http\Request;
 class personasController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth','role:admin']);
+        // $this->middleware(['auth','role:admin']);
+        $this->middleware(['auth']);
+        
+        
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -236,8 +240,9 @@ class personasController extends Controller
         return view('personas.index',compact('personas','activos'));
     }
 
-    public function retiro(Request $request){
-        return $request;
+    public function retirar(){
+        $personas = Personas::all();
+        return $personas;
     }
 
 

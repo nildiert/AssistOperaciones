@@ -49,11 +49,14 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('auth.register');
 });
+// Route::get('personas/retirar','personasController@retirar')->name('personas.retiro');
+Route::get('personas/retirar/{id}',function(){
+    return 'Estas aquí, we';
+})->name('personas.retiro');
 Route::get('/home', function () {
     return view('welcome');
 });
 
-Route::post('/personas/retiro','personasController@retiro')->name('personas.retiro');
 
 Route::get('redirect', function(){
     Alert::error('Registro agregado exitosamente!');
@@ -74,18 +77,8 @@ Route::GET('cargos/search/{busqueda}','cargosController@search')->name('cargos.s
 
 //Borrar esta ruta
 Route::get('search','Controller@search');
-
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('log','LogController');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
