@@ -134,12 +134,13 @@ class personasController extends Controller
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
 
         $retiroPendiente = Personas::select('PersonasFechaRetiro')->where('PersonasID',$id)->pluck('PersonasFechaRetiro')->first();
-
+        
         //Convertimos la fecha en el formato usado por Carbon 
-        $retiroPendiente = (Carbon::parse($retiroPendiente));
-
-
-        return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos','estados'));
+        //Verificamos si hay retiros pendientes para el día de hoy con este consultor        
+        $retiroHoy = Carbon::today()->eq(Carbon::parse($retiroPendiente));
+        $retiroHoy = ((json_decode($retiroHoy)));
+        
+        return view('personas.show',compact('personas','pershabil','habilidades','id','cargos','contratos','proyectos','estados','retiroHoy'));
     }
 
     /**

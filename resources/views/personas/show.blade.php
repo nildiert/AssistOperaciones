@@ -4,8 +4,25 @@
 <div class="container ">
     @include('sweet::alert')
     <div class="row">
+
+
+        
+        
+        
         <div class="col-12">
             <div class="card">
+                    @if($retiroHoy)
+
+                    <div class="alert alert-warning" role="alert">
+                    <div class="d-flex justify-content-between">
+                        <span class="align-self-center"> Existe un retiro pendiente el día de hoy para este consultor!</span>
+                        <div>
+                            <span><button class="btn btn-outline-dark ">Cancelar retiro</button></span>
+                            <span><button class="btn btn-outline-danger align-self-start">Confirmar retiro</button></span>
+                        </div>
+                    </div>
+                    </div>
+                    @endif
                 <div class="card-body">
                     <div class="card-title d-flex justify-content-between">
                         @foreach($personas as $pers)
