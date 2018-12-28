@@ -82,7 +82,7 @@ class HomeController extends Controller
 
          //Contamos la cantidad de novedades, para visualizarlas en la vista home
         $novedades = $usuarios+ $retiros->count()+$periodoPrueba->count()+$finContratos->count();
-        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','cuentaRetirosSemana','cuentaRetirosMes','ingresosMes','retiros','usuarios','novedades','periodoPrueba','finContratos'));
+        return view('home',compact('personas','proyectos','retiradoSemana','retiradoMes','ingresosMes','retiros','usuarios','novedades','periodoPrueba','finContratos'));
     }
     public function someAdminStuff(Request $request)
     {
