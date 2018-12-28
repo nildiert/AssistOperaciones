@@ -24,15 +24,12 @@
                 <thead>
                     <th>Nombre</th>
                     <th>Código</th>
-                    <th colspan="2" style="width: 30%">Acciones</th>
                 </thead>
                 <tbody>
                     @foreach($clientes as $cliente)
                         <tr>
                             <td>{{$cliente->cliNombre}}</td>
                             <td>{{$cliente->cliCod}}</td>
-                            <td><button class="btn btn-outline-info">Actualizar</button></td>
-                            <td><button class="btn btn-outline-danger">Eliminar</button></td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -45,18 +45,21 @@
                 <thead>
                     <th>Habilidad</th>
                     <th>Cantidad</th>
-                    
-                    <th colspan="2">Acciones</th>
                 </thead>
                 <tbody>
                     @foreach($habilidades as $habilidad)
+                    
                     <tr>
-                        @if($habilidad->HabilidadesNombre != NULL)
-                        <td style="font-size: 14px"><a href="{{Route('habilidades.search',$habilidad->HabilidadesID)}}">{{$habilidad->HabilidadesNombre}}</a></td>
+                    @if($habilidad->HabilidadesNombre != NULL)
+                        
+                        <td style="font-size: 14px">
+                            <a href="{{Route('habilidades.search',$habilidad->HabilidadesID)}}">
+                            {{$habilidad->HabilidadesNombre}}
+                            </a>
+                        </td>
                         <td style="font-size: 14px">{{$habilidad->cantidad}} </td>
-                        <td><button class="btn btn-outline-info">Actualizar</button> </td>
-                        <td><button class="btn btn-outline-danger">Eliminar</button> </td>
-                        @endif
+                    
+                    @endif
                     </tr>
                     @endforeach
                 </tbody>

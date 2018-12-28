@@ -55,8 +55,6 @@
                     <th>DOCUMENTO</th>
                     <th>TELEFONO</th>
                     <th>INGRESO</th>
-                    <th>ACTUALIZAR</th>
-                    <th>ELIMINAR</th>
                 </thead>
                 <tbody>
                     @foreach($personas as $persona)
@@ -70,13 +68,7 @@
                         <td  style="font-size: 14px">{{$persona->PersonasDocumento}}</td>
                         <td  style="font-size: 14px">{{$persona->PersonasTel}}</td>
                         <td  style="font-size: 14px">{{$persona->PersonasFechaIngreso}}</td>
-                            <td><a  class="btn btn-outline-info text-info" data-toggle="modal" data-target="#editModal" >Actualizar</a>  </td>                        <td>
-                                    
-                                
-                                {{ Form:: open(['method' => 'DELETE','route' => ['personas.destroy', $persona->PersonasID], 'id' => 'confirm_delete']) }}
-                                    {!! Form::submit('Eliminar', ['class' => 'btn btn-outline-danger', 'onclick'=>'return confirm("Seguro que desea eliminar ?")']) !!}
-                                    {!! Form::close() !!}
-                            </td>
+
                         </tr>
 
                         @endforeach

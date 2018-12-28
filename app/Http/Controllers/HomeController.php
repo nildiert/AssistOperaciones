@@ -42,7 +42,10 @@ class HomeController extends Controller
         $finMes = Carbon::now()->endOfMonth();
 
         // Buscamos las personas que se hayan retirado en el transcurso de la semana
-        $retiradoSemana = Personas::whereBetween('PersonasFechaRetiro', [$monday, $sunday])->where('PersonasFechaRetiro','!=',NULL)->get();
+        $retiradoSemana = Personas::whereBetween('PersonasFechaRetiro', [$monday, $sunday])
+        ->where('PersonasFechaRetiro','!=',NULL)
+        ->where('PersonasEstado',0)
+        ->get();
 
         //Buscamos las personas que se hayan retirado durante el transcurso de todo el mes
         $retiradoMes = Personas::whereBetween('PersonasFechaRetiro', [$inicioMes, $finMes])->where('PersonasFechaRetiro','!=',NULL)->where('PersonasEstado','0')->get();

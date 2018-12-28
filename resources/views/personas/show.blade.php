@@ -13,12 +13,14 @@
             <div class="card">
                     @if($retiroHoy)
 
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-secondary" role="alert">
                     <div class="d-flex justify-content-between">
                         <span class="align-self-center"> Existe un retiro pendiente el día de hoy para este consultor!</span>
+                        @foreach($personas as $pers)
                         <div>
-                            <span><button class="btn btn-outline-dark ">Cancelar retiro</button></span>
-                            <span><button class="btn btn-outline-danger align-self-start">Confirmar retiro</button></span>
+                            <span><button class="btn btn-outline-secondary ">Cancelar retiro</button></span>
+                        <span><a href="{{route('personas.retiro',$pers->PersonasID)}}" class="btn btn-outline-primary align-self-start">Confirmar retiro</a ></span>
+                        @endforeach
                         </div>
                     </div>
                     </div>
@@ -362,12 +364,20 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+            <div class="alert alert-warning" role="alert">
+                <div class="d-flex justify-content-between">
+                    <span class="align-self-center"> Si la fecha de retiro es anterior al día de hoy, el retiro se realizará inmediatamente, de lo contrario se realizará tan pronto se cumpla la fecha.</span>
+                </div>
+            </div>
         <div class="modal-body">
+
         @foreach($personas as $pers)
           {!!Form::open(['method'=>'DELETE','route'=>['personas.destroy',$pers->PersonasID]])!!}
-          {!!Form::label('PersonasFechaRetiro','Ingresa la fecha de retiro')!!}
+          {!!Form::label('PersonasFechaRetiro','Ingrese la fecha de retiro')!!}
           {!!Form::date('PersonasFechaRetiro',now(),['class'=>'form-control'])!!}
         @endforeach
+
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

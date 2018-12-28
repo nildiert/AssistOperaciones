@@ -30,7 +30,7 @@ class personasController extends Controller
         //
 
         // $personas = Personas::orderBy('PersonasID','DESC')->where('PersonasEstado','1')->paginate(50);
-        $personas = Personas::orderBy('PersonasID','DESC')->where('PersonasEstado','1')->paginate(50);
+        $personas = Personas::orderBy('PersonasNombreCompleto','ASC')->where('PersonasEstado','1')->paginate(50);
         $activos = Personas::where('PersonasEstado','1')->count();
         return view('personas.index',compact('personas','activos'));
     }
@@ -133,7 +133,10 @@ class personasController extends Controller
 
         $cargos = Cargos::select('CargosID','CargosNombre')->pluck('CargosNombre','CargosID');
 
-        $retiroPendiente = Personas::select('PersonasFechaRetiro')->where('PersonasID',$id)->pluck('PersonasFechaRetiro')->first();
+        $retiroPendiente = Personas::select('PersonasFechaRetiro')
+        ->where('PersonasID',$id)
+        ->where('PersonasEstado','!=',0)
+        ->pluck('PersonasFechaRetiro')->first();
         
         //Convertimos la fecha en el formato usado por Carbon 
         //Verificamos si hay retiros pendientes para el día de hoy con este consultor        
