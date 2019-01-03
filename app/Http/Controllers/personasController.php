@@ -222,17 +222,30 @@ class personasController extends Controller
         // Buscamos a la persona 
         $personas =Personas::find($id);
 
+        // Tomamos la fecha de hoy, para validar si la fecha ingresada es menor
+        $hoy = Carbon::today();
         
         // Si recibimos valores, ejecutamos lo siguiente:
         if($personas    != null){ 
 
-            
-            //Asignamos una fecha de retiro (El retiro aún no se realiza)
-            $personas->PersonasFechaRetiro=$request->PersonasFechaRetiro;
-            $personas->save();
+            $request->PersonasFechaRetiro =  Carbon::parse($request->PersonasFechaRetiro);
 
-            return redirect()->back();
-
+            // Si el día en el que estamos es mayor a la fecha recibida entonces actualizamos
+            if($hoy->greaterThan($request->PersonasFechaRetiro)){
+    
+                //Actualizamos los campos de inactividad
+                $personas->PersonasActivo = 'INACTIVO';
+                $personas->PersonasEstado = 0;
+    
+                //Guardamos los cambios realizados
+                $personas->save();
+    
+            }else{
+                //Asignamos una fecha de retiro (El retiro aún no se realiza)
+                $personas->PersonasFechaRetiro=$request->PersonasFechaRetiro;
+                $personas->save();
+                return redirect()->back();
+            }
         }
 
         return redirect()->back();
