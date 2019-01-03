@@ -39,7 +39,11 @@
     <div class="col-5 d-flex justify-content-end clearfix">
             <a class="btn btn-outline-secondary  mb-3 mr-1"  href="{{route('personas.index')}}">Volver</a>
             {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
+            @if(Auth::user()->hasRole('admin')
+            || Auth::user()->hasRole('gerOpe')
+            || Auth::user()->hasRole('asistOpe'))
             <button type="button" class="btn btn-outline-info mb-3 mr-1" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar recurso</button>
+            @endif
         </div>
 </div>
     @include('sweet::alert')

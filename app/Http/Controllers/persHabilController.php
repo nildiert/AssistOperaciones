@@ -102,9 +102,9 @@ class persHabilController extends Controller
      * @param  \App\PersHabil  $persHabil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PersHabil $persHabil)
+    public function destroy($id)
     {
-        //
+        return $id;
     }
     public function search(Request $skill){
 
@@ -129,15 +129,7 @@ class persHabilController extends Controller
             $persHabil->save();
         };
         
-        // foreach ($request->input()['actualizarRol'] as $key => $value) {
-        //     $userRol = RoleUser::where('id', $value['id'])->first();
-        //     $userRol->role_id = (int)($value['role_id']);
-        //     $userRol->save();
-            
-        //     $user=User::where('id',$value['user_id'])->first();
-        //     // return $user->estate;
-        //     }
-            return redirect()->back();
+    return redirect()->back();
 
 
 

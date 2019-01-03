@@ -35,11 +35,14 @@
         <div class="input-group mb-4">
             {!!Form::text('HabilidadesID','Nombre habilidad',['class'=>'form-control', 'readonly','id'=>'inputGroupSelect04 btn btn-outline-info'])!!}
                     {{Form::text('HabilidadesNombre',$habilidad->HabilidadesNombre,['class'=>'ml-2 form-control w-50', 'aria-label'=>'Text input with segmented dropdown button', 'placeholder'=>'Buscar habilidad', 'required'])}}
-                    
+                    @if(Auth::user()->hasRole('admin')
+                    || Auth::user()->hasRole('gerOpe')
+                    || Auth::user()->hasRole('asistOpe'))
                     <div class="input-group-append">
                         {!!Form::submit('Cambiar nombre',['class'=>'btn btn-outline-info'])!!}
                         
                     </div>
+                    @endif
                     {!!Form::close()!!}
     
                 </div>
@@ -55,7 +58,6 @@
                 <th>CERTIFICADO</th>
                 <th>NIVEL EXP</th>
 
-                <th>ELIMINAR</th>
 
             </thead>
             <tbody>
@@ -70,7 +72,6 @@
                         "> {{$ph->PersonasNombreCompleto}}</a></td>
                         <td style="font-size: 14px">{{$ph->PersHabilCertificacion}}</td>
                         <td style="font-size: 14px">{{$ph->PersHabilNivExp}}</td>
-                        <td style="font-size: 14px"><a href="" class="btn btn-outline-danger">Eliminar</a></td>
                     </tr>
 
 

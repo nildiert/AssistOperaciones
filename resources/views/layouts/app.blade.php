@@ -77,6 +77,7 @@
                             </li>
                         </ul>
                     </li>
+                    @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('gerOpe') || Auth::user()->hasRole('asistOpe'))    
                     <li>
                     <a href="#proyectosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Proyectos</a>
                     <ul class="collapse list-unstyled" id="proyectosSubmenu">
@@ -86,6 +87,10 @@
                         @if(Auth::user()->hasRole('admin'))
                         @endif
                     </ul>
+                    @endif
+                    @if(Auth::user()->hasRole('admin')
+                    || Auth::user()->hasRole('gerOpe')
+                    || Auth::user()->hasRole('asistOpe'))
                     <a href="#clientesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clientes</a>
                     <ul class="collapse list-unstyled" id="clientesSubmenu">
                         <li>
@@ -93,6 +98,7 @@
                         </li>
 
                     </ul>
+                    @endif
                 @if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('gerOpe') || Auth::user()->hasRole('asistOpe'))
                     <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
                     <ul class="collapse list-unstyled" id="usuariosSubmenu">

@@ -4,11 +4,6 @@
 <div class="container ">
     @include('sweet::alert')
     <div class="row">
-
-
-        
-        
-        
         <div class="col-12">
             <div class="card">
                     @if($retiroHoy)
@@ -101,28 +96,40 @@
                                         </div>
                                     </tbody>
                                     <div class="mt-2">
+                                        @if(Auth::user()->hasRole('admin')
+                                        || Auth::user()->hasRole('gerOpe')
+                                        || Auth::user()->hasRole('asistOpe'))
 
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#retiroModal">
-                                            Retiro
-                                        </button>
-                                        {!!Form::submit('Actualizar',['class'=>'btn btn-info '])!!}
+                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#retiroModal">
+                                                Retiro
+                                            </button>
+                                            {!!Form::submit('Actualizar',['class'=>'btn btn-info '])!!}
+                                        @endif
                                     </div>
                                 {!!Form::close()!!}
                     @endforeach
                     </div>
                     <div class="card-footer">
-                            @foreach ($pershabil as $ph)
+                        @foreach ($pershabil as $ph)
                             @if($ph->HabilidadesNombre != NULL)
-                                <span style = "font-size:12px" class="mt-1 badge badge-primary text-white align-self-start">{{$ph->HabilidadesNombre}} </span> 
-                                @else
-                                    <p>No se han agregado habilidades</p> 
-                                @endif
-                                @endforeach
-                            </div>
-                        <div class="d-flex justify-content-end">
-                                <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-edithabilidades-modal-lg">Editar habilidades</button>
-                                <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-habilidades-modal-lg">Agregar habilidades</button>
-                        </div>
+                                <span style = "font-size:12px" class="mt-1 badge badge-primary text-white align-self-start">{{$ph->HabilidadesNombre}} 
+                                    <button type="button" class="btn-primary badge badge-primary align-self-start" aria-label="Close">
+                                        <span aria-hidden="true" style = "font-size:12px">&times;</span>
+                                    </button>
+                                </span> 
+                            @else
+                                <p>No se han agregado habilidades</p> 
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="d-flex justify-content-end">
+                            @if(Auth::user()->hasRole('admin')
+                            || Auth::user()->hasRole('gerOpe')
+                            || Auth::user()->hasRole('asistOpe'))
+                            <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-edithabilidades-modal-lg">Editar habilidades</button>
+                            <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-habilidades-modal-lg">Agregar habilidades</button>
+                            @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,42 +144,74 @@
                         </div>
                         <div class="card-text">
                                     <table class="table table-hover table-responsive">
+                                        <thead>
+                                            <th>Cargo </th>
+                                            <th>Inicio prueba</th>
+                                            <th>Fin prueba</th>
+                                            <th></th>
+                                        </thead>
+
                                         <tbody>
                                             @foreach($personas as $pers)
                                                 @if($pers->CargosNombre != NULL)    
-                                                <tr><td colspan="3">{{$pers->CargosNombre}}</td></tr>
-                                                <tr><td>Inicio prueba:</td><td colspan="3">{{$pers->CargPersPruebaInicio}}</td> </tr>
-                                                <tr><td>Fin prueba:</td><td colspan="3">{{$pers->CargPersPruebaInicio}}</td></tr>
+                                                <tr>
+                                                    <td>{{$pers->CargosNombre}}</td>
+                                                    <td >{{$pers->CargPersPruebaInicio}}</td> 
+                                                    <td >{{$pers->CargPersPruebaInicio}}</td>
+                                                    {{-- <td ><button class="btn btn-info">Actualizar</button> </td> --}}
+                                                </tr>
                                                 @else
                                                 <tr>
                                                     <td with="100px"><span class=""><p> No se ha asignado un cargo</p></span></td>
+                                                    @if(Auth::user()->hasRole('admin')
+                                                    || Auth::user()->hasRole('gerOpe')
+                                                    || Auth::user()->hasRole('asistOpe'))
                                                     <td><button class="btn btn-primary" data-toggle="modal" data-target="#agregarCargo">Agregar cargo</button></td>
+                                                    @endif
                                                 </tr>
                                                 <br>
                                                 @endif
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-hover table-responsive">
+                                            <thead>
+                                                <th>Contrato</th>
+                                                <th>Inicio</th>
+                                                <th>Fin</th>
+                                            </thead>
+                                        
+                                            <tbody>
+                                        
                                                 @if($pers->ContTipo != NULL)    
                                                 {{now() < $pers->PersContrFechaInicio}}
-                                                <tr> <td>Contrato</td><td>{{$pers->PersContrFechaInicio}}</td><td>{{$pers->ContTipo}}</td></tr>
+                                                    <tr> 
+                                                        <td>{{$pers->ContTipo}}</td>
+                                                        <td>{{$pers->PersContrFechaInicio}}</td>
+                                                        <td>{{$pers->ContTipo}}</td>
+                                                    </tr>
                                                 @else
                                                 <tr>
                                                     <td><p>No se ha asignado tipo de contrato</p> </td>
+                                                    @if(Auth::user()->hasRole('admin')
+                                                    || Auth::user()->hasRole('gerOpe')
+                                                    || Auth::user()->hasRole('asistOpe'))
                                                     <td>
                                                         <button class="btn btn-primary" data-toggle="modal" data-target="#agregarContrato">Agregar contrato</button>
                                                     </td>
+                                                    @endif
                                                 </tr>
                                                 @endif
-
-                                            
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
                         @endforeach
 
                         </div>
                     </div>
                 </div>
+                {{-- Botones para cambiar el tipo de cargo y contrato --}}
                 <div class="d-flex justify-content-end mt-2">
-                    <button class="btn btn-outline-info mr-2">Actualizar cargo</button>
-                    <button class="btn btn-outline-info">Actualizar contrato</button>
+                    {{-- <button class="btn btn-outline-info mr-2">Actualizar cargo</button>
+                    <button class="btn btn-outline-info">Actualizar contrato</button> --}}
                 </div>
         </div>
 

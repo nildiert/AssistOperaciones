@@ -34,7 +34,11 @@
         <div class="col-5 d-flex justify-content-end clearfix">
                 <a class="btn btn-outline-secondary  mb-3 mr-1 align-self-start"  href="{{route('personas.index')}}">Volver</a>
                 {{-- <a class="btn btn-info  mb-3 text-white"  data-toggle="modal" data-target="#createModal">Agregar recurso</a> --}}
+                @if(Auth::user()->hasRole('admin')
+                || Auth::user()->hasRole('gerOpe')
+                || Auth::user()->hasRole('asistOpe'))
                 <button class="btn btn-outline-info align-self-start" data-toggle="modal" data-target="#ingresoHabilidad">Nueva habilidad</button>
+                @endif
             </div>
     </div>
     <div class="container">
