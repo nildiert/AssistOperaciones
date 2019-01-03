@@ -96,6 +96,7 @@
                                             <div class="col">
                                                 {!!Form::label('PersonasActivo','Estado')!!}
                                                 {!!Form::select('PersonasActivo',$estados,$pers->PersonasActivo,['class'=>'form-control'])!!}
+                                                {!!Form::hidden('PersonasEstado',$pers->PersonasEstado)!!}
                                             </div>
                                         </div>
                                     </tbody>

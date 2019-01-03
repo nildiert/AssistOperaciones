@@ -181,13 +181,25 @@ class personasController extends Controller
         'PersonasEspecialidad'=>'required',
         'PersonasTitulo'=>'required',
         'PersonasActivo'=>'required',
-        'PersonasFechaIngreso'=>'required'
+        'PersonasFechaIngreso'=>'required',
+        'PersonasFechaRetiro',
+        'PersonasEstado'
+
         ]);
         if(empty($request->PersonasSegNombre)){
             $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre;
         }else{
             $PersonasNombreCompleto = $request->PersonasPriApellido.' '.$request->PersonasSegApellido.' '.$request->PersonasPrimNombre.' '.$request->PersonasSegNombre;
         }
+
+        
+        //Si se dcambia el estado a "ACTIVO" entonces eliminamos la fecha de retiro que estaba anteriormente 
+        //y cambiamos el estado del consultor
+        if($request->PersonasActivo == "ACTIVO"){
+            $request->PersonasFechaRetiro = NULL;
+            $request->PersonasEstado = '1';
+        }
+        
                 //Conversión a mayusculas antes de insertar en la base de datos
         //Agregamos el campo de nombre completo a la variable $request
         $request->merge([
@@ -203,11 +215,14 @@ class personasController extends Controller
             'PersonasTipoDoc' => strtoupper($request->PersonasTipoDoc),
             'PersonasEspecialidad' => strtoupper($request->PersonasEspecialidad),
             'PersonasTitulo' => strtoupper($request->PersonasTitulo),
+            'PersonasFechaRetiro' => $request->PersonasFechaRetiro,
+            'PersonasEstado' => $request->PersonasEstado
         ]);
-        // return $request;
+        
+        Personas::find($id)->update($request->all());
+
         Alert::success('Registro actualizado correctamente');
 
-        Personas::find($id)->update($request->all());
         return redirect()->back();
     }
 
@@ -236,6 +251,7 @@ class personasController extends Controller
                 //Actualizamos los campos de inactividad
                 $personas->PersonasActivo = 'INACTIVO';
                 $personas->PersonasEstado = 0;
+                $personas->PersonasFechaRetiro = $request->PersonasFechaRetiro;
     
                 //Guardamos los cambios realizados
                 $personas->save();
