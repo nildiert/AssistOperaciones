@@ -18,8 +18,8 @@ class PersHabil extends Model
         'updated_at',
         'PersHabilUsuario',
         'PersHabilEstado',
-
     ];
+    protected $primaryKey = 'PersHabilID';
 
     public function personas(){
         return $this->belongsTo(Personas::class, 'PersonasID', 'personas_PersonasID');

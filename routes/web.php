@@ -52,6 +52,8 @@ Route::get('/register', function () {
 });
 // Route::get('personas/retirar','personasController@retirar')->name('personas.retiro');
 Route::get('personas/retirar/{id}','personasController@retirar')->name('personas.retiro');
+//Actualiza las habilidades
+Route::put('pershabil/actualizar/habilidades','persHabilController@actualizar')->name('pershabil.actualizar');
 Route::get('/home', function () {
     return view('welcome');
 });

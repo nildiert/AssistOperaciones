@@ -120,6 +120,7 @@
                                 @endforeach
                             </div>
                         <div class="d-flex justify-content-end">
+                                <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-edithabilidades-modal-lg">Editar habilidades</button>
                                 <button  type="button" class="btn btn-info mt-2" data-toggle="modal" data-target=".bd-habilidades-modal-lg">Agregar habilidades</button>
                         </div>
                 </div>
@@ -255,6 +256,58 @@
                 <div class="modal-footer">
                     {!!Form::button('Cancelar',['class'=>'btn btn-secondary','data-dismiss'=>'modal'])!!}
                     {!!Form::submit('Guardar',['class'=>'btn btn-info'])!!}
+                {!!Form::close()!!}
+                </div>
+          </div>
+        </div>
+      </div>
+
+
+      {{-- Modal para editar las habilidades --}}
+<div class="modal fade bd-edithabilidades-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+                <div class="modal-header">
+                        <div class="d-flex justify-content-start">
+                            <h5 class="modal-title" id="editModalLabel">Editar habilidades</h5>
+                        </div>  
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                <div class="modal-body ">
+                    {!!Form::open(['method'=>'PUT','action'=>'persHabilController@actualizar'])!!}
+                    <div class="form-row">
+                        <div class="col">{!!Form::label('Habilidad')!!}</div>
+                        <div class="col">{!!Form::label('Certificación')!!}</div>
+                        <div class="col">{!!Form::label('Nivel')!!}</div>
+                        
+                    </div>
+                    @foreach($pershabil as $key=>$ph)
+                    <div id="contenido" class="mt-2">
+                        
+                        <div class="form-row">
+                            {!!Form::hidden('id',$id)!!}
+                            <div class="col">
+                                {!!Form::hidden('habilidades['.$key.'][PersHabilID]',$ph->PersHabilID)!!}
+                                {!!Form::text('habilidades['.$key.'][HabilidadesNombre]',$ph->HabilidadesNombre,['class'=>'form-control pt-3','readonly'])!!}
+                            </div>
+                            <div class="col">
+                                {!!Form::text('habilidades['.$key.'][PersHabilCertificacion]',$ph->PersHabilCertificacion,['class'=>'form-control pt-3','placeholder'=>'Certificación'])!!}
+                            </div>
+                            <div class="col">
+                                {!!Form::select('habilidades['.$key.'][PersHabilNivExp]',['BAJO'=>'BAJO', 'INTERMEDIO'=>'INTERMEDIO', 'AVANZADO'=>'AVANZADO'],$ph->PersHabilNivExp,['class'=>'form-control'])!!}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    @endforeach
+                        
+                </div>{{--Fin modal-body--}}
+                <div class="modal-footer">
+                    {!!Form::button('Cancelar',['class'=>'btn btn-secondary','data-dismiss'=>'modal'])!!}
+                    {!!Form::submit('Actualizar',['class'=>'btn btn-info'])!!}
                 {!!Form::close()!!}
                 </div>
           </div>

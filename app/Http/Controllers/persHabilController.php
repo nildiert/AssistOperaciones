@@ -91,10 +91,10 @@ class persHabilController extends Controller
      * @param  \App\PersHabil  $persHabil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PersHabil $persHabil) 
+    public function update(Request $request, $id) 
     {
-        //
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -118,5 +118,29 @@ class persHabilController extends Controller
         ->get(); 
         
         return view('habilidades.index',compact('habilidades'));
+    }
+
+    public function actualizar(Request $request) 
+    {
+        foreach( $request->input()['habilidades'] as $key=>$value){
+            $persHabil = PersHabil::where('PersHabilID',$value['PersHabilID'])->first();
+            $persHabil->PersHabilCertificacion = $value['PersHabilCertificacion'];
+            $persHabil->PersHabilNivExp = $value['PersHabilNivExp'];
+            $persHabil->save();
+        };
+        
+        // foreach ($request->input()['actualizarRol'] as $key => $value) {
+        //     $userRol = RoleUser::where('id', $value['id'])->first();
+        //     $userRol->role_id = (int)($value['role_id']);
+        //     $userRol->save();
+            
+        //     $user=User::where('id',$value['user_id'])->first();
+        //     // return $user->estate;
+        //     }
+            return redirect()->back();
+
+
+
+
     }
 }
